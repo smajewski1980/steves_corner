@@ -1,14 +1,21 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
+import SearchForm from "../components/SearchForm.astro";
+import ArticleCard from "../components/ArticleCard.astro";
+
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
-import { formatDate } from "../utils";
+import { HOMEPAGE_ARTICLE_LIMIT } from "../constants";
+
 const allBlogArticles: CollectionEntry<"blog">[] = (
   await getCollection("blog")
 ).sort(
   (a: CollectionEntry<"blog">, b: CollectionEntry<"blog">) =>
     b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
+
+const mostRecentArticle: CollectionEntry<"blog"> = allBlogArticles[0];
+const otherArticles: CollectionEntry<"blog">[] = allBlogArticles.slice(1);
 ---
 
 <MainLayout>
@@ -19,47 +26,7 @@ const allBlogArticles: CollectionEntry<"blog">[] = (
         Articles, Stories & Tutorials for Tech People
       </h1>
 
-      <form
-        id='search-form'
-        class='flex items-center'
-      >
-        <label
-          for='search-input'
-          class='sr-only'
-          >Search</label
-        >
-        <div class='relative w-full'>
-          <input
-            type='text'
-            id='query'
-            name='query'
-            class='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5'
-            placeholder='Search articles...'
-            required
-          />
-        </div>
-        <button
-          type='submit'
-          class='p-2.5 ms-2 text-sm font-medium text-white bg-indigo-700 rounded-lg border border-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300'
-        >
-          <svg
-            class='w-4 h-4'
-            aria-hidden='true'
-            xmlns='http://www.w3.org/2000/svg'
-            fill='none'
-            viewBox='0 0 20 20'
-          >
-            <path
-              stroke='currentColor'
-              stroke-linecap='round'
-              stroke-linejoin='round'
-              stroke-width='2'
-              d='m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z'
-            ></path>
-          </svg>
-          <span class='sr-only'>Search</span>
-        </button>
-      </form>
+      <SearchForm />
     </div>
     <!-- Most Recent Article -->
     <div
@@ -101,40 +68,9 @@ const allBlogArticles: CollectionEntry<"blog">[] = (
   <!-- Main Grid -->
   <div class='grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3'>
     {
-      allBlogArticles.map((article) => (
-        <div class='max-w-md mx-auto mt-10'>
-          <div class='bg-white rounded-lg overflow-hidden shadow-lg'>
-            <a href={"/articles/" + article.id}>
-              <img
-                src={"/images/" + article.data.image}
-                alt='Article Image'
-                class='w-full h-48 object-cover hover:opacity-75 transition duration-300 ease-in-out'
-              />
-            </a>
-            <div class='p-6'>
-              <h2 class='text-2xl font-semibold mb-2'>
-                <a href={"/articles/" + article.id}>{article.data.title}</a>
-              </h2>
-              <p class='text-gray-600 text-sm mb-4'>
-                {formatDate(article.data.pubDate)}
-              </p>
-              <div class='flex flex-wrap gap-2'>
-                {article.data.tags.map((tag: string, idx: number) => (
-                  <span
-                    class={
-                      idx % 2 === 0
-                        ? "px-2 py-1 bg-green-500 text-white rounded-full text-xs hover:opacity-90"
-                        : "px-2 py-1 bg-indigo-500 text-white rounded-full text-xs hover:opacity-90"
-                    }
-                  >
-                    <a href={"/articles/tag/" + tag}>{tag}</a>
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      ))
+      otherArticles
+        .slice(0, HOMEPAGE_ARTICLE_LIMIT)
+        .map((article) => <ArticleCard article={article} />)
     }
   </div>
 </MainLayout>
