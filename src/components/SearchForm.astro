@@ -1,3 +1,16 @@
+---
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+
+const posts: CollectionEntry<"blog">[] = await getCollection("blog");
+const postIds: object[] = posts.map((p) => {
+  return {
+    id: p.id,
+    title: p.data.title,
+  };
+});
+---
+
 <form
   id='search-form'
   class='flex items-center'
@@ -39,3 +52,50 @@
     <span class='sr-only'>Search</span>
   </button>
 </form>
+
+<script define:vars={{ postIds }}>
+  // to filter the posts for a search, instead of getting all posts here to filter, i just pass the id and title
+  // which we then use to populate a select list if there are multiple posts for that term
+  // then redirected when one is selected or redirect if only one total
+
+  const form = document.getElementById("search-form");
+
+  form?.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const input = document.getElementById("query");
+    const searchTerm = input.value.trim().toLowerCase();
+    // filter the postIds by the search term
+    const filteredPostData = postIds.filter((postData) =>
+      postData.id.includes(searchTerm),
+    );
+
+    // if no posts, do nothing. later add toast
+    if (!filteredPostData.length) return;
+
+    // if only one choice, automatically redirect
+    if (filteredPostData.length === 1) {
+      window.location.href = `/articles/${filteredPostData[0].id}`;
+    } else {
+      // create selectlist with to hold possible choices
+      const selectEl = document.createElement("select");
+      // add to dom after the search input
+      input.insertAdjacentElement("afterend", selectEl);
+      // populate the options
+      filteredPostData.forEach((data) => {
+        const option = document.createElement("option");
+        option.value = data.id;
+        option.textContent = data.title;
+        selectEl.appendChild(option);
+      });
+      // open the select picker when it loads
+      selectEl.showPicker();
+      // the redirect listener when a choice is made
+      selectEl.addEventListener("change", (e) => {
+        // Sanitize or format the search term into a URL slug safely
+        const slug = encodeURIComponent(e.target.value);
+        window.location.href = `/articles/${slug}`;
+      });
+    }
+  });
+</script>

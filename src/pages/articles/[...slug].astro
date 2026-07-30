@@ -17,9 +17,8 @@ export async function getStaticPaths() {
   }));
 }
 
-// const { entry } = Astro.props;
-
 const { slug } = Astro.params;
+
 if (!slug) {
   throw new Error("Slug is required");
 }

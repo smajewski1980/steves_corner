@@ -1,0 +1,61 @@
+---
+import MainLayout from "../../../layouts/MainLayout.astro";
+import ArticleCard from "../../../components/ArticleCard.astro";
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+
+const allBlogArticles: CollectionEntry<"blog">[] = (
+  await getCollection("blog")
+).sort(
+  (a: CollectionEntry<"blog">, b: CollectionEntry<"blog">) =>
+    b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+export async function getStaticPaths() {
+  const allBlogArticles: CollectionEntry<"blog">[] =
+    await getCollection("blog");
+
+  // 1. Extract all tags from all articles and flatten them into a single array
+  const allTags = allBlogArticles.flatMap((entry) => entry.data.tags || []);
+
+  // 2. Deduplicate the tags using a Set so you only create one route per unique tag
+  const uniqueTags = [...new Set(allTags)];
+
+  // 3. Map over the unique tags to return the path objects
+  return uniqueTags.map((tag) => {
+    // Optional: filter articles that include this current tag
+    const filteredArticles = allBlogArticles.filter((entry) =>
+      entry.data.tags?.includes(tag),
+    );
+
+    return {
+      params: { tag }, // Must be a string
+      props: { posts: filteredArticles },
+    };
+  });
+}
+
+const { tag } = Astro.params;
+const { posts } = Astro.props;
+
+if (!tag) {
+  throw new Error("Tag is required.");
+}
+---
+
+<MainLayout>
+  <section class='container mx-auto max-w-screen-xl mt-10 px-8'>
+    <a
+      href='/articles/'
+      class='inline-block bg-gray-100 p-2 mb-6 hover:bg-indigo-500 hover:text-white'
+      >Back To Articles</a
+    >
+    <h1 class='text-5xl font-bold mt-4 mb-8 leading-tight xl:text-6xl'>
+      Articles - {tag}
+    </h1>
+
+    <div class='grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3'>
+      {posts.map((post) => <ArticleCard article={post} />)}
+    </div>
+  </section>
+</MainLayout>
