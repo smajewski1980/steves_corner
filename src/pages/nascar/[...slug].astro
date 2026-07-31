@@ -1,0 +1,52 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import { getCollection, getEntry, render } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import { formatDate } from "../../utils";
+import Tags from "../../components/Tags.astro";
+import { Image } from "astro:assets";
+
+export async function getStaticPaths() {
+  const allNascarPosts: CollectionEntry<"nascar">[] =
+    await getCollection("nascar");
+
+  return allNascarPosts.map((post) => ({
+    params: {
+      slug: post.id,
+    },
+    props: { post },
+  }));
+}
+
+const { slug } = Astro.params;
+
+if (!slug) throw new Error("Slug is required");
+
+const entry = await getEntry("nascar", slug);
+if (!entry) return Astro.redirect("/404");
+
+const { Content } = await render(entry);
+---
+
+<MainLayout>
+  <h1 class='text-4xl font-bold mb-2'>{entry.data.raceTitle}</h1>
+  <Image
+    src={entry.data.mainImage}
+    alt={entry.data.mainImageAlt}
+    width='500'
+    height='250'
+  />
+  <div class='contentWrapper'>
+    <Content />
+  </div>
+</MainLayout>
+
+<style is:global>
+  img {
+    max-width: 100%;
+    display: block;
+  }
+  .contentWrapper {
+    max-width: 500px;
+  }
+</style>
