@@ -1,0 +1,23 @@
+---
+const { prevUrl, nextUrl } = Astro.props;
+
+interface Props {
+  prevUrl: string | undefined;
+  nextUrl: string | undefined;
+}
+---
+
+<div class='flex justify-between mt-10'>
+  <a
+    href={prevUrl}
+    class='inline-block bg-indigo-100 px-3 py-2 hover:bg-indigo-600 hover:text-white rounded-lg'
+  >
+    Previous
+  </a>
+  <a
+    href={nextUrl}
+    class='inline-block bg-indigo-100 px-3 py-2 hover:bg-indigo-600 hover:text-white rounded-lg'
+  >
+    Next
+  </a>
+</div>
