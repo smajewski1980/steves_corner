@@ -48,3 +48,19 @@ interface Props {
     <Footer />
   </body>
 </html>
+
+<style>
+  :root {
+    --primary-purple: hsla(300, 55%, 80%, 0.65);
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background-image: linear-gradient(
+      to bottom right,
+      var(--primary-purple) 0%,
+      transparent 35%
+    );
+  }
+</style>

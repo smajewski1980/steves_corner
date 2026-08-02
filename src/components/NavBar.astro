@@ -3,9 +3,9 @@ import { Image } from "astro:assets";
 import logo from "../images/steves-corner-logo.webp";
 ---
 
-<nav class='bg-gray-400 text-white'>
+<nav>
   <div
-    class='max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4'
+    class='max-w-screen-xl flex flex-wrap items-center justify-between mx-auto'
   >
     <a
       href='/'
@@ -46,12 +46,12 @@ import logo from "../images/steves-corner-logo.webp";
       id='navbar-default'
     >
       <ul
-        class='font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 text-white rounded-lg md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 border-gray-700'
+        class='font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 border-gray-700'
       >
         <li>
           <a
             href={"/"}
-            class='block py-2 px-3 text-white rounded md:p-0 hover:text-indigo-400'
+            class='block py-2 px-3 rounded md:p-0'
             aria-current='page'
             >Home</a
           >
@@ -59,21 +59,21 @@ import logo from "../images/steves-corner-logo.webp";
         <li>
           <a
             href={"/articles/"}
-            class='block py-2 px-3 text-white rounded md:p-0 hover:text-indigo-400'
+            class='block py-2 px-3 rounded md:p-0'
             >All Articles</a
           >
         </li>
         <li>
           <a
             href={"/nascar/"}
-            class='block py-2 px-3 text-white rounded md:p-0 hover:text-indigo-400'
+            class='block py-2 px-3 rounded md:p-0'
             >Nascar Posts</a
           >
         </li>
         <li>
           <a
             href={"/about/"}
-            class='block py-2 px-3 text-white rounded md:p-0 hover:text-indigo-400'
+            class='block py-2 px-3 rounded md:p-0'
             >About</a
           >
         </li>
@@ -81,3 +81,17 @@ import logo from "../images/steves-corner-logo.webp";
     </div>
   </div>
 </nav>
+
+<style>
+  nav {
+    padding-block: 1rem;
+
+    li a {
+      color: hsl(from var(--primary-purple) h s calc(l - 40));
+      &:hover {
+        outline: 2px solid currentColor;
+        outline-offset: 5px;
+      }
+    }
+  }
+</style>
