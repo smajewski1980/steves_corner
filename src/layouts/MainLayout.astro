@@ -51,16 +51,20 @@ interface Props {
 
 <style>
   :root {
-    --primary-purple: hsla(300, 55%, 80%, 0.65);
+    --primary-purple: hsl(300, 55%, 80%);
+    --primary-purple-lower-opac: hsl(from var(--primary-purple) h s l / 0.6);
+    --text-color: hsl(from var(--primary-purple) h s calc(l - 35));
   }
 
   body {
     margin: 0;
-    padding: 0;
+    padding: 1rem;
     background-image: linear-gradient(
       to bottom right,
-      var(--primary-purple) 0%,
-      transparent 35%
+      var(--primary-purple-lower-opac) 0%,
+      transparent 35%,
+      transparent 50%,
+      var(--primary-purple-lower-opac) 100%
     );
   }
 </style>

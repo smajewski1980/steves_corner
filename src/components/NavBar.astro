@@ -4,93 +4,165 @@ import logo from "../images/steves-corner-logo.webp";
 ---
 
 <nav>
-  <div
-    class='max-w-screen-xl flex flex-wrap items-center justify-between mx-auto'
+  <a href='/'>
+    <Image
+      src={logo}
+      alt='TechPeople Logo'
+      width='150'
+    />
+  </a>
+  <button
+    data-collapse-toggle='navbar-default'
+    type='button'
+    class='hamburger'
+    aria-controls='navbar-default'
+    aria-expanded='false'
   >
-    <a
-      href='/'
-      class='flex items-center space-x-3 rtl:space-x-reverse'
+    <span class='screen-reader-only'>Open main menu</span>
+    <svg
+      aria-hidden='true'
+      xmlns='http://www.w3.org/2000/svg'
+      fill='none'
+      viewBox='0 0 17 14'
     >
-      <Image
-        src={logo}
-        alt='TechPeople Logo'
-        width='150'
-      />
-    </a>
-    <button
-      data-collapse-toggle='navbar-default'
-      type='button'
-      class='inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200'
-      aria-controls='navbar-default'
-      aria-expanded='false'
-    >
-      <span class='sr-only'>Open main menu</span>
-      <svg
-        class='w-5 h-5'
-        aria-hidden='true'
-        xmlns='http://www.w3.org/2000/svg'
-        fill='none'
-        viewBox='0 0 17 14'
-      >
-        <path
-          stroke='currentColor'
-          stroke-linecap='round'
-          stroke-linejoin='round'
-          stroke-width='2'
-          d='M1 1h15M1 7h15M1 13h15'
-        ></path>
-      </svg>
-    </button>
-    <div
-      class='hidden w-full md:block md:w-auto'
-      id='navbar-default'
-    >
-      <ul
-        class='font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 border-gray-700'
-      >
-        <li>
-          <a
-            href={"/"}
-            class='block py-2 px-3 rounded md:p-0'
-            aria-current='page'
-            >Home</a
-          >
-        </li>
-        <li>
-          <a
-            href={"/articles/"}
-            class='block py-2 px-3 rounded md:p-0'
-            >All Articles</a
-          >
-        </li>
-        <li>
-          <a
-            href={"/nascar/"}
-            class='block py-2 px-3 rounded md:p-0'
-            >Nascar Posts</a
-          >
-        </li>
-        <li>
-          <a
-            href={"/about/"}
-            class='block py-2 px-3 rounded md:p-0'
-            >About</a
-          >
-        </li>
-      </ul>
-    </div>
+      <path
+        stroke='currentColor'
+        stroke-linecap='round'
+        stroke-linejoin='round'
+        stroke-width='2'
+        d='M1 1h15M1 7h15M1 13h15'
+      ></path>
+    </svg>
+  </button>
+  <div
+    class='my-hidden'
+    id='navbar-default'
+  >
+    <ul>
+      <li>
+        <a
+          href={"/"}
+          aria-current='page'
+          >Home</a
+        >
+      </li>
+      <li>
+        <a href={"/articles/"}>All Articles</a>
+      </li>
+      <li>
+        <a href={"/nascar/"}>Nascar Posts</a>
+      </li>
+      <li>
+        <a href={"/about/"}>About</a>
+      </li>
+    </ul>
   </div>
 </nav>
+
+<script>
+  const hamburger = document.querySelector(".hamburger");
+  const menu = document.getElementById("navbar-default");
+
+  hamburger?.addEventListener("click", () => {
+    menu?.classList.toggle("is-open");
+  });
+</script>
 
 <style>
   nav {
     padding-block: 1rem;
+    max-width: 1280px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    margin-inline: auto;
 
-    li a {
-      color: hsl(from var(--primary-purple) h s calc(l - 40));
-      &:hover {
-        outline: 2px solid currentColor;
-        outline-offset: 5px;
+    button {
+      color: var(--text-color);
+      justify-items: center;
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 10px;
+
+      &:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px var(--text-color);
+      }
+
+      svg {
+        width: 1.25rem;
+        height: 1.25rem;
+      }
+
+      .screen-reader-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border-width: 0;
+      }
+    }
+
+    .my-hidden {
+      display: none;
+    }
+
+    .is-open {
+      display: block;
+    }
+
+    #navbar-default {
+      width: 100%;
+    }
+
+    @media (min-width: 768px) {
+      .hamburger {
+        display: none;
+      }
+
+      #navbar-default {
+        display: block;
+        width: auto;
+      }
+    }
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      padding: 1rem;
+      margin-block-start: 1rem;
+      font-weight: 500;
+      border: 2px solid var(--text-color);
+      border-radius: 10px;
+      gap: 1rem;
+
+      @media (min-width: 768px) {
+        flex-direction: row;
+        padding: 0;
+        margin-block-start: 0;
+        border: 0;
+        gap: 2rem;
+      }
+
+      li a {
+        color: var(--text-color);
+        display: block;
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+
+        &:hover {
+          outline: 2px solid currentColor;
+          outline-offset: 5px;
+        }
+
+        @media (min-width: 768px) {
+          padding: 0;
+        }
       }
     }
   }
