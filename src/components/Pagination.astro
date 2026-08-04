@@ -7,17 +7,32 @@ interface Props {
 }
 ---
 
-<div class='flex justify-between mt-10'>
-  <a
-    href={prevUrl}
-    class='inline-block bg-indigo-100 px-3 py-2 hover:bg-indigo-600 hover:text-white rounded-lg'
-  >
-    Previous
-  </a>
-  <a
-    href={nextUrl}
-    class='inline-block bg-indigo-100 px-3 py-2 hover:bg-indigo-600 hover:text-white rounded-lg'
-  >
-    Next
-  </a>
+<div class='pagination-wrapper'>
+  <a href={prevUrl}> Previous </a>
+  <a href={nextUrl}> Next </a>
 </div>
+
+<style>
+  .pagination-wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-block-start: 2.5rem;
+
+    a {
+      color: var(--text-color-100);
+      background-color: var(--text-color-700);
+      padding: 0.5rem 0.75rem;
+      border-radius: 10px;
+    }
+
+    a:hover {
+      color: var(--text-color-700);
+      background-color: var(--text-color-100);
+    }
+
+    a:focus-visible {
+      outline: 1px solid var(--text-color-700);
+      outline-offset: 5px;
+    }
+  }
+</style>

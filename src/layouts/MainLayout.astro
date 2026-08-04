@@ -53,7 +53,9 @@ interface Props {
   :root {
     --primary-purple: hsl(300, 55%, 80%);
     --primary-purple-lower-opac: hsl(from var(--primary-purple) h s l / 0.6);
-    --text-color: hsl(from var(--primary-purple) h s calc(l - 35));
+    --text-color-100: hsl(from var(--primary-purple) h s calc(l + 10));
+    --text-color-400: hsl(from var(--primary-purple) h s calc(l - 35));
+    --text-color-700: hsl(from var(--primary-purple) h s calc(l - 55));
     --max-width: 1280px;
   }
 
@@ -71,8 +73,23 @@ interface Props {
     section {
       margin-inline: auto;
       margin-block-start: 2.5rem;
-      padding-inline: 2rem;
       max-width: var(--max-width);
+
+      @media (min-width: 768px) {
+        padding-inline: 2rem;
+      }
+    }
+
+    .screen-reader-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border-width: 0;
     }
   }
 </style>

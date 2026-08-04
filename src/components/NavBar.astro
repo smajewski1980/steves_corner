@@ -72,14 +72,14 @@ import logo from "../images/steves-corner-logo.webp";
   nav {
     padding: 1rem 3.5rem;
     max-width: var(--max-width);
+    margin-inline: auto;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    margin-inline: auto;
 
     button {
-      color: var(--text-color);
+      color: var(--text-color-400);
       justify-items: center;
       width: 2.5rem;
       height: 2.5rem;
@@ -87,24 +87,12 @@ import logo from "../images/steves-corner-logo.webp";
 
       &:focus {
         outline: none;
-        box-shadow: 0 0 0 2px var(--text-color);
+        box-shadow: 0 0 0 2px var(--text-color-400);
       }
 
       svg {
         width: 1.25rem;
         height: 1.25rem;
-      }
-
-      .screen-reader-only {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        white-space: nowrap;
-        border-width: 0;
       }
     }
 
@@ -137,7 +125,7 @@ import logo from "../images/steves-corner-logo.webp";
       padding: 1rem;
       margin-block-start: 1rem;
       font-weight: 500;
-      border: 2px solid var(--text-color);
+      border: 2px solid var(--text-color-400);
       border-radius: 10px;
       gap: 1rem;
 
@@ -150,7 +138,7 @@ import logo from "../images/steves-corner-logo.webp";
       }
 
       li a {
-        color: var(--text-color);
+        color: var(--text-color-400);
         display: block;
         padding: 0.5rem 1rem;
         border-radius: 5px;

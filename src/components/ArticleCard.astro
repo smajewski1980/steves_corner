@@ -10,23 +10,66 @@ interface Props {
 }
 ---
 
-<div class='max-w-md mx-auto mt-10'>
-  <div class='bg-white rounded-lg overflow-hidden shadow-lg'>
+<div class='card-wrapper'>
+  <div class='content-wrapper'>
     <a href={"/articles/" + article.id}>
       <img
         src={"/images/" + article.data.image}
         alt='Article Image'
-        class='w-full h-48 object-cover hover:opacity-75 transition duration-300 ease-in-out'
       />
     </a>
-    <div class='p-6'>
-      <h2 class='text-2xl font-semibold mb-2'>
+    <div class='content-bottom'>
+      <h2 class='card-heading'>
         <a href={"/articles/" + article.id}>{article.data.title}</a>
       </h2>
-      <p class='text-gray-600 text-sm mb-4'>
+      <p>
         {formatDate(article.data.pubDate)}
       </p>
       <Tags tags={article.data.tags} />
     </div>
   </div>
 </div>
+
+<style>
+  .card-wrapper {
+    margin-block-start: 2.5rem;
+    max-width: 28rem;
+    margin-block: auto;
+    box-shadow:
+      0 10px 15px -3px hsl(from var(--text-color-700) h s l / 0.1),
+      0 4px 6px -4px hsl(from var(--text-color-700) h s l / 0.1);
+  }
+
+  .content-wrapper {
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    color: var(--text-color-700);
+
+    img {
+      width: 100%;
+      height: 12rem;
+      object-fit: cover;
+      transition: 0.3s ease-in-out;
+
+      &:hover {
+        opacity: 0.75;
+      }
+    }
+
+    .content-bottom {
+      padding: 1.25rem;
+    }
+
+    .card-heading {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-block-end: 0.5rem;
+    }
+
+    p {
+      font-size: 0.85rem;
+      margin-block-end: 0.75rem;
+    }
+  }
+</style>

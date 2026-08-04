@@ -6,18 +6,41 @@ interface Props {
 }
 ---
 
-<div class='flex flex-wrap gap-2 mb-6'>
+<div class='tags-wrapper'>
   {
     tags.map((tag: string, idx: number) => (
-      <span
-        class={
-          idx % 2 === 0
-            ? "px-2 py-1 bg-green-500 text-white rounded-full text-xs hover:opacity-90"
-            : "px-2 py-1 bg-indigo-500 text-white rounded-full text-xs hover:opacity-90"
-        }
-      >
+      <span class={idx % 2 === 0 ? "tag" : "tag alternate-color"}>
         <a href={"/articles/tag/" + tag}>{tag}</a>
       </span>
     ))
   }
 </div>
+
+<style>
+  .tags-wrapper {
+    --color-one: green;
+    --color-two: indigo;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-block: 1rem;
+    color: var(--text-color-100);
+    font-size: 0.875rem;
+
+    .tag {
+      background-color: var(--color-one);
+      border-radius: 100vw;
+      padding: 0.3rem 0.5rem;
+      transition: opacity 0.2s ease;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+
+    .alternate-color {
+      background-color: var(--color-two);
+    }
+  }
+</style>

@@ -11,29 +11,20 @@ const postIds: object[] = posts.map((p) => {
 });
 ---
 
-<form
-  id='search-form'
-  class='flex items-center'
->
+<form id='search-form'>
   <label
-    for='search-input'
-    class='sr-only'
+    for='query'
+    class='screen-reader-only'
     >Search</label
   >
-  <div class='relative w-full'>
-    <input
-      type='text'
-      id='query'
-      name='query'
-      class='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5'
-      placeholder='Search articles...'
-      required
-    />
-  </div>
-  <button
-    type='submit'
-    class='p-2.5 ms-2 text-sm font-medium text-white bg-indigo-700 rounded-lg border border-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300'
-  >
+  <input
+    type='text'
+    id='query'
+    name='query'
+    placeholder='Search articles...'
+    required
+  />
+  <button type='submit'>
     <svg
       class='w-4 h-4'
       aria-hidden='true'
@@ -49,7 +40,7 @@ const postIds: object[] = posts.map((p) => {
         d='m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z'
       ></path>
     </svg>
-    <span class='sr-only'>Search</span>
+    <span class='screen-reader-only'>Search</span>
   </button>
 </form>
 
@@ -99,3 +90,46 @@ const postIds: object[] = posts.map((p) => {
     }
   });
 </script>
+
+<style>
+  form {
+    display: flex;
+    align-items: center;
+    margin-block-end: 1.5rem;
+    color: var(--text-color-700);
+    gap: 0.5rem;
+
+    button {
+      padding: 0.625rem;
+      font-size: 0.875rem;
+      color: var(--text-color-100);
+      background-color: var(--text-color-700);
+      border-radius: 10px;
+      transition: all 0.2s ease;
+
+      &:hover {
+        color: var(--text-color-700);
+        background-color: var(--text-color-100);
+      }
+
+      &:focus-visible {
+        outline: 1px solid var(--text-color-700);
+        outline-offset: 5px;
+      }
+    }
+  }
+
+  #query {
+    width: 100%;
+    background-color: hsla(0, 0%, 97%);
+    border: 1px solid currentColor;
+    font-size: 0.875rem;
+    border-radius: 10px;
+    padding: 0.4rem 0.5rem;
+  }
+
+  #query:focus-visible {
+    outline: 1px solid currentColor;
+    outline-offset: 5px;
+  }
+</style>
