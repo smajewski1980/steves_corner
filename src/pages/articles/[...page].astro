@@ -25,14 +25,12 @@ const nextUrl = page.url.next;
 ---
 
 <MainLayout>
-  <section class='container mx-auto max-w-screen-xl mt-10 px-8'>
-    <h1 class='text-5xl font-bold mt-4 mb-8 leading-tight xl:text-6xl'>
-      All Articles
-    </h1>
+  <section>
+    <h1>All Articles</h1>
 
     <SearchForm />
 
-    <div class='grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3'>
+    <div class='card-wrapper'>
       {page.data.map((article) => <ArticleCard article={article} />)}
     </div>
     <Pagination
@@ -41,3 +39,38 @@ const nextUrl = page.url.next;
     />
   </section>
 </MainLayout>
+
+<style>
+  section {
+    width: 100%;
+    margin-inline: auto;
+    max-width: var(--max-width);
+    padding-inline: 2rem;
+    margin-block-start: 3.5rem;
+    color: var(--text-color-700);
+
+    h1 {
+      font-size: 2.5rem;
+      line-height: 1.25;
+      font-weight: 700;
+      margin-block: 1rem 2rem;
+    }
+  }
+
+  .card-wrapper {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 1rem;
+  }
+  @media (min-width: 640px) {
+    .card-wrapper {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .card-wrapper {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>

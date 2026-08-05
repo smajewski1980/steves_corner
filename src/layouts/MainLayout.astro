@@ -6,7 +6,7 @@ import NavBar from "../components/NavBar.astro";
 import Footer from "../components/Footer.astro";
 const { title = "Articles, Stories & Tutorials For Tech People" } = Astro.props;
 
-// following a tutorial that is using Typescript
+// this started as a tutorial that is used Typescript
 // its next on the list to learn
 
 interface Props {
@@ -27,17 +27,17 @@ interface Props {
       content={SITE_DESCRIPTION}
     />
     <!-- remove tailwind later -->
-    <link
+    <!-- <link
       href='https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css'
       rel='stylesheet'
-    />
+    /> -->
     <!-- remove flowbite(tailwind) later -->
-    <script
+    <!-- <script
       src='https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.js'
       integrity='sha512-BJ/5sR2hFxQTKin/55JQCcMTObShDBAmVjL/3NR/MVcrhyOazJjAgvROem03+HYyGw16SVdSfoWCFGr9syxAKA=='
       crossorigin='anonymous'
       referrerpolicy='no-referrer'
-    ></script>
+    ></script> -->
     <title>{SITE_TITLE} - {title}</title>
   </head>
   <body>
@@ -57,9 +57,12 @@ interface Props {
     --text-color-400: hsl(from var(--primary-purple) h s calc(l - 35));
     --text-color-700: hsl(from var(--primary-purple) h s calc(l - 55));
     --max-width: 1280px;
+    --med-width: 1024px;
+    --main-font: monospace;
   }
 
   body {
+    font-family: var(--main-font);
     margin: 0;
     padding: 1rem;
     background-image: linear-gradient(
@@ -69,6 +72,8 @@ interface Props {
       transparent 50%,
       var(--primary-purple-lower-opac) 100%
     );
+    min-height: 100dvh;
+    background-repeat: no-repeat;
 
     section {
       margin-inline: auto;
@@ -90,6 +95,15 @@ interface Props {
       clip: rect(0, 0, 0, 0);
       white-space: nowrap;
       border-width: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    ul {
+      list-style-type: none;
     }
   }
 </style>

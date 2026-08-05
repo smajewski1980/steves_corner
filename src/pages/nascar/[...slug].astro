@@ -29,24 +29,32 @@ const { Content } = await render(entry);
 ---
 
 <MainLayout>
-  <h1 class='text-4xl font-bold mb-2'>{entry.data.raceTitle}</h1>
+  <h1 class='nascar-post-header'>{entry.data.raceTitle}</h1>
   <Image
     src={entry.data.mainImage}
     alt={entry.data.mainImageAlt}
-    width='500'
-    height='250'
+    width='750'
   />
   <div class='contentWrapper'>
     <Content />
   </div>
 </MainLayout>
 
-<style is:global>
+<style>
+  .nascar-post-header {
+    text-align: center;
+    margin-block-end: 5rem;
+    font-weight: 600;
+    font-size: 2.5rem;
+  }
   img {
+    width: 750px;
     max-width: 100%;
     display: block;
+    margin-inline: auto;
   }
   .contentWrapper {
-    max-width: 500px;
+    max-width: var(--max-width);
+    margin-inline: auto;
   }
 </style>

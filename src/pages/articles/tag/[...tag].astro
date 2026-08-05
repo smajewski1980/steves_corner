@@ -44,18 +44,71 @@ if (!tag) {
 ---
 
 <MainLayout>
-  <section class='container mx-auto max-w-screen-xl mt-10 px-8'>
+  <section>
     <a
       href='/articles/'
-      class='inline-block bg-gray-100 p-2 mb-6 hover:bg-indigo-500 hover:text-white'
+      class='back-link'
       >Back To Articles</a
     >
-    <h1 class='text-5xl font-bold mt-4 mb-8 leading-tight xl:text-6xl'>
-      Articles - {tag}
+    <h1>
+      Posts - {tag}
     </h1>
 
-    <div class='grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3'>
+    <div class='card-wrapper'>
       {posts.map((post) => <ArticleCard article={post} />)}
     </div>
   </section>
 </MainLayout>
+
+<style>
+  section {
+    width: 100%;
+    margin-inline: auto;
+    max-width: var(--max-width);
+    padding-inline: 2rem;
+    margin-block-start: 3.5rem;
+    color: var(--text-color-700);
+
+    .back-link {
+      color: var(--text-color-100);
+      background-color: var(--text-color-700);
+      padding: 0.5rem 0.75rem;
+      border-radius: 10px;
+      transition: all 0.1s ease;
+    }
+
+    .back-link:hover {
+      color: var(--text-color-700);
+      background-color: var(--text-color-100);
+    }
+
+    .back-link:focus-visible {
+      outline: 1px solid var(--text-color-700);
+      outline-offset: 5px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      line-height: 1.25;
+      font-weight: 700;
+      margin-block: 2rem;
+    }
+  }
+
+  .card-wrapper {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 1rem;
+  }
+  @media (min-width: 640px) {
+    .card-wrapper {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .card-wrapper {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>
