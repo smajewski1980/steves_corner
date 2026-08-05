@@ -27,7 +27,7 @@ const nextUrl = page.url.next;
 <MainLayout>
   <section>
     <!-- maybe at the top of the category pages like this we put that most recent post component -->
-    <h1 class='all-nascar-posts-header'>All Nascar Posts</h1>
+    <h1>All Nascar Posts</h1>
 
     <SearchForm />
 
@@ -43,21 +43,17 @@ const nextUrl = page.url.next;
 
 <style>
   section {
-    width: 100%;
     max-width: var(--max-width);
     margin-inline: auto;
     margin-block-start: 2.5rem;
     padding-inline: 2rem;
     color: var(--text-color-700);
-  }
-  .all-nascar-posts-header {
-    font-size: 2.5rem;
-    line-height: 1.25;
-    font-weight: 700;
-    margin-block: 1rem 2rem;
 
-    @media (min-width: 1280px) {
-      font-size: 3rem;
+    h1 {
+      font-size: 2.5rem;
+      line-height: 1.25;
+      font-weight: 700;
+      margin-block: 1rem 2rem;
     }
   }
 

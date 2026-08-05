@@ -26,19 +26,16 @@ interface Props {
       name='description'
       content={SITE_DESCRIPTION}
     />
-    <!-- remove tailwind later -->
-    <!-- <link
-      href='https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css'
-      rel='stylesheet'
-    /> -->
-    <!-- remove flowbite(tailwind) later -->
-    <!-- <script
-      src='https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.js'
-      integrity='sha512-BJ/5sR2hFxQTKin/55JQCcMTObShDBAmVjL/3NR/MVcrhyOazJjAgvROem03+HYyGw16SVdSfoWCFGr9syxAKA=='
-      crossorigin='anonymous'
-      referrerpolicy='no-referrer'
-    ></script> -->
+
     <title>{SITE_TITLE} - {title}</title>
+    <!-- Preload your local font file -->
+    <link
+      rel='preload'
+      href='/fonts/OCRAEXT.TTF'
+      as='font'
+      type='font/ttf'
+      crossorigin
+    />
   </head>
   <body>
     <NavBar />
@@ -49,7 +46,7 @@ interface Props {
   </body>
 </html>
 
-<style>
+<style is:global>
   :root {
     --primary-purple: hsl(300, 55%, 80%);
     --primary-purple-lower-opac: hsl(from var(--primary-purple) h s l / 0.6);
@@ -58,7 +55,12 @@ interface Props {
     --text-color-700: hsl(from var(--primary-purple) h s calc(l - 55));
     --max-width: 1280px;
     --med-width: 1024px;
-    --main-font: monospace;
+    --main-font: "OCR A Extended";
+  }
+
+  @font-face {
+    font-family: "OCR A Extended";
+    src: url("/fonts/OCRAEXT.TTF");
   }
 
   body {
