@@ -27,7 +27,7 @@ const nextUrl = page.url.next;
 <MainLayout>
   <section>
     <!-- maybe at the top of the category pages like this we put that most recent post component -->
-    <h1>All Nascar Posts</h1>
+    <h1>Nascar Posts</h1>
 
     <SearchForm />
 
@@ -61,17 +61,16 @@ const nextUrl = page.url.next;
     display: grid;
     grid-template-columns: repeat(1, minmax(0, 1fr));
     gap: 1rem;
-
-    @media (min-width: 640px) {
-      .nascar-card-wrapper {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
+  }
+  @media (min-width: 640px) {
+    .nascar-card-wrapper {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+  }
 
-    @media (min-width: 1024px) {
-      .nascar-card-wrapper {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
+  @media (min-width: 1024px) {
+    .nascar-card-wrapper {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
   }
 </style>

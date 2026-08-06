@@ -30,6 +30,7 @@ const { Content } = await render(entry);
 
 <MainLayout>
   <h1 class='nascar-post-header'>{entry.data.raceTitle}</h1>
+  <h2>{formatDate(entry.data.raceDate)}</h2>
   <Image
     src={entry.data.mainImage}
     alt={entry.data.mainImageAlt}
@@ -41,20 +42,32 @@ const { Content } = await render(entry);
 </MainLayout>
 
 <style>
-  .nascar-post-header {
+  .nascar-post-header,
+  h2 {
     text-align: center;
-    margin-block-end: 5rem;
+    margin-block-end: 2rem;
     font-weight: 600;
     font-size: 2.5rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
   }
   img {
     width: 750px;
     max-width: 100%;
     display: block;
     margin-inline: auto;
+
+    &:first-of-type {
+      margin-block-end: 3rem;
+    }
   }
   .contentWrapper {
     max-width: var(--max-width);
     margin-inline: auto;
+    p {
+      text-align: center;
+    }
   }
 </style>

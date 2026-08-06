@@ -3,7 +3,6 @@ import { formatDate } from "../utils";
 import type { CollectionEntry } from "astro:content";
 import Tags from "./Tags.astro";
 import { Image } from "astro:assets";
-import testImage from "../images/nascar/5-31-2014_dover.webp";
 
 const { post } = Astro.props;
 
@@ -16,7 +15,7 @@ interface Props {
   <div class='nascar-card-inner-wrapper'>
     <a href={"/nascar/" + post.id}>
       <Image
-        src={testImage}
+        src={post.data.mainImage}
         alt='Article Image'
       />
     </a>
