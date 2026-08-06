@@ -1,22 +1,28 @@
 ---
-import MainLayout from "../../../layouts/MainLayout.astro";
-import ArticleCard from "../../../components/ArticleCard.astro";
+import MainLayout from "../../layouts/MainLayout.astro";
+import ArticleCard from "../../components/ArticleCard.astro";
+import NascarPostCard from "../../components/NascarPostCard.astro";
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 
-const allBlogArticles: CollectionEntry<"blog">[] = (
-  await getCollection("blog")
-).sort(
-  (a: CollectionEntry<"blog">, b: CollectionEntry<"blog">) =>
-    b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
+// const allBlogArticles: CollectionEntry<"blog">[] = (
+//   await getCollection("blog")
+// ).sort(
+//   (a: CollectionEntry<"blog">, b: CollectionEntry<"blog">) =>
+//     b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+// );
 
 export async function getStaticPaths() {
   const allBlogArticles: CollectionEntry<"blog">[] =
     await getCollection("blog");
 
+  const allNascarPosts: CollectionEntry<"nascar">[] =
+    await getCollection("nascar");
+
+  const allContent = [...allBlogArticles, ...allNascarPosts];
+
   // 1. Extract all tags from all articles and flatten them into a single array
-  const allTags = allBlogArticles.flatMap((entry) => entry.data.tags || []);
+  const allTags = allContent.flatMap((entry) => entry.data.tags || []);
 
   // 2. Deduplicate the tags using a Set so you only create one route per unique tag
   const uniqueTags = [...new Set(allTags)];
@@ -24,13 +30,13 @@ export async function getStaticPaths() {
   // 3. Map over the unique tags to return the path objects
   return uniqueTags.map((tag) => {
     // Optional: filter articles that include this current tag
-    const filteredArticles = allBlogArticles.filter((entry) =>
+    const filteredContent = allContent.filter((entry: any) =>
       entry.data.tags?.includes(tag),
     );
 
     return {
       params: { tag }, // Must be a string
-      props: { posts: filteredArticles },
+      props: { posts: filteredContent },
     };
   });
 }
@@ -41,21 +47,38 @@ const { posts } = Astro.props;
 if (!tag) {
   throw new Error("Tag is required.");
 }
+
+// 1. Peek at the first post to detect the active collection
+const activeCollection = posts[0]?.collection;
+
+// 2. Set up dynamic link text and path configuration
+const backLink =
+  activeCollection === "blog"
+    ? { url: "/articles", text: "Back to Articles", headingText: "Blog " }
+    : { url: "/nascar", text: "Back to Nascar Posts", headingText: "Nascar " };
 ---
 
 <MainLayout>
   <section>
     <a
-      href='/articles/'
+      href={backLink.url}
       class='back-link'
-      >Back To Articles</a
+      >{backLink.text}</a
     >
     <h1>
-      Posts - {tag}
+      {backLink.headingText}posts tagged with: {tag}
     </h1>
 
     <div class='card-wrapper'>
-      {posts.map((post) => <ArticleCard article={post} />)}
+      {
+        posts.map((post: any) => {
+          if (post.collection === "blog") {
+            return <ArticleCard article={post} />;
+          } else if (post.collection === "nascar") {
+            return <NascarPostCard post={post} />;
+          }
+        })
+      }
     </div>
   </section>
 </MainLayout>
@@ -88,7 +111,7 @@ if (!tag) {
     }
 
     h1 {
-      font-size: 2.5rem;
+      font-size: 1.75rem;
       line-height: 1.25;
       font-weight: 700;
       margin-block: 2rem;

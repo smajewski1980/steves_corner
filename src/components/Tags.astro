@@ -10,7 +10,7 @@ interface Props {
   {
     tags.map((tag: string, idx: number) => (
       <span class={idx % 2 === 0 ? "tag" : "tag alternate-color"}>
-        <a href={"/articles/tag/" + tag}>{tag}</a>
+        <a href={"/tag/" + tag}>{tag}</a>
       </span>
     ))
   }
