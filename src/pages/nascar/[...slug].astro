@@ -31,6 +31,9 @@ const { Content } = await render(entry);
 <MainLayout>
   <h1 class='nascar-post-header'>{entry.data.raceTitle}</h1>
   <h2>{formatDate(entry.data.raceDate)}</h2>
+  <p class='race-winner'>
+    <strong>Race Winner: <em>{entry.data.raceWinner}</em></strong>
+  </p>
   <Image
     src={entry.data.mainImage}
     alt={entry.data.mainImageAlt}
@@ -53,9 +56,18 @@ const { Content } = await render(entry);
   h2 {
     font-size: 1.5rem;
   }
+
+  p {
+    text-align: center;
+  }
+
+  .race-winner {
+    margin-block-end: 5rem;
+  }
+
   img {
-    width: 750px;
     max-width: 100%;
+    height: auto;
     display: block;
     margin-inline: auto;
 
@@ -63,10 +75,25 @@ const { Content } = await render(entry);
       margin-block-end: 3rem;
     }
   }
+
   .contentWrapper {
     max-width: var(--max-width);
     margin-inline: auto;
+
     p {
+      text-align: center;
+      margin-block-end: 3rem;
+    }
+
+    img {
+      width: 750px;
+      height: auto;
+      margin-inline: auto;
+      display: block;
+    }
+
+    h3 {
+      font-size: 2rem;
       text-align: center;
     }
   }

@@ -14,11 +14,19 @@ const blogCollection = defineCollection({
 });
 
 const nascarCollection = defineCollection({
-  loader: glob({ pattern: "**/[^_]*.{md,mdx}", base: "./src/content/nascar" }),
+  loader: glob({
+    pattern: "**/[^_]*.{md,mdx}",
+    base: "./src/content/nascar",
+    // Automatically strips out file extensions and /index suffixes from post.id
+    generateId: ({ entry }) => {
+      return entry.replace(/\/index$/, "").replace(/\.(md|mdx)$/, "");
+    },
+  }),
   schema: ({ image }) =>
     z.object({
       raceTitle: z.string(),
       raceDate: z.date(),
+      raceWinner: z.string().optional(), // remove the optional later
       mainImage: image(),
       mainImageAlt: z.string(),
       tags: z.array(z.string()),

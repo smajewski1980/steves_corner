@@ -29,7 +29,19 @@ const nextUrl = page.url.next;
     <!-- maybe at the top of the category pages like this we put that most recent post component -->
     <h1>Nascar Posts</h1>
 
-    <SearchForm />
+    <!-- <SearchForm /> -->
+    <p>
+      Welcome to my digital Nascar scrapbook. I went to my first race in 2007,
+      since then, I've gone to a few more... Since I am making this website long
+      after most of these races occurred, there may be less comments in some
+      posts than others.
+    </p>
+    <p>
+      There were like one or two races that I couldn't find any pictures that we
+      took.... But for the most part, in addition to the ticket stubs, I added a
+      few race pics, video if I had it and there are some pit passes in there
+      too.
+    </p>
 
     <div class='nascar-card-wrapper'>
       {page.data.map((post) => <NascarPostCard post={post} />)}
@@ -54,6 +66,10 @@ const nextUrl = page.url.next;
       line-height: 1.25;
       font-weight: 700;
       margin-block: 1rem 2rem;
+    }
+
+    p {
+      line-height: 1.6;
     }
   }
 
