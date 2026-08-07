@@ -13,6 +13,8 @@ const blogCollection = defineCollection({
   }),
 });
 
+// when i switched from .md to .mdx i had to
+// strip the end off the post.id for the url
 const nascarCollection = defineCollection({
   loader: glob({
     pattern: "**/[^_]*.{md,mdx}",

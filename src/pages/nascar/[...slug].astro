@@ -29,22 +29,26 @@ const { Content } = await render(entry);
 ---
 
 <MainLayout>
-  <h1 class='nascar-post-header'>{entry.data.raceTitle}</h1>
-  <h2>{formatDate(entry.data.raceDate)}</h2>
-  <p class='race-winner'>
-    <strong>Race Winner: <em>{entry.data.raceWinner}</em></strong>
-  </p>
-  <Image
-    src={entry.data.mainImage}
-    alt={entry.data.mainImageAlt}
-    width='750'
-  />
-  <div class='contentWrapper'>
-    <Content />
-  </div>
+  <main>
+    <h1 class='nascar-post-header'>{entry.data.raceTitle}</h1>
+    <h2>{formatDate(entry.data.raceDate)}</h2>
+    <p class='race-winner'>
+      <strong>Race Winner: <em>{entry.data.raceWinner}</em></strong>
+    </p>
+    <Image
+      src={entry.data.mainImage}
+      alt={entry.data.mainImageAlt}
+    />
+    <div class='contentWrapper'>
+      <Content />
+    </div>
+  </main>
 </MainLayout>
 
 <style>
+  main {
+    color: var(--text-color-700);
+  }
   .nascar-post-header,
   h2 {
     text-align: center;
@@ -63,6 +67,10 @@ const { Content } = await render(entry);
 
   .race-winner {
     margin-block-end: 5rem;
+
+    em {
+      font-size: 1.25rem;
+    }
   }
 
   img {
@@ -79,14 +87,18 @@ const { Content } = await render(entry);
   .contentWrapper {
     max-width: var(--max-width);
     margin-inline: auto;
+    color: var(--text-color-700);
 
     p {
       text-align: center;
       margin-block-end: 3rem;
+      max-width: 60ch;
+      margin-inline: auto;
     }
 
     img {
-      width: 750px;
+      max-width: 750px;
+      width: 100%;
       height: auto;
       margin-inline: auto;
       display: block;
