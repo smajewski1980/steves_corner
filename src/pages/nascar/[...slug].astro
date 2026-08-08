@@ -91,9 +91,13 @@ const { Content } = await render(entry);
 
     p {
       text-align: center;
-      margin-block-end: 3rem;
+      margin-block-end: 1rem;
       max-width: 60ch;
       margin-inline: auto;
+    }
+
+    p:has(+ img) {
+      margin-block-end: 3rem;
     }
 
     img {
