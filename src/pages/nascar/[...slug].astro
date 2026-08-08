@@ -96,7 +96,8 @@ const { Content } = await render(entry);
       margin-inline: auto;
     }
 
-    p:has(+ img) {
+    p:has(+ img),
+    p:has(+ iframe) {
       margin-block-end: 3rem;
     }
 

@@ -42,7 +42,10 @@ const nextUrl = page.url.next;
       few race pics, video if I had it and there are some pit passes in there
       too.
     </p>
-
+    <Pagination
+      prevUrl={prevUrl}
+      nextUrl={nextUrl}
+    />
     <div class='nascar-card-wrapper'>
       {page.data.map((post) => <NascarPostCard post={post} />)}
     </div>
