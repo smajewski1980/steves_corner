@@ -60,10 +60,10 @@ const backLink =
 
 <MainLayout>
   <section>
-    <a
-      href={backLink.url}
+    <button
       class='back-link'
-      >{backLink.text}</a
+      id='back-button'
+      >Back</button
     >
     <h1>
       {backLink.headingText}posts tagged with: {tag}
@@ -83,6 +83,27 @@ const backLink =
   </section>
 </MainLayout>
 
+<script>
+  function setupBackButton() {
+    const backBtn = document.getElementById("back-button");
+    if (!backBtn) return;
+
+    backBtn.addEventListener("click", () => {
+      // Check if the user came from this site
+      const hasInternalReferrer =
+        document.referrer && document.referrer.includes(window.location.host);
+
+      if (hasInternalReferrer && window.history.length > 1) {
+        window.history.back();
+      } else {
+        window.location.href = "/nascar/";
+      }
+    });
+  }
+
+  setupBackButton();
+</script>
+
 <style>
   section {
     width: 100%;
@@ -91,24 +112,6 @@ const backLink =
     padding-inline: 2rem;
     margin-block-start: 3.5rem;
     color: var(--text-color-700);
-
-    .back-link {
-      color: var(--text-color-100);
-      background-color: var(--text-color-700);
-      padding: 0.5rem 0.75rem;
-      border-radius: 10px;
-      transition: all 0.1s ease;
-    }
-
-    .back-link:hover {
-      color: var(--text-color-700);
-      background-color: var(--text-color-100);
-    }
-
-    .back-link:focus-visible {
-      outline: 1px solid var(--text-color-700);
-      outline-offset: 5px;
-    }
 
     h1 {
       font-size: 1.75rem;
