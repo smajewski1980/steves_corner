@@ -2,11 +2,12 @@
 import { getCollection } from "astro:content";
 import MainLayout from "../../layouts/MainLayout.astro";
 import NascarPostCard from "../../components/NascarPostCard.astro";
-import SearchForm from "../../components/SearchForm.astro";
+// import SearchForm from "../../components/SearchForm.astro";
 import Pagination from "../../components/Pagination.astro";
 import { ARTICLES_PER_PAGE } from "../../constants";
 import type { CollectionEntry } from "astro:content";
 import type { GetStaticPaths } from "astro";
+import { formatDate } from "../../utils";
 
 export const getStaticPaths = (async ({ paginate }) => {
   const allNascarPosts: CollectionEntry<"nascar">[] = (
@@ -22,6 +23,14 @@ export const getStaticPaths = (async ({ paginate }) => {
 const { page } = Astro.props;
 const prevUrl = page.url.prev;
 const nextUrl = page.url.next;
+
+const pageDates = page.data.map((post) => post.data.raceDate);
+const dateRangeHigh = pageDates[0];
+const dateRangeLow = pageDates[pageDates.length - 1];
+const currentPageRange = {
+  high: formatDate(dateRangeHigh),
+  low: formatDate(dateRangeLow),
+};
 ---
 
 <MainLayout>
@@ -45,6 +54,7 @@ const nextUrl = page.url.next;
     <Pagination
       prevUrl={prevUrl}
       nextUrl={nextUrl}
+      currentPageRange={currentPageRange}
     />
     <div class='nascar-card-wrapper'>
       {page.data.map((post) => <NascarPostCard post={post} />)}
@@ -52,6 +62,7 @@ const nextUrl = page.url.next;
     <Pagination
       prevUrl={prevUrl}
       nextUrl={nextUrl}
+      currentPageRange={currentPageRange}
     />
   </section>
 </MainLayout>
