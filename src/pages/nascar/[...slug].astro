@@ -4,6 +4,7 @@ import { getCollection, getEntry, render } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 import { formatDate } from "../../utils";
 import Tags from "../../components/Tags.astro";
+import BackToTop from "../../components/BackToTop.astro";
 import { Image } from "astro:assets";
 
 export async function getStaticPaths() {
@@ -40,6 +41,9 @@ const { Content } = await render(entry);
     <p class='race-winner'>
       <strong>Race Winner: <em>{entry.data.raceWinner}</em></strong>
     </p>
+    <div class='tags-wrapper'>
+      <Tags tags={entry.data.tags} />
+    </div>
     <Image
       src={entry.data.mainImage}
       alt={entry.data.mainImageAlt}
@@ -47,9 +51,9 @@ const { Content } = await render(entry);
     <div class='contentWrapper'>
       <Content />
     </div>
+    <BackToTop />
   </main>
 </MainLayout>
-<!-- need a back to top button -->
 
 <script>
   function setupBackButton() {
@@ -95,8 +99,7 @@ const { Content } = await render(entry);
   }
 
   .race-winner {
-    margin-block-end: 5rem;
-
+    margin-block-end: 2rem;
     em {
       font-size: 1.25rem;
     }
@@ -113,6 +116,11 @@ const { Content } = await render(entry);
     }
   }
 
+  .tags-wrapper {
+    display: grid;
+    justify-content: center;
+    margin-block-end: 5rem;
+  }
   .contentWrapper {
     max-width: var(--max-width);
     margin-inline: auto;
