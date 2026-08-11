@@ -1,0 +1,81 @@
+---
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import { countStrings } from "../utils";
+
+const allNascarPosts: CollectionEntry<"nascar">[] =
+  await getCollection("nascar");
+
+const allDrivers = allNascarPosts.map((post) => post.data.tags[0]);
+const allYears = allNascarPosts.map((post) => post.data.tags[1]);
+const allTracks = allNascarPosts.map((post) => post.data.tags[2]);
+const allSeries = allNascarPosts.map((post) => post.data.tags[3]);
+
+const countedDrivers = Object.entries(countStrings(allDrivers));
+const countedYears = Object.entries(countStrings(allYears));
+const countedTracks = Object.entries(countStrings(allTracks));
+const countedSeries = Object.entries(countStrings(allSeries));
+
+const countedDriversSorted = countedDrivers.sort((a, b) => b[1] - a[1]);
+const countedYearsSorted = countedYears.sort((a, b) => b[1] - a[1]);
+const countedTracksSorted = countedTracks.sort((a, b) => b[1] - a[1]);
+const countedSeriesSorted = countedSeries.sort((a, b) => b[1] - a[1]);
+
+console.log(countedDriversSorted);
+console.log(countedYearsSorted);
+console.log(countedTracksSorted);
+console.log(countedSeriesSorted);
+---
+
+<section class='stats-wrapper'>
+  <h3>STATS:</h3>
+  <h4>Total Races Attended by series:</h4>
+  <p>
+    {
+      countedSeriesSorted.map((s) => (
+        <span>
+          {s[0]}: {s[1]}&nbsp;&nbsp; &nbsp;{" "}
+        </span>
+      ))
+    }
+  </p>
+  <br />
+  <h4>Total Races Attended by track(including all series):</h4>
+  <p>
+    {
+      countedTracksSorted.map((s) => (
+        <span>
+          {s[0]}: {s[1]}&nbsp;&nbsp; &nbsp;{" "}
+        </span>
+      ))
+    }
+  </p>
+  <br />
+  <h4>Total Races Attended by year(including all series):</h4>
+  <p>
+    {
+      countedYearsSorted.map((s) => (
+        <span>
+          {s[0]}: {s[1]}&nbsp;&nbsp; &nbsp;{" "}
+        </span>
+      ))
+    }
+  </p>
+  <br />
+  <h4>Total Races Attended by driver who won:</h4>
+  <p>
+    {
+      countedDriversSorted.map((s) => (
+        <span>
+          {s[0]}: {s[1]}&nbsp;&nbsp; &nbsp;{" "}
+        </span>
+      ))
+    }
+  </p>
+</section>
+
+<style>
+  span {
+    display: inline-block;
+  }
+</style>

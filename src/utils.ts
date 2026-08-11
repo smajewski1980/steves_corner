@@ -9,4 +9,17 @@ function formatDate(date: Date): string {
   return new Date(date).toLocaleDateString(undefined, options);
 }
 
-export { formatDate };
+function countStrings(arr: string[]): Record<string, number> {
+  const counted: Record<string, number> = {};
+
+  arr.forEach((str) => {
+    if (counted[str]) {
+      counted[str]++;
+    } else {
+      counted[str] = 1;
+    }
+  });
+  return counted;
+}
+
+export { formatDate, countStrings };
