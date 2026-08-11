@@ -28,7 +28,7 @@ const nascarCollection = defineCollection({
     z.object({
       raceTitle: z.string(),
       raceDate: z.date(),
-      raceWinner: z.string().optional(), // remove the optional later
+      raceWinner: z.string(),
       mainImage: image(),
       mainImageAlt: z.string(),
       tags: z.array(z.string()),
