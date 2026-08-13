@@ -9,13 +9,13 @@ interface CurrentPageRange {
 interface Props {
   prevUrl: string | undefined;
   nextUrl: string | undefined;
-  currentPageRange: CurrentPageRange;
+  currentPageRange: CurrentPageRange | undefined;
 }
 ---
 
 <div class='pagination-wrapper'>
   <a href={prevUrl}> Previous </a>
-  <p>{currentPageRange.high} - {currentPageRange.low}</p>
+  <p>{currentPageRange?.high} - {currentPageRange?.low}</p>
   <a href={nextUrl}> Next </a>
 </div>
 
