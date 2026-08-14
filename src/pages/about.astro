@@ -1,7 +1,7 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
 import { Image } from "astro:assets";
-import about from "../images/about.jpg";
+import heroImage from "../images/homepage_hero_test.webp";
 import codingImage from "../images/coding_image.webp";
 import nascarImage from "../images/nascar_image.webp";
 import team3 from "../images/team3.png";
@@ -13,8 +13,8 @@ import team3 from "../images/team3.png";
     <div class='hero'>
       <div class='image-wrapper'>
         <Image
-          src={about}
-          alt='Tech People Team'
+          src={heroImage}
+          alt="Steve's Corner of the Internet"
         />
       </div>
 
@@ -83,6 +83,7 @@ import team3 from "../images/team3.png";
     color: var(--text-color-700);
 
     h1 {
+      text-align: center;
       font-size: 2.5rem;
       line-height: 1.25;
       font-weight: 700;
@@ -97,32 +98,43 @@ import team3 from "../images/team3.png";
     justify-content: space-between;
     gap: 1.5rem;
     margin-block-end: 1rem;
+
+    & > * {
+      flex-basis: 50%;
+    }
   }
 
   @media (min-width: 768px) {
     .hero {
       flex-direction: row;
+      gap: 3rem;
     }
   }
 
   .image-wrapper {
     width: 100%;
-    margin-bottom: 2rem;
-    box-shadow:
-      0 10px 15px -3px hsl(from var(--text-color-700) h s l / 0.1),
-      0 4px 6px -4px hsl(from var(--text-color-700) h s l / 0.1);
-
-    @media (min-width: 768px) {
-      .image-wrapper {
-        width: 50%;
-        margin-bottom: 0rem;
-      }
-    }
+    /* margin-bottom: 2rem; */
 
     img {
       width: 100%;
       height: auto;
       border-radius: 10px;
+      display: block;
+      box-shadow:
+        0 10px 15px -3px hsl(from var(--text-color-700) h s l / 0.1),
+        0 4px 6px -4px hsl(from var(--text-color-700) h s l / 0.1);
+    }
+
+    @media (min-width: 768px) {
+      .image-wrapper {
+        width: 50%;
+        margin-bottom: 0rem;
+        align-self: center;
+      }
+      img {
+        max-width: 350px;
+        justify-self: end;
+      }
     }
   }
 
@@ -133,6 +145,10 @@ import team3 from "../images/team3.png";
   @media (min-width: 768px) {
     .hero-content-wrapper {
       width: 50%;
+    }
+
+    p {
+      max-width: 40ch;
     }
   }
 
