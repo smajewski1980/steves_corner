@@ -1,0 +1,60 @@
+---
+import type { GetStaticPaths, Page } from "astro";
+import MainLayout from "../../../../layouts/MainLayout.astro";
+import ArticleCard from "../../../../components/ArticleCard.astro";
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import { CATEGORIES } from "../../../../content.config";
+import { ARTICLES_PER_PAGE } from "../../../../constants";
+import Pagination from "../../../../components/Pagination.astro";
+import CategoryNav from "../../../../components/CategoryNav.astro";
+
+interface Props {
+  page: Page<CollectionEntry<"blog">>;
+  posts: CollectionEntry<"blog">[];
+}
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const allBlogArticles: CollectionEntry<"blog">[] =
+    await getCollection("blog");
+
+  return CATEGORIES.flatMap((category) => {
+    const filteredContent: CollectionEntry<"blog">[] = allBlogArticles.filter(
+      (entry: any) => entry.data.category === category,
+    );
+
+    return paginate(filteredContent, {
+      params: { category },
+      props: { posts: filteredContent },
+    });
+  });
+}) satisfies GetStaticPaths;
+
+const { category } = Astro.params;
+const { posts, page } = Astro.props;
+const prevUrl = page.url.prev;
+const nextUrl = page.url.next;
+
+if (!category) {
+  throw new Error("Category is required.");
+}
+---
+
+<MainLayout>
+  <section>
+    <h1>Music Posts</h1>
+
+    <!-- for now -->
+    <!-- <SearchForm /> -->
+    <CategoryNav />
+
+    <div class='card-wrapper'>
+      {posts.map((article: any) => <ArticleCard article={article} />)}
+    </div>
+    <Pagination
+      prevUrl={prevUrl}
+      currentPageRange={undefined}
+      nextUrl={nextUrl}
+    />
+  </section>
+</MainLayout>

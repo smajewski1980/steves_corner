@@ -1,0 +1,22 @@
+---
+import { CATEGORIES } from "../content.config";
+---
+
+<div>
+  <ul>
+    {
+      CATEGORIES.map((c) => (
+        <li>
+          <a href={`/articles/category/${c}`}>{c}</a>
+        </li>
+      ))
+    }
+  </ul>
+</div>
+
+<style>
+  ul {
+    display: flex;
+    gap: 1rem;
+  }
+</style>

@@ -2,7 +2,8 @@
 import type { GetStaticPaths } from "astro";
 import MainLayout from "../../layouts/MainLayout.astro";
 import ArticleCard from "../../components/ArticleCard.astro";
-import SearchForm from "../../components/SearchForm.astro";
+// import SearchForm from "../../components/SearchForm.astro";
+import CategoryNav from "../../components/CategoryNav.astro";
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 import { ARTICLES_PER_PAGE } from "../../constants";
@@ -28,13 +29,16 @@ const nextUrl = page.url.next;
   <section>
     <h1>Music Posts</h1>
 
-    <SearchForm />
+    <!-- for now -->
+    <!-- <SearchForm /> -->
+    <CategoryNav />
 
     <div class='card-wrapper'>
       {page.data.map((article) => <ArticleCard article={article} />)}
     </div>
     <Pagination
       prevUrl={prevUrl}
+      currentPageRange={undefined}
       nextUrl={nextUrl}
     />
   </section>
