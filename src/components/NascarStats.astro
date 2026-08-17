@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 import { countStrings } from "../utils";
+import ExternalLinkIcon from "../../public/external-link-svgrepo-com.svg";
 
 const allNascarPosts: CollectionEntry<"nascar">[] =
   await getCollection("nascar");
@@ -23,6 +24,21 @@ const countedSeriesSorted = countedSeries.sort((a, b) => b[1] - a[1]);
 ---
 
 <section class='stats-wrapper'>
+  <p>
+    I wanted to be able, with one click, to see the upcoming race weather in one
+    place for all three series. So I threw together <a
+      class='weather-link'
+      href='https://weatherwerace.com'
+      target='_blank'
+      >weatherwerace.com</a
+    ><span class='icon-wrapper'
+      ><ExternalLinkIcon
+        width='16px'
+        height='16px'
+      /></span
+    > to do just that.
+  </p>
+  <br />
   <h3>STATS:</h3>
   <h4>Total Races Attended by series:</h4>
   <p>
@@ -72,5 +88,16 @@ const countedSeriesSorted = countedSeries.sort((a, b) => b[1] - a[1]);
 <style>
   span {
     display: inline-block;
+  }
+
+  span.icon-wrapper {
+    margin-inline-start: 0.2rem;
+  }
+
+  a.weather-link {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    font-size: 1.125rem;
+    font-style: italic;
   }
 </style>
