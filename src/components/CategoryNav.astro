@@ -1,22 +1,39 @@
 ---
-import { CATEGORIES } from "../content.config";
+import { MUSIC_COLLECTION_CATEGORIES } from "../content.config";
+
+const cleanedUpCategories: string[] = MUSIC_COLLECTION_CATEGORIES.map((c) =>
+  c.replace("-", " "),
+);
 ---
 
-<div>
-  <ul>
+<nav id='category-nav'>
+  <h2>CATEGORIES:</h2>
+  <ul class='category-nav'>
     {
-      CATEGORIES.map((c) => (
+      cleanedUpCategories.map((c, idx) => (
         <li>
-          <a href={`/articles/category/${c}`}>{c}</a>
+          <a href={`/articles/category/${MUSIC_COLLECTION_CATEGORIES[idx]}`}>
+            - {c}
+          </a>
         </li>
       ))
     }
   </ul>
-</div>
+</nav>
 
 <style>
-  ul {
+  #category-nav {
+    margin-inline-start: 1rem;
+  }
+
+  .category-nav {
     display: flex;
-    gap: 1rem;
+    gap: 1.5rem;
+    padding: 0;
+  }
+
+  li {
+    text-transform: capitalize;
+    word-spacing: -0.5ch;
   }
 </style>

@@ -38,7 +38,30 @@ const nascarCollection = defineCollection({
     }),
 });
 
+export const MUSIC_COLLECTION_CATEGORIES = [
+  "physical-media",
+  "memorabilia",
+  "equipment",
+] as const;
+
+const musicCollection = defineCollection({
+  loader: glob({
+    pattern: "**/[^_]*.{md,mdx}",
+    base: "./src/content/music",
+  }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      artist: z.string(),
+      category: z.enum(MUSIC_COLLECTION_CATEGORIES),
+      tags: z.array(z.string()),
+      coverImage: image(),
+      slug: z.string(),
+    }),
+});
+
 export const collections = {
   blog: blogCollection,
   nascar: nascarCollection,
+  music: musicCollection,
 };
