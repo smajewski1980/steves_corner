@@ -56,7 +56,8 @@ const musicCollection = defineCollection({
       category: z.enum(MUSIC_COLLECTION_CATEGORIES),
       tags: z.array(z.string()),
       coverImage: image(),
-      slug: z.string(),
+      dateAdded: z.date(),
+      imageAttribution: z.string().optional(),
     }),
 });
 

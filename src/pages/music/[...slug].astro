@@ -4,12 +4,13 @@ import { getCollection, getEntry, render } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 import { formatDate } from "../../utils";
 import Tags from "../../components/Tags.astro";
+import { Image } from "astro:assets";
 
 export async function getStaticPaths() {
-  const allBlogArticles: CollectionEntry<"blog">[] =
-    await getCollection("blog");
+  const allMusicArticles: CollectionEntry<"music">[] =
+    await getCollection("music");
 
-  return allBlogArticles.map((entry) => ({
+  return allMusicArticles.map((entry) => ({
     params: {
       slug: entry.id,
     },
@@ -23,7 +24,7 @@ if (!slug) {
   throw new Error("Slug is required");
 }
 
-const entry = await getEntry("blog", slug);
+const entry = await getEntry("music", slug);
 if (!entry) return Astro.redirect("/404");
 
 const { Content } = await render(entry);
@@ -32,20 +33,18 @@ const { Content } = await render(entry);
 <MainLayout>
   <section>
     <a
-      href='/articles/'
+      href='/music/'
       class='back-link'
-      >Back To Articles</a
+      >Back To Music Posts</a
     >
     <article>
       <h1>
         {entry.data.title}
       </h1>
-      <h3>
-        Written by {entry.data.author} on {formatDate(entry.data.pubDate)}
-      </h3>
+
       <Tags tags={entry.data.tags} />
-      <img
-        src={"/images/" + entry.data.image}
+      <Image
+        src={entry.data.coverImage}
         alt='Article Image'
       />
       <Content />

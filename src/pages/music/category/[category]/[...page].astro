@@ -5,22 +5,22 @@ import MainLayout from "../../../../layouts/MainLayout.astro";
 import ArticleCard from "../../../../components/ArticleCard.astro";
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
-import { CATEGORIES } from "../../../../content.config";
+import { MUSIC_COLLECTION_CATEGORIES } from "../../../../content.config";
 import { ARTICLES_PER_PAGE } from "../../../../constants";
 import Pagination from "../../../../components/Pagination.astro";
 import CategoryNav from "../../../../components/CategoryNav.astro";
 
 interface Props {
-  page: Page<CollectionEntry<"blog">>;
-  posts: CollectionEntry<"blog">[];
+  page: Page<CollectionEntry<"music">>;
+  posts: CollectionEntry<"music">[];
 }
 
 export const getStaticPaths = (async ({ paginate }: GetStaticPathsOptions) => {
-  const allBlogArticles: CollectionEntry<"blog">[] =
-    await getCollection("blog");
+  const allMusicArticles: CollectionEntry<"music">[] =
+    await getCollection("music");
 
-  return CATEGORIES.flatMap((category) => {
-    const filteredContent: CollectionEntry<"blog">[] = allBlogArticles.filter(
+  return MUSIC_COLLECTION_CATEGORIES.flatMap((category) => {
+    const filteredContent: CollectionEntry<"music">[] = allMusicArticles.filter(
       (entry: any) => entry.data.category === category,
     );
 

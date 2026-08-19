@@ -9,15 +9,26 @@ import type { CollectionEntry } from "astro:content";
 import { ARTICLES_PER_PAGE } from "../../constants";
 import Pagination from "../../components/Pagination.astro";
 
+// export const getStaticPaths = (async ({ paginate }) => {
+//   const allBlogArticles: CollectionEntry<"blog">[] = (
+//     await getCollection("blog")
+//   ).sort(
+//     (a: CollectionEntry<"blog">, b: CollectionEntry<"blog">) =>
+//       b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+//   );
+
+//   return paginate(allBlogArticles, { pageSize: ARTICLES_PER_PAGE });
+// }) satisfies GetStaticPaths;
+
 export const getStaticPaths = (async ({ paginate }) => {
-  const allBlogArticles: CollectionEntry<"blog">[] = (
-    await getCollection("blog")
+  const allMusicArticles: CollectionEntry<"music">[] = (
+    await getCollection("music")
   ).sort(
-    (a: CollectionEntry<"blog">, b: CollectionEntry<"blog">) =>
-      b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+    (a: CollectionEntry<"music">, b: CollectionEntry<"music">) =>
+      b.data.dateAdded.valueOf() - a.data.dateAdded.valueOf(),
   );
 
-  return paginate(allBlogArticles, { pageSize: ARTICLES_PER_PAGE });
+  return paginate(allMusicArticles, { pageSize: ARTICLES_PER_PAGE });
 }) satisfies GetStaticPaths;
 
 const { page } = Astro.props;
