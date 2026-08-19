@@ -8,7 +8,7 @@ const uniqueTags: string[] = [...new Set(tags)].sort();
 ---
 
 <footer>
-  <div class='category-ul-wrapper'>
+  <!-- <div class='category-ul-wrapper'>
     <h3>All Post Categories:</h3>
     <ul>
       {
@@ -19,7 +19,11 @@ const uniqueTags: string[] = [...new Set(tags)].sort();
         ))
       }
     </ul>
-  </div>
+  </div> -->
+  <p>
+    © 2026 Steve Majewski. All rights reserved. Original characters and
+    animations are the property of the author.
+  </p>
 </footer>
 
 <style>
@@ -45,5 +49,9 @@ const uniqueTags: string[] = [...new Set(tags)].sort();
       font-size: 0.875rem;
       color: var(--text-color-700);
     }
+  }
+
+  p {
+    text-align: center;
   }
 </style>

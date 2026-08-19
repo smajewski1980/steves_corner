@@ -3,6 +3,7 @@ import MainLayout from "../layouts/MainLayout.astro";
 import { Image } from "astro:assets";
 import heroImage from "../images/homepage_hero_test.webp";
 import codingImage from "../images/coding_image.webp";
+import musicImage from "../images/music_image.webp";
 import nascarImage from "../images/nascar_image.webp";
 import team3 from "../images/team3.png";
 ---
@@ -38,6 +39,7 @@ import team3 from "../images/team3.png";
     <!-- topics -->
     <div>
       <h2>Topics</h2>
+      <p>the walls that meet to make the corner</p>
       <div class='topics-wrapper'>
         <div class='topic-card'>
           <Image
@@ -46,17 +48,22 @@ import team3 from "../images/team3.png";
           />
           <div class='text-wrapper'>
             <h3>Coding</h3>
-            <p>Things I've made</p>
+            <p>
+              I absolutely love to code. I would love to be able to make a
+              living doing it someday.
+            </p>
           </div>
         </div>
         <div class='topic-card'>
           <Image
-            src={team3}
+            src={musicImage}
             alt='physical music collection'
           />
           <div class='text-wrapper'>
             <h3>Music</h3>
-            <p>A kick ass collection of physical media</p>
+            <p>
+              A kick ass collection of physical media and music memorabilia.
+            </p>
           </div>
         </div>
         <div class='topic-card'>
@@ -66,7 +73,10 @@ import team3 from "../images/team3.png";
           />
           <div class='text-wrapper'>
             <h3>NASCAR</h3>
-            <p>Races I've been to</p>
+            <p>
+              My first race was in Loudon, NH in 2007. Here is my digital
+              journal of races I have attended.
+            </p>
           </div>
         </div>
       </div>
