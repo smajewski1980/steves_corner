@@ -13,13 +13,13 @@ import type { CollectionEntry } from "astro:content";
 // );
 
 export async function getStaticPaths() {
-  const allBlogArticles: CollectionEntry<"blog">[] =
-    await getCollection("blog");
+  const allMusicArticles: CollectionEntry<"music">[] =
+    await getCollection("music");
 
   const allNascarPosts: CollectionEntry<"nascar">[] =
     await getCollection("nascar");
 
-  const allContent = [...allBlogArticles, ...allNascarPosts];
+  const allContent = [...allMusicArticles, ...allNascarPosts];
 
   // 1. Extract all tags from all articles and flatten them into a single array
   const allTags = allContent.flatMap((entry) => entry.data.tags || []);
@@ -48,14 +48,10 @@ if (!tag) {
   throw new Error("Tag is required.");
 }
 
-// 1. Peek at the first post to detect the active collection
+// Peek at the first post to detect the active collection
 const activeCollection = posts[0]?.collection;
-
-// 2. Set up dynamic link text and path configuration
-const backLink =
-  activeCollection === "blog"
-    ? { url: "/articles", text: "Back to Articles", headingText: "Blog " }
-    : { url: "/nascar", text: "Back to Nascar Posts", headingText: "Nascar " };
+// set the heading text accordingly
+const headingText = activeCollection === "music" ? "Music " : "Nascar ";
 ---
 
 <MainLayout>
@@ -66,13 +62,13 @@ const backLink =
       >Back</button
     >
     <h1>
-      {backLink.headingText}posts tagged with: {tag}
+      {headingText}items tagged with: {tag}
     </h1>
 
     <div class='card-wrapper'>
       {
         posts.map((post: any) => {
-          if (post.collection === "blog") {
+          if (post.collection === "music") {
             return <ArticleCard article={post} />;
           } else if (post.collection === "nascar") {
             return <NascarPostCard post={post} />;
