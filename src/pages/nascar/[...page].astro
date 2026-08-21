@@ -5,7 +5,7 @@ import NascarPostCard from "../../components/NascarPostCard.astro";
 // import SearchForm from "../../components/SearchForm.astro";
 import Pagination from "../../components/Pagination.astro";
 import NascarStats from "../../components/NascarStats.astro";
-import { ARTICLES_PER_PAGE } from "../../constants";
+import { NASCAR_CARDS_PER_PAGE } from "../../constants";
 import type { CollectionEntry } from "astro:content";
 import type { GetStaticPaths } from "astro";
 import { formatDate } from "../../utils";
@@ -18,7 +18,7 @@ export const getStaticPaths = (async ({ paginate }) => {
       b.data.raceDate.valueOf() - a.data.raceDate.valueOf(),
   );
 
-  return paginate(allNascarPosts, { pageSize: ARTICLES_PER_PAGE });
+  return paginate(allNascarPosts, { pageSize: NASCAR_CARDS_PER_PAGE });
 }) satisfies GetStaticPaths;
 
 const { page } = Astro.props;

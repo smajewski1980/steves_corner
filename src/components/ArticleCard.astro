@@ -16,25 +16,26 @@ const coverImageAttribution = article.data.imageAttribution;
 
 <div class='card-wrapper'>
   <div class='content-wrapper'>
-    <a href={articleHref}>
-      <Image
-        src={article.data.coverImage}
-        alt='Article Image'
-      />
-    </a>
-    <div class='content-bottom'>
+    <div class='top-wrapper'>
       <h2 class='card-heading'>
-        <a href={articleHref}>{article.data.title}</a>
+        <a href={articleHref}
+          >{article.data.title}<span class='asterisk'
+            >{coverImageAttribution && " *"}</span
+          ></a
+        >
       </h2>
+      <a href={articleHref}>
+        <Image
+          src={article.data.coverImage}
+          alt='Article Image'
+        />
+      </a>
+    </div>
+    <div class='content-bottom'>
       <p>
         category: {article.data.category}
       </p>
       <Tags tags={article.data.tags} />
-      {
-        coverImageAttribution && (
-          <p class='img-attributtion'>{coverImageAttribution}</p>
-        )
-      }
     </div>
   </div>
 </div>
@@ -57,8 +58,10 @@ const coverImageAttribution = article.data.imageAttribution;
     overflow: hidden;
     color: var(--text-color-700);
     height: 100%;
-    position: relative;
-    padding-block-end: 1rem;
+    padding-block-start: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
 
     img {
       width: 100%;
@@ -72,7 +75,7 @@ const coverImageAttribution = article.data.imageAttribution;
     }
 
     .content-bottom {
-      padding: 1.25rem;
+      padding: 0rem 1rem;
     }
 
     .card-heading {
@@ -87,8 +90,15 @@ const coverImageAttribution = article.data.imageAttribution;
     }
   }
 
-  .img-attributtion {
-    position: absolute;
-    bottom: 0.5rem;
+  .content-wrapper .card-heading {
+    font-size: clamp(1rem, 0.435vw + 0.902rem, 1.25rem);
+    margin-block: 0.5rem;
+    padding-inline: 1rem;
+    min-height: 3lh;
+  }
+
+  .asterisk {
+    color: var(--asterisk);
+    font-size: 1rem;
   }
 </style>

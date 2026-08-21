@@ -4,6 +4,7 @@ import ArticleCard from "../../components/ArticleCard.astro";
 import NascarPostCard from "../../components/NascarPostCard.astro";
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
+import { HA_ATTRIBUTION } from "../../constants";
 
 // const allBlogArticles: CollectionEntry<"blog">[] = (
 //   await getCollection("blog")
@@ -65,6 +66,8 @@ const headingText = activeCollection === "music" ? "Music " : "Nascar ";
       {headingText}items tagged with: {tag}
     </h1>
 
+    <p><span class='asterisk'>*</span>: {HA_ATTRIBUTION}</p>
+
     <div class='card-wrapper'>
       {
         posts.map((post: any) => {
@@ -115,6 +118,11 @@ const headingText = activeCollection === "music" ? "Music " : "Nascar ";
       font-weight: 700;
       margin-block: 2rem;
     }
+  }
+
+  .asterisk {
+    color: var(--asterisk);
+    font-size: 1rem;
   }
 
   .card-wrapper {

@@ -6,19 +6,8 @@ import ArticleCard from "../../components/ArticleCard.astro";
 import CategoryNav from "../../components/CategoryNav.astro";
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
-import { ARTICLES_PER_PAGE } from "../../constants";
+import { MUSIC_CARDS_PER_PAGE, HA_ATTRIBUTION } from "../../constants";
 import Pagination from "../../components/Pagination.astro";
-
-// export const getStaticPaths = (async ({ paginate }) => {
-//   const allBlogArticles: CollectionEntry<"blog">[] = (
-//     await getCollection("blog")
-//   ).sort(
-//     (a: CollectionEntry<"blog">, b: CollectionEntry<"blog">) =>
-//       b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-//   );
-
-//   return paginate(allBlogArticles, { pageSize: ARTICLES_PER_PAGE });
-// }) satisfies GetStaticPaths;
 
 export const getStaticPaths = (async ({ paginate }) => {
   const allMusicArticles: CollectionEntry<"music">[] = (
@@ -28,7 +17,7 @@ export const getStaticPaths = (async ({ paginate }) => {
       b.data.dateAdded.valueOf() - a.data.dateAdded.valueOf(),
   );
 
-  return paginate(allMusicArticles, { pageSize: ARTICLES_PER_PAGE });
+  return paginate(allMusicArticles, { pageSize: MUSIC_CARDS_PER_PAGE });
 }) satisfies GetStaticPaths;
 
 const { page } = Astro.props;
@@ -43,6 +32,7 @@ const nextUrl = page.url.next;
     <!-- for now -->
     <!-- <SearchForm /> -->
     <CategoryNav />
+    <p><span class='asterisk'>*</span>: {HA_ATTRIBUTION}</p>
 
     <div class='card-wrapper'>
       {page.data.map((article) => <ArticleCard article={article} />)}
@@ -74,7 +64,12 @@ const nextUrl = page.url.next;
   .card-wrapper {
     display: grid;
     grid-template-columns: repeat(1, minmax(0, 1fr));
-    gap: 2rem;
+    gap: 2rem 1rem;
+  }
+
+  .asterisk {
+    color: var(--asterisk);
+    font-size: 1rem;
   }
   @media (min-width: 640px) {
     .card-wrapper {
@@ -84,7 +79,7 @@ const nextUrl = page.url.next;
 
   @media (min-width: 1024px) {
     .card-wrapper {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(4, minmax(0, 1fr));
     }
   }
 </style>
