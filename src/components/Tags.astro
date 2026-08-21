@@ -1,12 +1,13 @@
 ---
-const { tags } = Astro.props;
+const { tags, isMusic } = Astro.props;
 
 interface Props {
   tags: string[];
+  isMusic?: boolean;
 }
 ---
 
-<div class='tags-wrapper'>
+<div class={isMusic ? "tags-wrapper centered-tags" : "tags-wrapper"}>
   {
     tags.map((tag: string, idx: number) => (
       <span class={idx % 2 === 0 ? "tag" : "tag alternate-color"}>
@@ -43,5 +44,8 @@ interface Props {
     .alternate-color {
       background-color: var(--color-two);
     }
+  }
+  .centered-tags {
+    justify-content: center;
   }
 </style>

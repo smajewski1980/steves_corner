@@ -1,0 +1,98 @@
+---
+import { Image } from "astro:assets";
+---
+
+<div
+  id='random-music-card'
+  class='featured-card'
+>
+  <p>a random item to click on...</p>
+
+  <h2 id='random-title'>Loading . . .</h2>
+
+  <a
+    id='random-link'
+    href=''
+  >
+    <img
+      id='random-cover'
+      src=''
+      alt=''
+    />
+  </a>
+</div>
+
+<script>
+  async function loadRandomItem() {
+    try {
+      const res = await fetch("/api/music-item-index.json");
+      const itemList = await res.json();
+
+      if (!itemList) return;
+
+      const randomIndex = Math.floor(Math.random() * itemList.length);
+      const randomItem = itemList[randomIndex];
+      const { slug, data } = randomItem;
+      const title = document.getElementById("random-title");
+      const cover = document.getElementById("random-cover") as HTMLImageElement;
+      const link = document.getElementById("random-link") as HTMLAnchorElement;
+      const coverImageAttribution = data.imageAttribution;
+
+      if (title) title.textContent = data.title;
+      if (link) link.href = `/music/${slug}`;
+      if (cover && data.coverImage) {
+        cover.src = data.coverImage.src;
+        cover.alt = data.coverImageAlt;
+      }
+
+      if (title && coverImageAttribution) {
+        title.innerHTML += " <span>*<sup>HA</sup></span>";
+        const span = title.querySelector("span");
+        if (span) {
+          span.style.fontSize = "1rem";
+        }
+      }
+    } catch (error) {
+      console.error("Error choosing random item:", error);
+    }
+  }
+
+  loadRandomItem();
+</script>
+
+<style>
+  #random-music-card {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  img {
+    width: 50%;
+    border-radius: 15px;
+    margin-inline: auto;
+    display: block;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    max-width: 30ch;
+    text-align: center;
+    margin-inline: auto;
+    margin-block-start: 0;
+    text-wrap: balance;
+
+    @media (max-width: 640px) {
+      font-size: 1.875rem;
+    }
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+  p:has(+ h2) {
+    text-align: center;
+  }
+</style>

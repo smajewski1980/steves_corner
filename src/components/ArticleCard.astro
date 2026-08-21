@@ -21,7 +21,7 @@ const coverImageAttribution = article.data.imageAttribution;
         <a href={articleHref}
           >{article.data.title}<span class='asterisk'
             >{coverImageAttribution && " *"}</span
-          ></a
+          >{coverImageAttribution && <sup>HA</sup>}</a
         >
       </h2>
       <p>
@@ -34,11 +34,11 @@ const coverImageAttribution = article.data.imageAttribution;
         />
       </a>
     </div>
-    <div class='content-bottom'>
-      <!-- <p>
-        category: {article.data.category}
-      </p> -->
-      <Tags tags={article.data.tags} />
+    <div class='tags-wrapper'>
+      <Tags
+        isMusic={true}
+        tags={article.data.tags}
+      />
     </div>
   </div>
 </div>
@@ -77,9 +77,9 @@ const coverImageAttribution = article.data.imageAttribution;
       }
     }
 
-    .content-bottom {
+    .tags-wrapper {
       padding: 0rem 1rem;
-      margin-block-start: auto;
+      margin-block-start: 1rem;
     }
 
     p {
@@ -99,7 +99,6 @@ const coverImageAttribution = article.data.imageAttribution;
   }
 
   .asterisk {
-    color: var(--asterisk);
     font-size: 1rem;
   }
 </style>

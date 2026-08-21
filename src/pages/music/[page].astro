@@ -4,10 +4,12 @@ import MainLayout from "../../layouts/MainLayout.astro";
 import ArticleCard from "../../components/ArticleCard.astro";
 // import SearchForm from "../../components/SearchForm.astro";
 import CategoryNav from "../../components/CategoryNav.astro";
+import RandomMusicItem from "../../components/RandomMusicItem.astro";
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 import { MUSIC_CARDS_PER_PAGE, HA_ATTRIBUTION } from "../../constants";
 import Pagination from "../../components/Pagination.astro";
+import ExternalLinkIcon from "/public/external-link-svgrepo-com.svg";
 
 export const getStaticPaths = (async ({ paginate }) => {
   const allMusicArticles: CollectionEntry<"music">[] = (
@@ -28,11 +30,49 @@ const nextUrl = page.url.next;
 <MainLayout>
   <section>
     <h1>Music Collection Items</h1>
+    <p>
+      <span class='asterisk'>*<sup>HA</sup></span>: {
+        (
+          <a
+            href='https://www.ha.com'
+            target='_blank'
+          >
+            {HA_ATTRIBUTION}
+          </a>
+          <span class="icon-wrapper">
+            <ExternalLinkIcon
+              width='16px'
+              height='16px'
+            />
+          </span>
+        )
+      }
+    </p>
+
+    <div class='music-hero-wrapper'>
+      <div class='text-wrapper'>
+        <p>
+          I started collecting cds when I was eight. Run DMC's Tougher Than
+          Leather was my first cd. Yes, I still have it, and over 15 thousand
+          more. Like that's not enough, I have over 6 thousand records too. I
+          also have more magnetic tape than rapunzel had hair.
+        </p>
+        <p>
+          Most of what I have is crap. Just stuff to listen to or have because
+          of what was on it, the content. But, out of seas of crap, I have some
+          cool shit too. Some, also because of what it is, not just what is on it.
+        </p>
+        <p>
+          This page is about showcasing some of the more interesting and cooler
+          items that I have in my collection.
+        </p>
+      </div>
+      <RandomMusicItem />
+    </div>
 
     <!-- for now -->
     <!-- <SearchForm /> -->
     <CategoryNav />
-    <p><span class='asterisk'>*</span>: {HA_ATTRIBUTION}</p>
 
     <div class='card-wrapper'>
       {page.data.map((article) => <ArticleCard article={article} />)}
@@ -55,10 +95,22 @@ const nextUrl = page.url.next;
 
     h1 {
       font-size: 2.5rem;
-      line-height: 1.25;
+      line-height: 1;
       font-weight: 700;
-      margin-block: 1rem 2rem;
+      margin-block: 1rem 0rem;
     }
+  }
+
+  .text-wrapper {
+    padding: 2rem;
+  }
+  .music-hero-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(45%, 1fr));
+  }
+
+    span.icon-wrapper {
+    margin-inline-start: 0.2rem;
   }
 
   .card-wrapper {
@@ -69,8 +121,9 @@ const nextUrl = page.url.next;
   }
 
   .asterisk {
-    color: var(--asterisk);
+    /* color: var(--asterisk); */
     font-size: 1rem;
+    padding-inline-start: 0.5rem;
   }
   /* @media (min-width: 640px) {
     .card-wrapper {
