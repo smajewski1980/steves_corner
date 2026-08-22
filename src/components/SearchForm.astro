@@ -2,7 +2,7 @@
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 
-const posts: CollectionEntry<"blog">[] = await getCollection("blog");
+const posts: CollectionEntry<"music">[] = await getCollection("music");
 const postIds: object[] = posts.map((p) => {
   return {
     id: p.id,
@@ -21,7 +21,8 @@ const postIds: object[] = posts.map((p) => {
     type='text'
     id='query'
     name='query'
-    placeholder='Search articles...'
+    placeholder='Search music items...'
+    autocomplete='off'
     required
   />
   <button type='submit'>
@@ -46,31 +47,37 @@ const postIds: object[] = posts.map((p) => {
 </form>
 
 <script define:vars={{ postIds }}>
-  // to filter the posts for a search, instead of getting all posts here to filter, i just pass the id and title
-  // which we then use to populate a select list if there are multiple posts for that term
-  // then redirected when one is selected or redirect if only one total
+  // to filter the posts for a search, instead of getting all posts here to filter,
+  // i just get the ids and titles which we then use to populate a select list
+  //
+  // if there are multiple posts for that term then redirect when
+  // one is chosen or auto redirect if there is only one total
 
   const form = document.getElementById("search-form");
+  let pickerIsOpen = false;
+  let selectEl;
+  const input = document.getElementById("query");
 
   form?.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    const input = document.getElementById("query");
     const searchTerm = input.value.trim().toLowerCase();
     // filter the postIds by the search term
     const filteredPostData = postIds.filter((postData) =>
-      postData.id.includes(searchTerm),
+      postData.title.toLowerCase().includes(searchTerm),
     );
 
     // if no posts, do nothing. later add toast
-    if (!filteredPostData.length) return;
+    if (!filteredPostData.length) return console.log("no results");
 
     // if only one choice, automatically redirect
     if (filteredPostData.length === 1) {
-      window.location.href = `/articles/${filteredPostData[0].id}`;
+      window.location.href = `/music/${filteredPostData[0].id}`;
     } else {
+      if (pickerIsOpen) return;
+      pickerIsOpen = true;
       // create selectlist with to hold possible choices
-      const selectEl = document.createElement("select");
+      selectEl = document.createElement("select");
       // add to dom after the search input
       input.insertAdjacentElement("afterend", selectEl);
       // populate the options
@@ -80,14 +87,26 @@ const postIds: object[] = posts.map((p) => {
         option.textContent = data.title;
         selectEl.appendChild(option);
       });
+      // value was the first option,
+      // which wouldn't trigger a change if it was selected
+      selectEl.value = "";
       // open the select picker when it loads
       selectEl.showPicker();
       // the redirect listener when a choice is made
       selectEl.addEventListener("change", (e) => {
-        // Sanitize or format the search term into a URL slug safely
-        const slug = encodeURIComponent(e.target.value);
-        window.location.href = `/articles/${slug}`;
+        const slug = encodeURI(e.target.value);
+        window.location.href = `/music/${slug}`;
       });
+    }
+  });
+
+  // handle if the search term is changed before select option is chosen
+  input.addEventListener("input", () => {
+    if (!pickerIsOpen) {
+      return;
+    } else {
+      selectEl.remove();
+      pickerIsOpen = false;
     }
   });
 </script>
@@ -101,12 +120,14 @@ const postIds: object[] = posts.map((p) => {
     gap: 0.5rem;
 
     button {
-      padding: 0.625rem;
-      font-size: 0.875rem;
+      padding: 0.5rem;
+      /* font-size: 0.875rem; */
       color: var(--text-color-100);
       background-color: var(--text-color-700);
       border-radius: 10px;
       transition: all 0.2s ease;
+      display: grid;
+      place-content: center;
 
       &:hover {
         color: var(--text-color-700);

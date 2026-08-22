@@ -66,4 +66,10 @@ if (!category) {
     color: var(--asterisk);
     font-size: 1rem;
   }
+
+  .card-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 275px), 1fr));
+    gap: 2rem 1rem;
+  }
 </style>

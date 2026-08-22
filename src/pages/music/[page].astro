@@ -2,7 +2,7 @@
 import type { GetStaticPaths } from "astro";
 import MainLayout from "../../layouts/MainLayout.astro";
 import ArticleCard from "../../components/ArticleCard.astro";
-// import SearchForm from "../../components/SearchForm.astro";
+import SearchForm from "../../components/SearchForm.astro";
 import CategoryNav from "../../components/CategoryNav.astro";
 import RandomMusicItem from "../../components/RandomMusicItem.astro";
 import { getCollection } from "astro:content";
@@ -70,9 +70,9 @@ const nextUrl = page.url.next;
       <RandomMusicItem />
     </div>
 
-    <!-- for now -->
-    <!-- <SearchForm /> -->
+  
     <CategoryNav />
+    <SearchForm />
 
     <div class='card-wrapper'>
       {page.data.map((article) => <ArticleCard article={article} />)}
@@ -90,7 +90,6 @@ const nextUrl = page.url.next;
     margin-inline: auto;
     max-width: var(--max-width);
     padding-inline: 2rem;
-    margin-block-start: 3.5rem;
     color: var(--text-color-700);
 
     h1 {
@@ -102,11 +101,12 @@ const nextUrl = page.url.next;
   }
 
   .text-wrapper {
-    padding: 2rem;
+    padding-inline: 2rem;
   }
   .music-hero-wrapper {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(45%, 1fr));
+    align-items: center;
   }
 
     span.icon-wrapper {
