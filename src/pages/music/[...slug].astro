@@ -47,7 +47,9 @@ const { Content } = await render(entry);
         src={entry.data.coverImage}
         alt='Article Image'
       />
-      <Content />
+      <div class='content-component-wrapper'>
+        <Content />
+      </div>
     </article>
     <a
       href='/music/'
@@ -100,5 +102,14 @@ const { Content } = await render(entry);
       margin-block-end: 1.5rem;
       border-radius: 15px;
     }
+
+    p {
+      max-width: 70ch;
+      margin-inline: auto;
+    }
+  }
+  .content-component-wrapper :global(a) {
+    text-decoration: underline;
+    text-underline-offset: 5px;
   }
 </style>
