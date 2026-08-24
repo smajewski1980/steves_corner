@@ -2,20 +2,6 @@ import { defineCollection } from "astro:content";
 import { z } from "astro/zod";
 import { glob } from "astro/loaders";
 
-export const CATEGORIES = ["category-1", "category-2", "category-3"] as const;
-
-const blogCollection = defineCollection({
-  loader: glob({ pattern: "**/[^_]*.{md,mdx}", base: "./src/content/blog" }),
-  schema: z.object({
-    title: z.string(),
-    pubDate: z.date(),
-    author: z.string(),
-    category: z.enum(CATEGORIES),
-    image: z.string(),
-    tags: z.array(z.string()),
-  }),
-});
-
 // when i switched from .md to .mdx i had to
 // strip the end off the post.id for the url
 const nascarCollection = defineCollection({
@@ -63,7 +49,6 @@ const musicCollection = defineCollection({
 });
 
 export const collections = {
-  blog: blogCollection,
   nascar: nascarCollection,
   music: musicCollection,
 };
