@@ -1,13 +1,29 @@
 ---
-const { tags, isMusic } = Astro.props;
+const { tags, isMusicCard, isMusicTags } = Astro.props;
 
 interface Props {
   tags: string[];
-  isMusic?: boolean;
+  isMusicCard?: boolean;
+  isMusicTags?: boolean;
 }
+
+tags.sort((a: string, b: string): number => {
+  if (a.toLowerCase() > b.toLowerCase()) {
+    return 1;
+  } else {
+    return -1;
+  }
+});
 ---
 
-<div class={isMusic ? "tags-wrapper centered-tags" : "tags-wrapper"}>
+<div
+  class={isMusicCard
+    ? "tags-wrapper centered-tags"
+    : isMusicTags
+      ? "tags-wrapper music-tags"
+      : "tags-wrapper"}
+>
+  {isMusicTags && <h4>Music Tags:</h4>}
   {
     tags.map((tag: string, idx: number) => (
       <span class={idx % 2 === 0 ? "tag" : "tag alternate-color"}>
@@ -47,5 +63,16 @@ interface Props {
   }
   .centered-tags {
     justify-content: center;
+  }
+
+  .music-tags {
+    /* max-width: 500px; */
+    gap: 0.75rem;
+  }
+
+  h4 {
+    width: 100%;
+    color: var(--text-color-700);
+    margin-block-end: 0.75rem;
   }
 </style>

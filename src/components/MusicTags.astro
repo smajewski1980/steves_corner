@@ -8,11 +8,24 @@ const tags: string[] = allMusicItems.flatMap((item) => item.data.tags);
 const uniqueTags: string[] = [...new Set(tags)].sort();
 ---
 
-<h4>Search by tag:</h4>
-<Tags tags={uniqueTags} />
+<div class='music-tags-wrapper'>
+  <Tags
+    tags={uniqueTags}
+    isMusicTags={true}
+  />
+  <p>
+    I guess every music collector has to have a favorite band, R.E.M. has been
+    mine since I was fairly young. I saw them twice in the 90's and have a good
+    selection of items from them.
+  </p>
+</div>
 
 <style>
-  h4 {
+  .music-tags-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr));
     margin-block-start: 2rem;
+    align-items: start;
+    gap: 2rem;
   }
 </style>
