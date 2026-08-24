@@ -1,25 +1,8 @@
 ---
-import type { CollectionEntry } from "astro:content";
-import { getCollection } from "astro:content";
 
-const allBlogArticles: CollectionEntry<"blog">[] = await getCollection("blog");
-const tags: string[] = allBlogArticles.flatMap((article) => article.data.tags);
-const uniqueTags: string[] = [...new Set(tags)].sort();
 ---
 
 <footer>
-  <!-- <div class='category-ul-wrapper'>
-    <h3>All Post Categories:</h3>
-    <ul>
-      {
-        uniqueTags.map((tag) => (
-          <li>
-            <a href={"/articles/tag/" + tag}>{tag}</a>
-          </li>
-        ))
-      }
-    </ul>
-  </div> -->
   <p>
     © 2026 Steve Majewski. All rights reserved. Original characters and
     animations are the property of the author.
@@ -33,22 +16,6 @@ const uniqueTags: string[] = [...new Set(tags)].sort();
     padding: 3.5rem;
     margin-block-start: 3rem;
     color: var(--text-color-700);
-  }
-
-  .category-ul-wrapper {
-    h3 {
-      font-size: 1.25rem;
-      font-weight: 600;
-      margin-block-end: 1rem;
-    }
-
-    ul {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      font-size: 0.875rem;
-      color: var(--text-color-700);
-    }
   }
 
   p {
