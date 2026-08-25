@@ -78,6 +78,10 @@ const postIds: object[] = posts.map((p) => {
       pickerIsOpen = true;
       // create selectlist with to hold possible choices
       selectEl = document.createElement("select");
+      const placeholder = document.createElement("option");
+      placeholder.textContent = "Choose an item...";
+      placeholder.value = "";
+      selectEl.appendChild(placeholder);
       // add to dom after the search input
       input.insertAdjacentElement("afterend", selectEl);
       // populate the options
@@ -87,13 +91,10 @@ const postIds: object[] = posts.map((p) => {
         option.textContent = data.title;
         selectEl.appendChild(option);
       });
-      // value was the first option,
+      // a value was the first option,
       // which wouldn't trigger a change if it was selected
       selectEl.value = "";
-      // open the select picker when it loads
-      selectEl.showPicker();
-      // the redirect listener when a choice is made
-      selectEl.addEventListener("change", (e) => {
+      selectEl.addEventListener("input", (e) => {
         const slug = encodeURI(e.target.value);
         window.location.href = `/music/${slug}`;
       });
