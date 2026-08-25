@@ -6,7 +6,7 @@ import ArticleCard from "../../../../components/ArticleCard.astro";
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 import { MUSIC_COLLECTION_CATEGORIES } from "../../../../content.config";
-import {  MUSIC_CARDS_PER_PAGE, HA_ATTRIBUTION } from "../../../../constants";
+import { HA_ATTRIBUTION } from "../../../../constants";
 import Pagination from "../../../../components/Pagination.astro";
 import CategoryNav from "../../../../components/CategoryNav.astro";
 import BackButton from "../../../../components/BackButton.astro";
@@ -14,6 +14,7 @@ import ExternalLinkIcon from "/public/external-link-svgrepo-com.svg";
 
 interface Props {
   page: Page<CollectionEntry<"music">>;
+  posts: CollectionEntry<"music">[];
 }
 
 export const getStaticPaths = (async ({ paginate }: GetStaticPathsOptions) => {
@@ -27,13 +28,13 @@ export const getStaticPaths = (async ({ paginate }: GetStaticPathsOptions) => {
 
     return paginate(filteredContent, {
       params: { category },
-      pageSize: MUSIC_CARDS_PER_PAGE
+      props: { posts: filteredContent },
     });
   });
 }) satisfies GetStaticPaths;
 
 const { category } = Astro.params;
-const { page } = Astro.props;
+const { posts, page } = Astro.props;
 const prevUrl = page.url.prev;
 const nextUrl = page.url.next;
 
@@ -45,7 +46,7 @@ if (!category) {
 <MainLayout>
   <section>
     <BackButton />
-    <h1>Music Items - Category: {page.data[0].data.category.replace('-', ' ')}</h1>
+    <h1>Music Items - Category: {posts[0].data.category}</h1>
 
     <p>
       <span class='asterisk'>*<sup>HA</sup></span>: {
@@ -70,7 +71,7 @@ if (!category) {
     <CategoryNav />
 
     <div class='card-wrapper'>
-      {page.data.map((article: any) => <ArticleCard article={article} />)}
+      {posts.map((article: any) => <ArticleCard article={article} />)}
     </div>
     <Pagination
       prevUrl={prevUrl}
@@ -92,7 +93,6 @@ if (!category) {
     line-height: 1.25;
     font-weight: 700;
     margin-block-start: 2rem;
-    text-transform: capitalize;
   }
 
   p {

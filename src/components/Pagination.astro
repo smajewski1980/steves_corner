@@ -1,5 +1,5 @@
 ---
-const { prevUrl, nextUrl, currentPageRange } = Astro.props;
+const { prevUrl, nextUrl, currentPageRange, currentPage } = Astro.props;
 
 interface CurrentPageRange {
   high: string;
@@ -10,12 +10,21 @@ interface Props {
   prevUrl: string | undefined;
   nextUrl: string | undefined;
   currentPageRange: CurrentPageRange | undefined;
+  currentPage: number;
 }
 ---
 
 <div class='pagination-wrapper'>
   <a href={prevUrl}> Previous </a>
-  <p>{currentPageRange?.high} - {currentPageRange?.low}</p>
+  {
+    currentPageRange ? (
+      <p>
+        {currentPageRange?.high} - {currentPageRange?.low}
+      </p>
+    ) : (
+      `Page ${currentPage}`
+    )
+  }
   <a href={nextUrl}> Next </a>
 </div>
 
@@ -26,9 +35,11 @@ interface Props {
     align-items: center;
     margin-block-start: 2.5rem;
     flex-direction: column;
+    gap: 1rem;
 
     @media (min-width: 768px) {
       flex-direction: row;
+      gap: 0;
     }
 
     a {
@@ -37,14 +48,16 @@ interface Props {
       border-radius: 10px;
       text-align: center;
       padding: 0.75rem;
+      min-width: 125px;
 
       @media (min-width: 768px) {
         width: fit-content;
+        min-width: 76px;
         padding: 0.5rem 0.75rem;
       }
-      @media (max-width: 768px) {
+      /* @media (max-width: 768px) {
         width: 300px;
-      }
+      } */
     }
 
     a:hover {
