@@ -10,19 +10,26 @@
 
 <script>
   function setupBackButton() {
-    const backBtn = document.getElementById("back-button");
+    const btns = document.querySelectorAll(".back-link");
+    const backBtn = btns[0];
+    const backBtnLower = btns[1];
     if (!backBtn) return;
 
-    backBtn.addEventListener("click", () => {
-      // Check if the user came from this site
-      const hasInternalReferrer =
-        document.referrer && document.referrer.includes(window.location.host);
+    [backBtn, backBtnLower].forEach((btn) => {
+      if (!btn) return;
 
-      if (hasInternalReferrer && window.history.length > 1) {
-        window.history.back();
-      } else {
-        window.location.href = "/nascar/";
-      }
+      btn.addEventListener("click", () => {
+        // Check if the user came from this site
+        const hasInternalReferrer =
+          document.referrer && document.referrer.includes(window.location.host);
+
+        if (hasInternalReferrer && window.history.length > 1) {
+          window.history.back();
+        } else {
+          console.log("nowhere to go");
+          return;
+        }
+      });
     });
   }
 

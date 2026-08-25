@@ -5,6 +5,7 @@ import type { CollectionEntry } from "astro:content";
 import { formatDate } from "../../utils";
 import Tags from "../../components/Tags.astro";
 import { Image } from "astro:assets";
+import BackButton from "../../components/BackButton.astro";
 
 export async function getStaticPaths() {
   const allMusicArticles: CollectionEntry<"music">[] =
@@ -32,11 +33,7 @@ const { Content } = await render(entry);
 
 <MainLayout>
   <section>
-    <a
-      href='/music/'
-      class='back-link'
-      >Back To Music Posts</a
-    >
+    <BackButton />
     <article>
       <h1>
         {entry.data.title}
@@ -51,11 +48,7 @@ const { Content } = await render(entry);
         <Content />
       </div>
     </article>
-    <a
-      href='/music/'
-      class='back-link'
-      >Back To Music Posts</a
-    >
+    <BackButton />
   </section>
 </MainLayout>
 
