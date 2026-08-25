@@ -38,8 +38,8 @@ import team3 from "../images/team3.png";
 
     <!-- topics -->
     <div>
-      <h2>Topics</h2>
-      <p>the walls that meet to make the corner</p>
+      <h2>The Walls That Make Corner</h2>
+      <!-- <p>the walls that meet to make the corner</p> -->
       <div class='topics-wrapper'>
         <div class='topic-card'>
           <Image
@@ -165,7 +165,7 @@ import team3 from "../images/team3.png";
   h2 {
     font-size: 1.875rem;
     font-weight: 700;
-    margin-block-end: 1rem;
+    margin-block: 5rem 1rem;
   }
 
   p {
@@ -201,10 +201,12 @@ import team3 from "../images/team3.png";
     box-shadow:
       0 10px 15px -3px rgb(0 0 0 / 0.1),
       0 4px 6px -4px rgb(0 0 0 / 0.1);
+    padding: 0.25rem;
 
     img {
       width: 100%;
       height: auto;
+      outline: 1px solid hsl(from var(--text-color-700) h s l / 0.3);
     }
 
     .text-wrapper {
