@@ -65,19 +65,17 @@ interface Props {
     src: url("/fonts/OCRAEXT.TTF");
   }
 
+  *,
+  *:after,
+  *:before {
+    margin: 0;
+  }
+
   body {
     font-family: var(--main-font);
     margin: 0;
-    padding: 1rem;
-    background-image: linear-gradient(
-      to bottom right,
-      var(--primary-purple-lower-opac) 0%,
-      transparent 35%,
-      transparent 50%,
-      var(--primary-purple-lower-opac) 100%
-    );
+    padding: 6rem 0rem 1rem;
     min-height: 100dvh;
-    background-repeat: no-repeat;
     color: var(--text-color-700);
 
     section {

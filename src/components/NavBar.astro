@@ -3,64 +3,66 @@ import { Image } from "astro:assets";
 import logo from "../images/steves-corner-logo.webp";
 ---
 
-<nav>
-  <a href='/'>
-    <Image
-      src={logo}
-      alt='TechPeople Logo'
-      width='150'
-    />
-  </a>
-  <button
-    data-collapse-toggle='navbar-default'
-    type='button'
-    class='hamburger'
-    aria-controls='navbar-default'
-    aria-expanded='false'
-  >
-    <span class='screen-reader-only'>Open main menu</span>
-    <svg
-      aria-hidden='true'
-      xmlns='http://www.w3.org/2000/svg'
-      fill='none'
-      viewBox='0 0 17 14'
+<header id='main-header'>
+  <nav>
+    <a href='/'>
+      <Image
+        src={logo}
+        alt='Steves Corner Logo'
+        width='100'
+      />
+    </a>
+    <button
+      data-collapse-toggle='navbar-default'
+      type='button'
+      class='hamburger'
+      aria-controls='navbar-default'
+      aria-expanded='false'
     >
-      <path
-        stroke='currentColor'
-        stroke-linecap='round'
-        stroke-linejoin='round'
-        stroke-width='2'
-        d='M1 1h15M1 7h15M1 13h15'
-      ></path>
-    </svg>
-  </button>
-  <div
-    class='my-hidden'
-    id='navbar-default'
-  >
-    <ul>
-      <li>
-        <a
-          href={"/"}
-          aria-current='page'
-          >Home</a
-        >
-      </li>
-      <li>
-        <a href={"/coding/"}>Coding Projects</a>
-      </li>
-      <li>
-        <a href={"/music/1"}>Music Posts</a>
-      </li>
-      <li>
-        <a href={"/nascar/"}>Nascar Posts</a>
-      </li>
-      <li>
-        <a href={"/about/"}>About</a>
-      </li>
-    </ul>
-  </div>
-</nav>
+      <span class='screen-reader-only'>Open main menu</span>
+      <svg
+        aria-hidden='true'
+        xmlns='http://www.w3.org/2000/svg'
+        fill='none'
+        viewBox='0 0 17 14'
+      >
+        <path
+          stroke='currentColor'
+          stroke-linecap='round'
+          stroke-linejoin='round'
+          stroke-width='2'
+          d='M1 1h15M1 7h15M1 13h15'
+        ></path>
+      </svg>
+    </button>
+    <div
+      class='my-hidden'
+      id='navbar-default'
+    >
+      <ul>
+        <li>
+          <a
+            href={"/"}
+            aria-current='page'
+            >Home</a
+          >
+        </li>
+        <li>
+          <a href={"/coding/"}>Coding Projects</a>
+        </li>
+        <li>
+          <a href={"/music/1"}>Music Posts</a>
+        </li>
+        <li>
+          <a href={"/nascar/"}>Nascar Posts</a>
+        </li>
+        <li>
+          <a href={"/about/"}>About</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
 
 <script>
   const hamburger = document.querySelector(".hamburger");
@@ -69,9 +71,67 @@ import logo from "../images/steves-corner-logo.webp";
   hamburger?.addEventListener("click", () => {
     menu?.classList.toggle("is-open");
   });
+
+  // make the header go away on scroll down
+  // and come back when scrolled up
+  let lastScrollY = window.scrollY;
+  const header = document.getElementById("main-header");
+
+  window.addEventListener("scroll", () => {
+    const currentScrollY = window.scrollY;
+
+    if (currentScrollY > lastScrollY && currentScrollY > 100) {
+      // Scrolling DOWN - Hide the header
+      header?.classList.add("header-hidden");
+    } else {
+      // Scrolling UP - Show the header
+      header?.classList.remove("header-hidden");
+    }
+
+    // Update the last scroll position
+    lastScrollY = currentScrollY;
+  });
 </script>
 
 <style>
+  #main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-inline-start: 1rem;
+    padding-block-start: 0.5rem;
+    width: 100%;
+    z-index: 9999;
+    transition: transform 1s;
+    transition-timing-function: linear(
+      0,
+      0.009 0.6%,
+      0.039 1.3%,
+      0.162 2.8%,
+      0.826 8%,
+      1.055 10.2%,
+      1.2 12.4%,
+      1.24 13.5%,
+      1.259 14.6%,
+      1.258 16.1%,
+      1.227 17.8%,
+      1.042 23.4%,
+      0.981 25.7%,
+      0.947 27.7%,
+      0.932 29.7%,
+      0.937 32.6%,
+      1.001 40.3%,
+      1.018 44.9%,
+      0.995 59.9%,
+      1
+    );
+    background-color: rgb(241, 241, 241);
+  }
+
+  .header-hidden {
+    transform: translateY(-110%);
+  }
+
   nav {
     padding: 1rem 3.5rem;
     max-width: var(--max-width);
