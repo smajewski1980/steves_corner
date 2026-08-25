@@ -58,6 +58,7 @@ interface Props {
     --med-width: 1024px;
     --main-font: "OCR A Extended";
     --asterisk: hsl(90, 100%, 45%);
+    --heading-1-size: clamp(1.5rem, 1.0856rem + 1.768vw, 2.5rem);
   }
 
   @font-face {
@@ -134,5 +135,9 @@ interface Props {
 
   p {
     line-height: 1.6;
+  }
+
+  sup {
+    padding-inline-start: 0.25rem;
   }
 </style>

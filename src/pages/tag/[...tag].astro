@@ -72,27 +72,6 @@ const headingText = activeCollection === "music" ? "Music " : "Nascar ";
   </section>
 </MainLayout>
 
-<!-- <script>
-  function setupBackButton() {
-    const backBtn = document.getElementById("back-button");
-    if (!backBtn) return;
-
-    backBtn.addEventListener("click", () => {
-      // Check if the user came from this site
-      const hasInternalReferrer =
-        document.referrer && document.referrer.includes(window.location.host);
-
-      if (hasInternalReferrer && window.history.length > 1) {
-        window.history.back();
-      } else {
-        window.location.href = "/nascar/";
-      }
-    });
-  }
-
-  setupBackButton();
-</script> -->
-
 <style>
   section {
     width: 100%;
@@ -101,13 +80,12 @@ const headingText = activeCollection === "music" ? "Music " : "Nascar ";
     padding-inline: 2rem;
     margin-block-start: 3.5rem;
     color: var(--text-color-700);
-
-    h1 {
-      font-size: 1.75rem;
-      line-height: 1.25;
-      font-weight: 700;
-      margin-block: 2rem;
-    }
+  }
+  h1 {
+    font-size: var(--heading-1-size);
+    line-height: 1.25;
+    font-weight: 700;
+    margin-block: 2rem;
   }
 
   .asterisk {
