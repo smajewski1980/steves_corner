@@ -1,0 +1,30 @@
+---
+
+---
+
+<button
+  class='back-link'
+  id='back-button'
+  >Back</button
+>
+
+<script>
+  function setupBackButton() {
+    const backBtn = document.getElementById("back-button");
+    if (!backBtn) return;
+
+    backBtn.addEventListener("click", () => {
+      // Check if the user came from this site
+      const hasInternalReferrer =
+        document.referrer && document.referrer.includes(window.location.host);
+
+      if (hasInternalReferrer && window.history.length > 1) {
+        window.history.back();
+      } else {
+        window.location.href = "/nascar/";
+      }
+    });
+  }
+
+  setupBackButton();
+</script>

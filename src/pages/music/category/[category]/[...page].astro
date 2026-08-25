@@ -9,6 +9,7 @@ import { MUSIC_COLLECTION_CATEGORIES } from "../../../../content.config";
 import { HA_ATTRIBUTION } from "../../../../constants";
 import Pagination from "../../../../components/Pagination.astro";
 import CategoryNav from "../../../../components/CategoryNav.astro";
+import BackButton from "../../../../components/BackButton.astro";
 
 interface Props {
   page: Page<CollectionEntry<"music">>;
@@ -43,6 +44,7 @@ if (!category) {
 
 <MainLayout>
   <section>
+    <BackButton />
     <h1>Music Posts</h1>
 
     <!-- for now -->

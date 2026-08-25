@@ -5,13 +5,7 @@ import NascarPostCard from "../../components/NascarPostCard.astro";
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 import { HA_ATTRIBUTION } from "../../constants";
-
-// const allBlogArticles: CollectionEntry<"blog">[] = (
-//   await getCollection("blog")
-// ).sort(
-//   (a: CollectionEntry<"blog">, b: CollectionEntry<"blog">) =>
-//     b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-// );
+import BackButton from "../../components/BackButton.astro";
 
 export async function getStaticPaths() {
   const allMusicArticles: CollectionEntry<"music">[] =
@@ -57,11 +51,7 @@ const headingText = activeCollection === "music" ? "Music " : "Nascar ";
 
 <MainLayout>
   <section>
-    <button
-      class='back-link'
-      id='back-button'
-      >Back</button
-    >
+    <BackButton />
     <h1>
       {headingText}items tagged with: {tag}
     </h1>
@@ -82,7 +72,7 @@ const headingText = activeCollection === "music" ? "Music " : "Nascar ";
   </section>
 </MainLayout>
 
-<script>
+<!-- <script>
   function setupBackButton() {
     const backBtn = document.getElementById("back-button");
     if (!backBtn) return;
@@ -101,7 +91,7 @@ const headingText = activeCollection === "music" ? "Music " : "Nascar ";
   }
 
   setupBackButton();
-</script>
+</script> -->
 
 <style>
   section {
