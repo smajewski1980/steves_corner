@@ -25,7 +25,9 @@ const coverImageAttribution = article.data.imageAttribution;
         >
       </h2>
       <p>
-        category: {article.data.category}
+        <a href={`/music/category/${article.data.category}`}
+          >category: {article.data.category}</a
+        >
       </p>
       <a href={articleHref}>
         <Image
@@ -69,6 +71,7 @@ const coverImageAttribution = article.data.imageAttribution;
     display: flex;
     flex-direction: column;
     text-align: center;
+    border: 1px solid var(--text-color-700);
 
     img {
       width: 100%;
@@ -100,6 +103,10 @@ const coverImageAttribution = article.data.imageAttribution;
     flex-direction: column;
     justify-content: center;
     min-height: 3lh;
+
+    &:hover {
+      opacity: 0.75;
+    }
   }
 
   .asterisk {
