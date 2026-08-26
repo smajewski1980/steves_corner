@@ -105,5 +105,9 @@ const { Content } = await render(entry);
   .content-component-wrapper :global(a) {
     text-decoration: underline;
     text-underline-offset: 5px;
+    .ext-link-icon::after {
+      content: url("/public/external-link-svgrepo-com.svg");
+      padding-inline-start: 0.25rem;
+    }
   }
 </style>

@@ -1,0 +1,111 @@
+---
+import type { GetStaticPaths, Page, GetStaticPathsOptions } from "astro";
+
+import MainLayout from "../../../../layouts/MainLayout.astro";
+import ArticleCard from "../../../../components/ArticleCard.astro";
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import { MUSIC_COLLECTION_CATEGORIES } from "../../../../content.config";
+import { HA_ATTRIBUTION } from "../../../../constants";
+import Pagination from "../../../../components/Pagination.astro";
+import CategoryNav from "../../../../components/CategoryNav.astro";
+import BackButton from "../../../../components/BackButton.astro";
+import ExternalLinkIcon from "/public/external-link-svgrepo-com.svg";
+
+interface Props {
+  page: Page<CollectionEntry<"music">>;
+  posts: CollectionEntry<"music">[];
+}
+
+export const getStaticPaths = (async ({ paginate }: GetStaticPathsOptions) => {
+  const allMusicArticles: CollectionEntry<"music">[] =
+    await getCollection("music");
+
+  return MUSIC_COLLECTION_CATEGORIES.flatMap((category) => {
+    const filteredContent: CollectionEntry<"music">[] = allMusicArticles.filter(
+      (entry: any) => entry.data.category === category,
+    );
+
+    return paginate(filteredContent, {
+      params: { category },
+      props: { posts: filteredContent },
+    });
+  });
+}) satisfies GetStaticPaths;
+
+const { category } = Astro.params;
+const { posts, page } = Astro.props;
+const prevUrl = page.url.prev;
+const nextUrl = page.url.next;
+
+if (!category) {
+  throw new Error("Category is required.");
+}
+---
+
+<MainLayout>
+  <section>
+    <BackButton />
+    <h1>Music Items - Category: {posts[0].data.category}</h1>
+
+    <p>
+      <span class='asterisk'>*<sup>HA</sup></span>: {
+        (
+          <a
+            href='https://www.ha.com'
+            target='_blank'
+          >
+            {HA_ATTRIBUTION}
+          </a>
+          <span class="icon-wrapper">
+            <ExternalLinkIcon
+              width='16px'
+              height='16px'
+            />
+          </span>
+        )
+      }
+    </p>
+    <!-- for now -->
+    <!-- <SearchForm /> -->
+    <CategoryNav />
+
+    <div class='card-wrapper'>
+      {posts.map((article: any) => <ArticleCard article={article} />)}
+    </div>
+    <Pagination
+      prevUrl={prevUrl}
+      currentPageRange={undefined}
+      currentPage={page.currentPage}
+      nextUrl={nextUrl}
+    />
+  </section>
+</MainLayout>
+
+<style>
+  .asterisk {
+    color: var(--text-color-700);
+    font-size: 1rem;
+  }
+
+  h1 {
+    font-size: var(--heading-1-size);
+    line-height: 1.25;
+    font-weight: 700;
+    margin-block-start: 2rem;
+  }
+
+  p {
+    margin-block-end: 2rem;
+  }
+
+  .card-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 275px), 1fr));
+    gap: 2rem 1rem;
+
+    @media (min-width: 1000px) {
+      margin-block-start: 2rem;
+    }
+  }
+</style>
