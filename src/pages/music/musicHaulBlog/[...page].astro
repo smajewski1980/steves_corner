@@ -1,0 +1,42 @@
+---
+import type { GetStaticPaths } from "astro";
+import MainLayout from "../../../layouts/MainLayout.astro";
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import Pagination from "../../../components/Pagination.astro";
+import { MUSIC_HAUL_BLOG_POSTS_PER_PAGE } from "../../../constants";
+import BackButton from "../../../components/BackButton.astro";
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const allMusicHaulPosts: CollectionEntry<"musicHaulBlog">[] = (
+    await getCollection("musicHaulBlog")
+  ).sort(
+    (
+      a: CollectionEntry<"musicHaulBlog">,
+      b: CollectionEntry<"musicHaulBlog">,
+    ) => b.data.postDate.valueOf() - a.data.postDate.valueOf(),
+  );
+  return paginate(allMusicHaulPosts, {
+    pageSize: MUSIC_HAUL_BLOG_POSTS_PER_PAGE,
+  });
+}) satisfies GetStaticPaths;
+
+const { page } = Astro.props;
+const prevUrl = page.url.prev;
+const nextUrl = page.url.next;
+---
+
+<MainLayout>
+  <BackButton />
+
+  <h1>Music Haul Blog</h1>
+
+  <p>blog post cards will go here</p>
+
+  <Pagination
+    prevUrl={prevUrl}
+    currentPageRange={undefined}
+    currentPage={page.currentPage}
+    nextUrl={nextUrl}
+  />
+</MainLayout>
