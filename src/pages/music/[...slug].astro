@@ -26,6 +26,7 @@ if (!slug) {
 }
 
 const entry = await getEntry("music", slug);
+
 if (!entry) return Astro.redirect("/404");
 
 const { Content } = await render(entry);

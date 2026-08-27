@@ -1,0 +1,52 @@
+---
+import type { GetStaticPaths } from "astro";
+import MainLayout from "../../../layouts/MainLayout.astro";
+import { getCollection, getEntry, render } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import { formatDate } from "../../../utils";
+import { Image } from "astro:assets";
+import BackButton from "../../../components/BackButton.astro";
+import { getEntryBySlug } from "astro:content";
+
+export const getStaticPaths = (async () => {
+  const allMusicHaulPosts: CollectionEntry<"musicHaulBlog">[] =
+    await getCollection("musicHaulBlog");
+
+  return allMusicHaulPosts.map((post: CollectionEntry<"musicHaulBlog">) => ({
+    params: {
+      slug: post.id,
+    },
+    props: { post },
+  }));
+}) satisfies GetStaticPaths;
+
+const { slug } = Astro.params;
+
+if (!slug) {
+  throw new Error("Slug is required");
+}
+
+const entry = await getEntry("musicHaulBlog", slug);
+
+if (!entry) return Astro.redirect("/404");
+
+const { Content } = await render(entry);
+---
+
+<MainLayout>
+  <section>
+    <BackButton />
+    <article>
+      <h1>{entry.data.title}</h1>
+      <p>{formatDate(entry.data.date)}</p>
+
+      <Image
+        src={entry.data.coverImage}
+        alt={entry.data.coverImageAlt}
+      />
+      <div class='content-component-wrapper'>
+        <Content />
+      </div>
+    </article>
+  </section>
+</MainLayout>

@@ -1,19 +1,28 @@
 ---
+import type { CollectionEntry } from "astro:content";
 import { Image } from "astro:assets";
 import { formatDate } from "../utils";
+
+interface Props {
+  post: CollectionEntry<"musicHaulBlog">;
+}
+
 const { post } = Astro.props;
 const { title, date, coverImage, coverImageAlt } = post.data;
+const postHref = `/music/music-haul-blog/${post.id}`;
 ---
 
-<div class='music-haul-blog-card'>
-  <Image
-    src={coverImage}
-    alt={coverImageAlt}
-  />
-  <div class='content-wrapper'>
-    {formatDate(date)}: {title}
+<a href={postHref}>
+  <div class='music-haul-blog-card'>
+    <Image
+      src={coverImage}
+      alt={coverImageAlt}
+    />
+    <div class='content-wrapper'>
+      {formatDate(date)}: {title}
+    </div>
   </div>
-</div>
+</a>
 
 <style>
   .music-haul-blog-card {
