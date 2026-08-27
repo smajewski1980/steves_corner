@@ -6,6 +6,7 @@ import type { CollectionEntry } from "astro:content";
 import Pagination from "../../../components/Pagination.astro";
 import { MUSIC_HAUL_BLOG_POSTS_PER_PAGE } from "../../../constants";
 import BackButton from "../../../components/BackButton.astro";
+import MusicHaulCard from "../../../components/MusicHaulCard.astro";
 
 export const getStaticPaths = (async ({ paginate }) => {
   const allMusicHaulPosts: CollectionEntry<"musicHaulBlog">[] = (
@@ -14,7 +15,7 @@ export const getStaticPaths = (async ({ paginate }) => {
     (
       a: CollectionEntry<"musicHaulBlog">,
       b: CollectionEntry<"musicHaulBlog">,
-    ) => b.data.postDate.valueOf() - a.data.postDate.valueOf(),
+    ) => b.data.date.valueOf() - a.data.date.valueOf(),
   );
   return paginate(allMusicHaulPosts, {
     pageSize: MUSIC_HAUL_BLOG_POSTS_PER_PAGE,
@@ -31,7 +32,37 @@ const nextUrl = page.url.next;
 
   <h1>Music Haul Blog</h1>
 
-  <p>blog post cards will go here</p>
+  <div class='hero-text'>
+    <p>
+      Between thrift stores, estate sales and the local music shops, I don't
+      have to spend much money to get quite a bit of stuff to listen to. Most of
+      the time it's stereotypical dollar bin crap, but once in a while
+      persistence pays off. I have also learned when we go on vacation to bring
+      a crate or two with us, I always seem to find some music at a flea market
+      or antique store.
+    </p>
+
+    <p>
+      I tend to bring home at least one haul a week, a little less during the
+      first half of the year(work is busier). I am going to start this blog as
+      kind of a journal of the stuff I am bringing home and of what I am
+      listening to. Most of what I listen to at home is not played again, it
+      gets filed and cataloged into the collection after I listen to it.
+    </p>
+
+    <p>
+      About 75% of my home music listening is with records, the rest CDs. Once
+      in a while, I bust out the reel to reel player. I used to have a record
+      player on my desk at work, now I have old Sony single disc and Technics
+      5-disc CD players(which are both documented on my music collection page in
+      the equipment category). I also have all the CDs ripped and on a hard
+      drive so I can listen to them at work too.
+    </p>
+  </div>
+
+  <div class='posts-wrapper'>
+    {page.data.map((post) => <MusicHaulCard post={post} />)}
+  </div>
 
   <Pagination
     prevUrl={prevUrl}
@@ -40,3 +71,25 @@ const nextUrl = page.url.next;
     nextUrl={nextUrl}
   />
 </MainLayout>
+
+<style>
+  .posts-wrapper {
+    /* i tried / by 2, but it wrapped too early, so / 3 not counting gap
+    makes two columns that wrap at a nice point */
+    --max-card-width: calc(var(--max-width) / 3);
+
+    display: grid;
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(min(100%, var(--max-card-width)), 1fr)
+    );
+    gap: 1rem;
+  }
+
+  h1 {
+    margin-block: 2rem;
+  }
+  p {
+    margin-block-end: 1rem;
+  }
+</style>

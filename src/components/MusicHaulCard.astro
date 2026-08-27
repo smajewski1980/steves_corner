@@ -1,0 +1,29 @@
+---
+import { Image } from "astro:assets";
+import { formatDate } from "../utils";
+const { post } = Astro.props;
+const { title, date, coverImage, coverImageAlt } = post.data;
+---
+
+<div class='music-haul-blog-card'>
+  <Image
+    src={coverImage}
+    alt={coverImageAlt}
+  />
+  <div class='content-wrapper'>
+    {formatDate(date)}: {title}
+  </div>
+</div>
+
+<style>
+  .music-haul-blog-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    img {
+      width: 100px;
+      height: 100px;
+    }
+  }
+</style>

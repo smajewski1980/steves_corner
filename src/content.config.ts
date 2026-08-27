@@ -9,11 +9,11 @@ const musicHaulBlog = defineCollection({
   }),
   schema: ({ image }) =>
     z.object({
-      postTitle: z.string(),
-      postDate: z.date(),
+      title: z.string(),
+      date: z.date(),
       coverImage: image(),
       coverImageAlt: z.string(),
-      tags: z.array(z.string()),
+      tags: z.array(z.string()).optional(),
     }),
 });
 
