@@ -9,6 +9,7 @@ import { NASCAR_CARDS_PER_PAGE } from "../../constants";
 import type { CollectionEntry } from "astro:content";
 import type { GetStaticPaths } from "astro";
 import { formatDate } from "../../utils";
+import BackToTop from "../../components/BackToTop.astro";
 
 export const getStaticPaths = (async ({ paginate }) => {
   const allNascarPosts: CollectionEntry<"nascar">[] = (
@@ -60,6 +61,7 @@ const currentPageRange = {
       prevUrl={prevUrl}
       nextUrl={nextUrl}
       currentPageRange={currentPageRange}
+      currentPage={page.currentPage}
     />
     <div class='nascar-card-wrapper'>
       {page.data.map((post) => <NascarPostCard post={post} />)}
@@ -68,8 +70,10 @@ const currentPageRange = {
       prevUrl={prevUrl}
       nextUrl={nextUrl}
       currentPageRange={currentPageRange}
+      currentPage={page.currentPage}
     />
   </section>
+  <BackToTop />
   <NascarStats />
 </MainLayout>
 

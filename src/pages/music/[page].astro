@@ -11,6 +11,7 @@ import { MUSIC_CARDS_PER_PAGE, HA_ATTRIBUTION } from "../../constants";
 import Pagination from "../../components/Pagination.astro";
 import ExternalLinkIcon from "/public/external-link-svg.svg";
 import MusicTags from "../../components/MusicTags.astro";
+import BackToTop from "../../components/BackToTop.astro";
 
 export const getStaticPaths = (async ({ paginate }) => {
   const allMusicArticles: CollectionEntry<"music">[] = (
@@ -88,6 +89,7 @@ const nextUrl = page.url.next;
       nextUrl={nextUrl}
     />
     <MusicTags />
+    <BackToTop />
   </section>
 </MainLayout>
 
