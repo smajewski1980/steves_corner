@@ -48,5 +48,30 @@ const { Content } = await render(entry);
         <Content />
       </div>
     </article>
+    <BackButton />
   </section>
 </MainLayout>
+
+<style>
+  h1 {
+    margin-block: 2rem;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .content-component-wrapper {
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+    p,
+    h1 {
+      max-width: 70ch;
+      margin-inline: auto;
+      text-align: center;
+    }
+    margin-block-end: 2rem;
+  }
+</style>

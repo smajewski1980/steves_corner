@@ -1,0 +1,44 @@
+# 1. ALLOW TRADITIONAL SEARCH ENGINES (Good for SEO)
+User-agent: *
+Allow: /
+
+# 2. ALLOW AI-SEARCH CITATIONS (Good for referral traffic)
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Amzn-SearchBot
+Allow: /
+
+# 3. BLOCK AI TRAINING CRAWLERS (Prevents scraping/LLM ingest)
+User-agent: GPTBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: ByteSpider
+Disallow: /
+
+User-agent: Anthropic-AI
+Disallow: /
+
+User-agent: Meta-ExternalAgent
+Disallow: /
+
+User-agent: Amazonbot
+Disallow: /
+
+# 4. OPTIONAL: LINK YOUR SITEMAP
+# Sitemap: https://yourdomain.com/sitemap-index.xml
