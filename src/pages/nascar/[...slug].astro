@@ -6,6 +6,7 @@ import { formatDate } from "../../utils";
 import Tags from "../../components/Tags.astro";
 import BackToTop from "../../components/BackToTop.astro";
 import { Image } from "astro:assets";
+import BackButton from "../../components/BackButton.astro";
 
 export async function getStaticPaths() {
   const allNascarPosts: CollectionEntry<"nascar">[] =
@@ -31,11 +32,7 @@ const { Content } = await render(entry);
 
 <MainLayout>
   <main>
-    <button
-      class='back-link'
-      id='back-button'
-      >Back</button
-    >
+    <BackButton />
     <h1 class='nascar-post-header'>{entry.data.raceTitle}</h1>
     <h2>{formatDate(entry.data.raceDate)}</h2>
     <p class='race-winner'>
@@ -54,27 +51,6 @@ const { Content } = await render(entry);
     <BackToTop />
   </main>
 </MainLayout>
-
-<script>
-  function setupBackButton() {
-    const backBtn = document.getElementById("back-button");
-    if (!backBtn) return;
-
-    backBtn.addEventListener("click", () => {
-      // Check if the user came from this site
-      const hasInternalReferrer =
-        document.referrer && document.referrer.includes(window.location.host);
-
-      if (hasInternalReferrer && window.history.length > 1) {
-        window.history.back();
-      } else {
-        window.location.href = "/nascar/";
-      }
-    });
-  }
-
-  setupBackButton();
-</script>
 
 <style>
   main {
