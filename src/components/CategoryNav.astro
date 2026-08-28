@@ -21,6 +21,17 @@ const cleanedUpCategories: string[] = MUSIC_COLLECTION_CATEGORIES.map((c) =>
   </ul>
 </nav>
 
+<a
+  class='music-haul-blog-link'
+  href='/music/music-haul-blog'
+  ><span>CLICK HERE</span> to go to my weekly music haul blog page.</a
+>
+<a
+  class='target-cds-page-link'
+  href='/music/target-cds'
+  ><span>CLICK HERE</span> to go to my WEA target cds page.</a
+>
+
 <style>
   #category-nav {
     display: flex;
@@ -46,5 +57,17 @@ const cleanedUpCategories: string[] = MUSIC_COLLECTION_CATEGORIES.map((c) =>
   li {
     text-transform: capitalize;
     word-spacing: -0.5ch;
+  }
+
+  .music-haul-blog-link,
+  .target-cds-page-link {
+    margin-block-end: 1rem;
+    display: block;
+
+    span {
+      text-decoration: underline;
+      text-underline-offset: 5px;
+      font-weight: 700;
+    }
   }
 </style>

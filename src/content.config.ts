@@ -2,6 +2,23 @@ import { defineCollection } from "astro:content";
 import { z } from "astro/zod";
 import { glob } from "astro/loaders";
 
+const targetCds = defineCollection({
+  loader: glob({
+    pattern: "**/[^_]*.{md,mdx}",
+    base: "./src/content/targetCds",
+  }),
+  schema: ({ image }) =>
+    z.object({
+      artist: z.string(),
+      title: z.string(),
+      discImage: image(),
+      coverImage: image().optional(),
+      trayImage: image().optional(),
+      matrix: z.string(),
+      manufacturedIn: z.string(),
+    }),
+});
+
 const musicHaulBlog = defineCollection({
   loader: glob({
     pattern: "**/[^_]*.{md,mdx}",
@@ -67,4 +84,5 @@ export const collections = {
   nascar: nascarCollection,
   music: musicCollection,
   musicHaulBlog: musicHaulBlog,
+  targetCds: targetCds,
 };
