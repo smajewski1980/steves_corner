@@ -1,0 +1,57 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { Image } from "astro:assets";
+import fallbackImage from "../../public/placeholder1.png";
+const { cd } = Astro.props;
+
+interface Props {
+  cd: CollectionEntry<"targetCds">;
+}
+
+const commonAltText = cd.data.title + " by " + cd.data.artist;
+---
+
+<article class='target-cd-card-wrapper'>
+  <div class='image-wrapper'>
+    <!-- need to make the component that will make a modal open when image is clicked -->
+    <Image
+      src={cd.data.coverImage || fallbackImage}
+      alt={cd.data.coverImage ? "Image of the cover of " + commonAltText : ""}
+      width='75'
+      height='75'
+    />
+    <Image
+      src={cd.data.discImage}
+      alt={"Image of the target disc for " + commonAltText}
+      width='75'
+      height='75'
+    />
+    <Image
+      src={cd.data.trayImage || fallbackImage}
+      alt={cd.data.trayImage
+        ? "Image of the jewel case tray card for " + commonAltText
+        : ""}
+      width='75'
+      height='75'
+    />
+  </div>
+  <div class='info-wrapper'>
+    <p>{cd.data.artist} - {cd.data.title}</p>
+    <p>Matrix: {cd.data.matrix}</p>
+    <p>Origin: {cd.data.manufacturedIn}</p>
+  </div>
+</article>
+
+<style>
+  .target-cd-card-wrapper {
+    outline: 1px solid var(--text-color-700);
+    max-width: 600px;
+    display: flex;
+    gap: 1rem;
+    padding: 0.5rem;
+  }
+  .image-wrapper {
+    display: flex;
+    gap: 0.5rem;
+  }
+</style>
