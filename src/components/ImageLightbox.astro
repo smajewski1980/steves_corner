@@ -1,0 +1,82 @@
+---
+import { Image } from "astro:assets";
+import fallbackImage from "../../public/placeholder1.png";
+import closeIcon from "../../public/images/close-icon.webp";
+
+const { src, alt, lightboxId } = Astro.props;
+---
+
+<button
+  commandfor={lightboxId}
+  command='show-modal'
+>
+  <Image
+    src={src || fallbackImage}
+    alt={alt || ""}
+    width='75'
+    height='75'
+  />
+</button>
+<!-- this only showing the dire straits cover for every one -->
+<dialog id={lightboxId}>
+  <Image
+    src={src || fallbackImage}
+    alt={alt || ""}
+  />
+  <button
+    commandfor={lightboxId}
+    command='close'
+  >
+    <Image
+      src={closeIcon}
+      alt='close'
+      width='50'
+      height='35'
+    />
+  </button>
+</dialog>
+
+<style>
+  button {
+    cursor: pointer;
+  }
+
+  dialog {
+    margin: auto;
+    position: relative;
+    background-color: hsl(from var(--text-color-700) h s calc(l - 20) / 0.6);
+    border: 1px solid var(--text-color-100);
+    padding: 0.25rem;
+    box-shadow: 0 0 20px var(--text-color-100);
+    border-radius: 5px;
+
+    img:not(button img) {
+      border: 2px solid var(--text-color-100);
+      box-shadow: 0 0 10px var(--text-color-100);
+      filter: drop-shadow(0 0 10px var(--text-color-100));
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    &::backdrop {
+      background-color: hsl(from var(--text-color-700) h s calc(l - 20) / 0.6);
+    }
+
+    button {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      padding-block-start: 0.25rem;
+      background-color: var(--text-color-100);
+      border: none;
+    }
+  }
+
+  @media (max-width: 800px) {
+    dialog {
+      width: 100%;
+      margin-inline: auto;
+    }
+  }
+</style>

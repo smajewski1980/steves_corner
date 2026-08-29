@@ -41,13 +41,36 @@ const commonAltText = cd.data.title + " by " + cd.data.artist;
 <style>
   .target-cd-card-wrapper {
     outline: 1px solid var(--text-color-700);
-    max-width: 600px;
     display: flex;
+
     gap: 1rem;
     padding: 0.5rem;
   }
+
+  @media (max-width: 800px) {
+    .target-cd-card-wrapper {
+      flex-wrap: wrap;
+    }
+  }
+
+  .target-cd-card-wrapper:first-child:not(:has(+ .target-cd-card-wrapper)) {
+    max-width: 600px;
+  }
+
   .image-wrapper {
     display: flex;
     gap: 0.5rem;
+  }
+
+  .info-wrapper {
+    display: grid;
+    place-content: center;
+    --indent-size: 0.5rem;
+
+    p {
+      line-height: 1.2;
+      text-indent: calc(var(--indent-size) * -1);
+      padding-inline-start: var(--indent-size);
+    }
   }
 </style>
