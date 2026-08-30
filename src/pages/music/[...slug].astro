@@ -5,6 +5,7 @@ import type { CollectionEntry } from "astro:content";
 import Tags from "../../components/Tags.astro";
 import { Image } from "astro:assets";
 import BackButton from "../../components/BackButton.astro";
+import BackToTop from "../../components/BackToTop.astro";
 
 export async function getStaticPaths() {
   const allMusicArticles: CollectionEntry<"music">[] =
@@ -49,6 +50,7 @@ const { Content } = await render(entry);
       </div>
     </article>
     <BackButton />
+    <BackToTop />
   </section>
 </MainLayout>
 
