@@ -6,89 +6,147 @@ import BackButton from "../../components/BackButton.astro";
 import BackToTop from "../../components/BackToTop.astro";
 import TargetCdCard from "../../components/TargetCdCard.astro";
 
-const aCds = await getCollection("targetCds", (entry) => {
-  return entry.data.artist.toLowerCase().startsWith("a");
-});
-const bCds = await getCollection("targetCds", (entry) => {
-  return entry.data.artist.toLowerCase().startsWith("b");
-});
-const cCds = await getCollection("targetCds", (entry) => {
-  return entry.data.artist.toLowerCase().startsWith("c");
-});
-const dCds = await getCollection("targetCds", (entry) => {
-  return entry.data.artist.toLowerCase().startsWith("d");
-});
-const eCds = await getCollection("targetCds", (entry) => {
-  return entry.data.artist.toLowerCase().startsWith("e");
-});
-const fCds = await getCollection("targetCds", (entry) => {
-  return entry.data.artist.toLowerCase().startsWith("f");
-});
-const gCds = await getCollection("targetCds", (entry) => {
-  return entry.data.artist.toLowerCase().startsWith("g");
-});
-const hCds = await getCollection("targetCds", (entry) => {
-  return entry.data.artist.toLowerCase().startsWith("h");
-});
-const iCds = await getCollection("targetCds", (entry) => {
-  return entry.data.artist.toLowerCase().startsWith("i");
-});
-const jCds = await getCollection("targetCds", (entry) => {
-  return entry.data.artist.toLowerCase().startsWith("j");
-});
-const kCds = await getCollection("targetCds", (entry) => {
-  return entry.data.artist.toLowerCase().startsWith("k");
-});
-const lCds = await getCollection("targetCds", (entry) => {
-  return entry.data.artist.toLowerCase().startsWith("l");
-});
-const mCds = await getCollection("targetCds", (entry) => {
-  return entry.data.artist.toLowerCase().startsWith("m");
-});
-const nCds = await getCollection("targetCds", (entry) => {
-  return entry.data.artist.toLowerCase().startsWith("n");
-});
-const oCds = await getCollection("targetCds", (entry) => {
-  return entry.data.artist.toLowerCase().startsWith("o");
-});
-const pCds = await getCollection("targetCds", (entry) => {
-  return entry.data.artist.toLowerCase().startsWith("p");
-});
-const qCds = await getCollection("targetCds", (entry) => {
-  return entry.data.artist.toLowerCase().startsWith("q");
-});
-const rCds = await getCollection("targetCds", (entry) => {
-  return entry.data.artist.toLowerCase().startsWith("r");
-});
-const sCds = await getCollection("targetCds", (entry) => {
-  return entry.data.artist.toLowerCase().startsWith("s");
-});
-const tCds = await getCollection("targetCds", (entry) => {
-  return entry.data.artist.toLowerCase().startsWith("t");
-});
-const uCds = await getCollection("targetCds", (entry) => {
-  return entry.data.artist.toLowerCase().startsWith("u");
-});
-const vCds = await getCollection("targetCds", (entry) => {
-  return entry.data.artist.toLowerCase().startsWith("v");
-});
-const wCds = await getCollection("targetCds", (entry) => {
-  return entry.data.artist.toLowerCase().startsWith("w");
-});
-const xCds = await getCollection("targetCds", (entry) => {
-  return entry.data.artist.toLowerCase().startsWith("x");
-});
-const yCds = await getCollection("targetCds", (entry) => {
-  return entry.data.artist.toLowerCase().startsWith("y");
-});
-const zCds = await getCollection("targetCds", (entry) => {
-  return entry.data.artist.toLowerCase().startsWith("z");
-});
+const aCds = (
+  await getCollection("targetCds", (entry: CollectionEntry<"targetCds">) => {
+    return entry.data.artist.toLowerCase().startsWith("a");
+  })
+).sort((a, b) => a.data.artist.localeCompare(b.data.artist));
+const bCds = (
+  await getCollection("targetCds", (entry: CollectionEntry<"targetCds">) => {
+    return entry.data.artist.toLowerCase().startsWith("b");
+  })
+).sort((a, b) => a.data.artist.localeCompare(b.data.artist));
+const cCds = (
+  await getCollection("targetCds", (entry: CollectionEntry<"targetCds">) => {
+    return entry.data.artist.toLowerCase().startsWith("c");
+  })
+).sort((a, b) => a.data.artist.localeCompare(b.data.artist));
+const dCds = (
+  await getCollection("targetCds", (entry: CollectionEntry<"targetCds">) => {
+    return entry.data.artist.toLowerCase().startsWith("d");
+  })
+).sort((a, b) => a.data.artist.localeCompare(b.data.artist));
+const eCds = (
+  await getCollection("targetCds", (entry: CollectionEntry<"targetCds">) => {
+    return entry.data.artist.toLowerCase().startsWith("e");
+  })
+).sort((a, b) => a.data.artist.localeCompare(b.data.artist));
+const fCds = (
+  await getCollection("targetCds", (entry: CollectionEntry<"targetCds">) => {
+    return entry.data.artist.toLowerCase().startsWith("f");
+  })
+).sort((a, b) => a.data.artist.localeCompare(b.data.artist));
+const gCds = (
+  await getCollection("targetCds", (entry: CollectionEntry<"targetCds">) => {
+    return entry.data.artist.toLowerCase().startsWith("g");
+  })
+).sort((a, b) => a.data.artist.localeCompare(b.data.artist));
+const hCds = (
+  await getCollection("targetCds", (entry: CollectionEntry<"targetCds">) => {
+    return entry.data.artist.toLowerCase().startsWith("h");
+  })
+).sort((a, b) => a.data.artist.localeCompare(b.data.artist));
+const iCds = (
+  await getCollection("targetCds", (entry: CollectionEntry<"targetCds">) => {
+    return entry.data.artist.toLowerCase().startsWith("i");
+  })
+).sort((a, b) => a.data.artist.localeCompare(b.data.artist));
+const jCds = (
+  await getCollection("targetCds", (entry: CollectionEntry<"targetCds">) => {
+    return entry.data.artist.toLowerCase().startsWith("j");
+  })
+).sort((a, b) => a.data.artist.localeCompare(b.data.artist));
+const kCds = (
+  await getCollection("targetCds", (entry: CollectionEntry<"targetCds">) => {
+    return entry.data.artist.toLowerCase().startsWith("k");
+  })
+).sort((a, b) => a.data.artist.localeCompare(b.data.artist));
+const lCds = (
+  await getCollection("targetCds", (entry: CollectionEntry<"targetCds">) => {
+    return entry.data.artist.toLowerCase().startsWith("l");
+  })
+).sort((a, b) => a.data.artist.localeCompare(b.data.artist));
+const mCds = (
+  await getCollection("targetCds", (entry: CollectionEntry<"targetCds">) => {
+    return entry.data.artist.toLowerCase().startsWith("m");
+  })
+).sort((a, b) => a.data.artist.localeCompare(b.data.artist));
+const nCds = (
+  await getCollection("targetCds", (entry: CollectionEntry<"targetCds">) => {
+    return entry.data.artist.toLowerCase().startsWith("n");
+  })
+).sort((a, b) => a.data.artist.localeCompare(b.data.artist));
+const oCds = (
+  await getCollection("targetCds", (entry: CollectionEntry<"targetCds">) => {
+    return entry.data.artist.toLowerCase().startsWith("o");
+  })
+).sort((a, b) => a.data.artist.localeCompare(b.data.artist));
+const pCds = (
+  await getCollection("targetCds", (entry: CollectionEntry<"targetCds">) => {
+    return entry.data.artist.toLowerCase().startsWith("p");
+  })
+).sort((a, b) => a.data.artist.localeCompare(b.data.artist));
+const qCds = (
+  await getCollection("targetCds", (entry: CollectionEntry<"targetCds">) => {
+    return entry.data.artist.toLowerCase().startsWith("q");
+  })
+).sort((a, b) => a.data.artist.localeCompare(b.data.artist));
+const rCds = (
+  await getCollection("targetCds", (entry: CollectionEntry<"targetCds">) => {
+    return entry.data.artist.toLowerCase().startsWith("r");
+  })
+).sort((a, b) => a.data.artist.localeCompare(b.data.artist));
+const sCds = (
+  await getCollection("targetCds", (entry: CollectionEntry<"targetCds">) => {
+    return entry.data.artist.toLowerCase().startsWith("s");
+  })
+).sort((a, b) => a.data.artist.localeCompare(b.data.artist));
+const tCds = (
+  await getCollection("targetCds", (entry: CollectionEntry<"targetCds">) => {
+    return entry.data.artist.toLowerCase().startsWith("t");
+  })
+).sort((a, b) => a.data.artist.localeCompare(b.data.artist));
+const uCds = (
+  await getCollection("targetCds", (entry: CollectionEntry<"targetCds">) => {
+    return entry.data.artist.toLowerCase().startsWith("u");
+  })
+).sort((a, b) => a.data.artist.localeCompare(b.data.artist));
+const vCds = (
+  await getCollection("targetCds", (entry: CollectionEntry<"targetCds">) => {
+    return entry.data.artist.toLowerCase().startsWith("v");
+  })
+).sort((a, b) => a.data.artist.localeCompare(b.data.artist));
+const wCds = (
+  await getCollection("targetCds", (entry: CollectionEntry<"targetCds">) => {
+    return entry.data.artist.toLowerCase().startsWith("w");
+  })
+).sort((a, b) => a.data.artist.localeCompare(b.data.artist));
+const xCds = (
+  await getCollection("targetCds", (entry: CollectionEntry<"targetCds">) => {
+    return entry.data.artist.toLowerCase().startsWith("x");
+  })
+).sort((a, b) => a.data.artist.localeCompare(b.data.artist));
+const yCds = (
+  await getCollection("targetCds", (entry: CollectionEntry<"targetCds">) => {
+    return entry.data.artist.toLowerCase().startsWith("y");
+  })
+).sort((a, b) => a.data.artist.localeCompare(b.data.artist));
+const zCds = (
+  await getCollection("targetCds", (entry: CollectionEntry<"targetCds">) => {
+    return entry.data.artist.toLowerCase().startsWith("z");
+  })
+).sort((a, b) => a.data.artist.localeCompare(b.data.artist));
 ---
 
 <MainLayout>
   <BackButton />
   <h1>Target CD Collection</h1>
+
+  <p>
+    ADD A LINK TO INFO HERE. If you see multiples, it's not an error, they are
+    separate items with separate scans. Sometimes they will be variants with
+    minor differences, sometimes they are duplicates in the collection.
+  </p>
 
   <section
     id='jump-to-a'
@@ -328,6 +386,10 @@ const zCds = await getCollection("targetCds", (entry) => {
 </MainLayout>
 
 <style>
+  h1 {
+    margin-block: 2rem 1rem;
+  }
+
   .jump-to-link {
     padding: 1rem 0rem;
     /* border-top: 1px solid var(--text-color-700); */
