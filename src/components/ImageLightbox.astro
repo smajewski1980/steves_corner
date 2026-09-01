@@ -44,11 +44,25 @@ const { src, alt, lightboxId } = Astro.props;
     cursor: pointer;
   }
 
+  button:not(dialog button) {
+    filter: contrast(200%) brightness(250%) blur(5px);
+    animation: thumbnailLoadIn 1s 0.5s ease forwards;
+  }
+
+  @keyframes thumbnailLoadIn {
+    97% {
+      filter: contrast(103%) brightness(103%) blur(1px) opacity(0.3);
+    }
+    to {
+      filter: contrast(100%) brightness(100%) blur(0px) opacity(1);
+    }
+  }
+
   dialog {
     margin: auto;
     background-color: hsl(from var(--text-color-700) h s calc(l - 20) / 0.6);
     border: 1px solid var(--text-color-100);
-    padding: 0.25rem;
+    padding: 0.5rem;
     box-shadow: 0 0 20px var(--text-color-100);
     border-radius: 5px;
 
@@ -59,6 +73,7 @@ const { src, alt, lightboxId } = Astro.props;
       max-width: 100%;
       height: auto;
       display: block;
+      padding: 1rem;
     }
 
     &::backdrop {
