@@ -6,6 +6,9 @@ import BackButton from "../../components/BackButton.astro";
 import BackToTop from "../../components/BackToTop.astro";
 import TargetCdCard from "../../components/TargetCdCard.astro";
 
+const allTargetCds = await getCollection("targetCds");
+const currentQty = allTargetCds.length;
+
 const aCds = (
   await getCollection("targetCds", (entry: CollectionEntry<"targetCds">) => {
     return entry.data.artist.toLowerCase().startsWith("a");
@@ -141,11 +144,12 @@ const zCds = (
 <MainLayout>
   <BackButton />
   <h1>Target CD Collection</h1>
+  <p class='disc-qty'>Currently {currentQty} discs.</p>
 
   <p>
     ADD A LINK TO INFO HERE. If you see multiples, it's not an error, they are
     separate items with separate scans. Sometimes they will be variants with
-    minor differences, sometimes they are duplicates in the collection.
+    minor differences, sometimes they will be duplicates in the collection.
   </p>
 
   <section
@@ -387,7 +391,11 @@ const zCds = (
 
 <style>
   h1 {
-    margin-block: 2rem 1rem;
+    margin-block: 2rem 0.5rem;
+  }
+
+  .disc-qty {
+    margin-block-end: 1rem;
   }
 
   .jump-to-link {
