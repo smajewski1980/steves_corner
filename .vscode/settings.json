@@ -31,6 +31,7 @@
     "OCRAEXT",
     "opac",
     "Pitstop",
+    "Quarterflash",
     "Sauter",
     "smooshed",
     "targ",
@@ -40,5 +41,5 @@
     "Xfinity",
     "zztop"
   ],
-  "cSpell.ignoreWords": ["Wself"]
+  "cSpell.ignoreWords": ["DIDZ", "Wself"]
 }
