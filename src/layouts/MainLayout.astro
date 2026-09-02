@@ -146,4 +146,27 @@ interface Props {
   sup {
     padding-inline-start: 0.25rem;
   }
+
+  @keyframes smoke-ring {
+    50% {
+      opacity: 1;
+    }
+
+    80 % {
+      opacity: 0;
+    }
+    to {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(1.2);
+    }
+  }
+
+  @keyframes thumbnailLoadIn {
+    97% {
+      filter: contrast(103%) brightness(103%) blur(1px) opacity(0.3);
+    }
+    to {
+      filter: contrast(100%) brightness(100%) blur(0px) opacity(1);
+    }
+  }
 </style>

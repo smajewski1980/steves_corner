@@ -9,6 +9,7 @@ const { src, alt, lightboxId } = Astro.props;
 <button
   commandfor={lightboxId}
   command='show-modal'
+  class='dialog-btn'
 >
   <Image
     src={src || fallbackImage}
@@ -17,7 +18,7 @@ const { src, alt, lightboxId } = Astro.props;
     height='75'
   />
 </button>
-<!-- this only showing the dire straits cover for every one -->
+
 <dialog
   id={lightboxId}
   closedby='any'
@@ -44,19 +45,34 @@ const { src, alt, lightboxId } = Astro.props;
     cursor: pointer;
   }
 
-  button:not(dialog button) {
+  .dialog-btn {
     filter: contrast(200%) brightness(250%) blur(5px);
-    animation: thumbnailLoadIn 1s 0.5s ease forwards;
-    /* try a different timing function */
+    animation: thumbnailLoadIn 0.75s 0.5s ease forwards;
+    position: relative;
   }
 
-  @keyframes thumbnailLoadIn {
-    97% {
-      filter: contrast(103%) brightness(103%) blur(1px) opacity(0.3);
-    }
-    to {
-      filter: contrast(100%) brightness(100%) blur(0px) opacity(1);
-    }
+  .dialog-btn::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transform-origin: center;
+    width: 150px;
+    height: 150px;
+    opacity: 0.5;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0) 40%,
+      hsl(from var(--text-color-700) h s l / 0.65) 65%,
+      rgba(255, 255, 255, 0) 80%
+    );
+    filter: blur(6px);
+    z-index: 999;
+    animation: smoke-ring 0.75s forwards;
+    animation-delay: 0.85s;
   }
 
   dialog {
