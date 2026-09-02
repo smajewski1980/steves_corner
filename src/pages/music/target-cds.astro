@@ -5,6 +5,7 @@ import type { CollectionEntry } from "astro:content";
 import BackButton from "../../components/BackButton.astro";
 import BackToTop from "../../components/BackToTop.astro";
 import TargetCdCard from "../../components/TargetCdCard.astro";
+import ExternalLinkIcon from "../../../public/external-link-svg.svg";
 
 const allTargetCds = await getCollection("targetCds");
 const currentQty = allTargetCds.length;
@@ -175,13 +176,23 @@ const zCds = (
     <a href='#jump-to-z'>Z</a>
   </p>
 
-  <p>
-    ADD A LINK TO INFO HERE. If you see multiples, it's not an error, they are
-    separate items with separate scans. Sometimes they will be variants with
-    minor differences, sometimes they will be duplicates in the collection.
-  </p>
+  <div class='text-wrapper'>
+    <p>
+      If you don't know what these are, the short explanation is they are early
+      CDs that were pressed for the US market before we could make them here. If
+      you would like better or more in-depth details, check out this <a
+        href='https://www.discogs.com/forum/thread/398106'
+        target='_blank'
+        >Discogs forum page</a
+      ><ExternalLinkIcon />.
+    </p>
 
-  <p>Click on any of the images to see a larger version.</p>
+    <p>
+      Click on any of the images to see a larger version. Any multiple entries
+      are multiple copies in my collection. Sometimes they will be variants with
+      minor differences, sometimes they will be duplicates.
+    </p>
+  </div>
 
   <section
     id='jump-to-a'
@@ -418,42 +429,58 @@ const zCds = (
     </div>
   </section>
   <BackToTop />
-</MainLayout>
 
-<style>
-  h1 {
-    margin-block: 2rem 0.5rem;
-  }
+  <style>
+    h1 {
+      margin-block: 2rem 0.5rem;
+    }
 
-  .disc-qty {
-    margin-block-end: 1rem;
-  }
+    svg {
+      margin-inline-start: 0.25rem;
+    }
 
-  .jump-to-nav {
-    margin-block-end: 1rem;
-    font-size: 1.25rem;
-  }
-
-  .jump-to-link {
-    padding: 1rem 0rem;
-    /* border-top: 1px solid var(--text-color-700); */
-    h2 {
-      border-bottom: 1px solid var(--text-color-700);
-      padding-block-end: 1rem;
+    .disc-qty {
       margin-block-end: 1rem;
     }
-  }
-  .target-card-wrapper {
-    /* i tried dividing by 2, but it wrapped too early, so dividing by 3 and 
-    not counting the gap makes two columns that wrap at a nice point */
-    --max-card-width: calc(var(--max-width) / 3);
 
-    display: grid;
-    grid-template-columns: repeat(
-      auto-fit,
-      minmax(min(100%, var(--max-card-width)), 1fr)
-    );
-    align-items: center;
-    gap: 1rem;
-  }
-</style>
+    .jump-to-nav {
+      margin-block-end: 1rem;
+      font-size: 1.25rem;
+    }
+
+    .text-wrapper {
+      display: grid;
+      gap: 1rem;
+      line-height: 1.2;
+
+      a {
+        text-decoration: underline;
+        text-underline-offset: 5px;
+      }
+    }
+
+    .jump-to-link {
+      margin-block-start: 1.5rem;
+      padding: 0;
+      h2 {
+        border-bottom: 1px solid var(--text-color-700);
+        padding-block-end: 1rem;
+        margin-block-end: 1rem;
+      }
+    }
+
+    .target-card-wrapper {
+      /* i tried dividing by 2, but it wrapped too early, so dividing by 3 and 
+        not counting the gap makes two columns that wrap at a nice point */
+      --max-card-width: calc(var(--max-width) / 3);
+
+      display: grid;
+      grid-template-columns: repeat(
+        auto-fit,
+        minmax(min(100%, var(--max-card-width)), 1fr)
+      );
+      align-items: center;
+      gap: 1rem;
+    }
+  </style>
+</MainLayout>

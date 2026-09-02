@@ -40,6 +40,35 @@ const { src, alt, lightboxId } = Astro.props;
   </button>
 </dialog>
 
+<!-- for browser support -->
+<script>
+  // Check if the browser natively supports invoker commands
+  if (!HTMLButtonElement.prototype.hasOwnProperty("commandFor")) {
+    // Add a global listener for click events
+    document.addEventListener("click", (event) => {
+      const eventTarget = (event.target as Element) || null;
+
+      const button = eventTarget.closest("[commandfor]");
+      if (!button) return;
+
+      const targetId = button.getAttribute("commandfor") as string;
+      const action = button.getAttribute("command");
+      const targetElement = document.getElementById(targetId);
+
+      if (!targetElement) return;
+
+      // Handle standard <dialog> commands
+      if (targetElement instanceof HTMLDialogElement) {
+        if (action === "show-modal") {
+          targetElement.showModal();
+        } else if (action === "close") {
+          targetElement.close();
+        }
+      }
+    });
+  }
+</script>
+
 <style>
   button {
     cursor: pointer;
@@ -71,7 +100,7 @@ const { src, alt, lightboxId } = Astro.props;
     );
     filter: blur(6px);
     z-index: 999;
-    animation: smoke-ring 0.75s forwards;
+    animation: smoke-ring 0.75s;
     animation-delay: 0.85s;
   }
 
