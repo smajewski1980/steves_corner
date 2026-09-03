@@ -11,7 +11,9 @@ interface Props {
 const commonAltText = cd.data.title + " by " + cd.data.artist;
 ---
 
-<article class='target-cd-card-wrapper'>
+<article
+  class=`target-cd-card-wrapper ${cd.data.manufacturedIn === "Japan" ? 'jpn' : cd.data.manufacturedIn.includes("Germany") ? 'wg' : 'other'}`
+>
   <div class='image-wrapper'>
     <ImageLightbox
       src={cd.data.coverImage}
@@ -34,7 +36,7 @@ const commonAltText = cd.data.title + " by " + cd.data.artist;
   <div class='info-wrapper'>
     <p>{cd.data.artist} - {cd.data.title}</p>
     <p>Matrix: {cd.data.matrix}</p>
-    <p>Origin: {cd.data.manufacturedIn}</p>
+    <!-- <p>Origin: {cd.data.manufacturedIn}</p> -->
   </div>
 </article>
 
@@ -43,7 +45,7 @@ const commonAltText = cd.data.title + " by " + cd.data.artist;
     outline: 1px solid var(--text-color-700);
     display: flex;
 
-    gap: 1rem;
+    gap: 0.5rem;
     padding: 0.5rem;
   }
 
@@ -59,7 +61,7 @@ const commonAltText = cd.data.title + " by " + cd.data.artist;
 
   .image-wrapper {
     display: flex;
-    gap: 0.5rem;
+    gap: 0.25rem;
   }
 
   .info-wrapper {
@@ -72,5 +74,15 @@ const commonAltText = cd.data.title + " by " + cd.data.artist;
       text-indent: calc(var(--indent-size) * -1);
       padding-inline-start: var(--indent-size);
     }
+  }
+
+  .jpn {
+    background-color: var(--jpn);
+  }
+  .wg {
+    background-color: var(--wg);
+  }
+  .other {
+    background-color: var(--other);
   }
 </style>
