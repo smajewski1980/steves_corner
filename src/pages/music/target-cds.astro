@@ -125,11 +125,6 @@ const wCds = (
     return entry.data.artist.toLowerCase().startsWith("w");
   })
 ).sort((a, b) => a.data.artist.localeCompare(b.data.artist));
-const xCds = (
-  await getCollection("targetCds", (entry: CollectionEntry<"targetCds">) => {
-    return entry.data.artist.toLowerCase().startsWith("x");
-  })
-).sort((a, b) => a.data.artist.localeCompare(b.data.artist));
 const yCds = (
   await getCollection("targetCds", (entry: CollectionEntry<"targetCds">) => {
     return entry.data.artist.toLowerCase().startsWith("y");
