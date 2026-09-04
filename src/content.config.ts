@@ -16,6 +16,8 @@ const targetCds = defineCollection({
       trayImage: image().optional(),
       matrix: z.string(),
       manufacturedIn: z.string(),
+      isOther: z.boolean().optional(),
+      recordLabel: z.string().optional(),
     }),
 });
 
