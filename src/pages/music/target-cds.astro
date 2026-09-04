@@ -7,6 +7,7 @@ import BackToTop from "../../components/BackToTop.astro";
 import TargetCdCard from "../../components/TargetCdCard.astro";
 import ExternalLinkIcon from "../../../public/external-link-svg.svg";
 
+// to keep track of the qty of target cds
 const allTargetCds = await getCollection(
   "targetCds",
   (entry: CollectionEntry<"targetCds">) => {
@@ -15,13 +16,13 @@ const allTargetCds = await getCollection(
 );
 const currentQty = allTargetCds.length;
 
+// get the target era cds and sort by label, then alphabetically
 const targetEraCds = await getCollection(
   "targetCds",
   (entry: CollectionEntry<"targetCds">) => {
     return entry.data.isOther;
   },
 );
-
 targetEraCds
   .sort((a: CollectionEntry<"targetCds">, b: CollectionEntry<"targetCds">) => {
     return a.data.artist.localeCompare(b.data.artist);
@@ -33,7 +34,6 @@ targetEraCds
   });
 
 // render the cards
-
 const aCds = (
   await getCollection("targetCds", (entry: CollectionEntry<"targetCds">) => {
     return entry.data.artist.toLowerCase().startsWith("a");
