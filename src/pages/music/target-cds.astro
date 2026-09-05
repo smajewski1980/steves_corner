@@ -33,130 +33,179 @@ targetEraCds
     } else return -1;
   });
 
-// render the cards
 const aCds = (
   await getCollection("targetCds", (entry: CollectionEntry<"targetCds">) => {
-    return entry.data.artist.toLowerCase().startsWith("a");
+    return (
+      entry.data.artist.toLowerCase().startsWith("a") && !entry.data.isOther
+    );
   })
 ).sort((a, b) => a.data.artist.localeCompare(b.data.artist));
 const bCds = (
   await getCollection("targetCds", (entry: CollectionEntry<"targetCds">) => {
-    return entry.data.artist.toLowerCase().startsWith("b");
+    return (
+      entry.data.artist.toLowerCase().startsWith("b") && !entry.data.isOther
+    );
   })
 ).sort((a, b) => a.data.artist.localeCompare(b.data.artist));
 const cCds = (
   await getCollection("targetCds", (entry: CollectionEntry<"targetCds">) => {
-    return entry.data.artist.toLowerCase().startsWith("c");
+    return (
+      entry.data.artist.toLowerCase().startsWith("c") && !entry.data.isOther
+    );
   })
 ).sort((a, b) => a.data.artist.localeCompare(b.data.artist));
 const dCds = (
   await getCollection("targetCds", (entry: CollectionEntry<"targetCds">) => {
-    return entry.data.artist.toLowerCase().startsWith("d");
+    return (
+      entry.data.artist.toLowerCase().startsWith("d") && !entry.data.isOther
+    );
   })
 ).sort((a, b) => a.data.artist.localeCompare(b.data.artist));
 const eCds = (
   await getCollection("targetCds", (entry: CollectionEntry<"targetCds">) => {
-    return entry.data.artist.toLowerCase().startsWith("e");
+    return (
+      entry.data.artist.toLowerCase().startsWith("e") && !entry.data.isOther
+    );
   })
 ).sort((a, b) => a.data.artist.localeCompare(b.data.artist));
 const fCds = (
   await getCollection("targetCds", (entry: CollectionEntry<"targetCds">) => {
-    return entry.data.artist.toLowerCase().startsWith("f");
+    return (
+      entry.data.artist.toLowerCase().startsWith("f") && !entry.data.isOther
+    );
   })
 ).sort((a, b) => a.data.artist.localeCompare(b.data.artist));
 const gCds = (
   await getCollection("targetCds", (entry: CollectionEntry<"targetCds">) => {
-    return entry.data.artist.toLowerCase().startsWith("g");
+    return (
+      entry.data.artist.toLowerCase().startsWith("g") && !entry.data.isOther
+    );
   })
 ).sort((a, b) => a.data.artist.localeCompare(b.data.artist));
 const hCds = (
   await getCollection("targetCds", (entry: CollectionEntry<"targetCds">) => {
-    return entry.data.artist.toLowerCase().startsWith("h");
+    return (
+      entry.data.artist.toLowerCase().startsWith("h") && !entry.data.isOther
+    );
   })
 ).sort((a, b) => a.data.artist.localeCompare(b.data.artist));
 const iCds = (
   await getCollection("targetCds", (entry: CollectionEntry<"targetCds">) => {
-    return entry.data.artist.toLowerCase().startsWith("i");
+    return (
+      entry.data.artist.toLowerCase().startsWith("i") && !entry.data.isOther
+    );
   })
 ).sort((a, b) => a.data.artist.localeCompare(b.data.artist));
 const jCds = (
   await getCollection("targetCds", (entry: CollectionEntry<"targetCds">) => {
-    return entry.data.artist.toLowerCase().startsWith("j");
+    return (
+      entry.data.artist.toLowerCase().startsWith("j") && !entry.data.isOther
+    );
   })
 ).sort((a, b) => a.data.artist.localeCompare(b.data.artist));
 const kCds = (
   await getCollection("targetCds", (entry: CollectionEntry<"targetCds">) => {
-    return entry.data.artist.toLowerCase().startsWith("k");
+    return (
+      entry.data.artist.toLowerCase().startsWith("k") && !entry.data.isOther
+    );
   })
 ).sort((a, b) => a.data.artist.localeCompare(b.data.artist));
 const lCds = (
   await getCollection("targetCds", (entry: CollectionEntry<"targetCds">) => {
-    return entry.data.artist.toLowerCase().startsWith("l");
+    return (
+      entry.data.artist.toLowerCase().startsWith("l") && !entry.data.isOther
+    );
   })
 ).sort((a, b) => a.data.artist.localeCompare(b.data.artist));
 const mCds = (
   await getCollection("targetCds", (entry: CollectionEntry<"targetCds">) => {
-    return entry.data.artist.toLowerCase().startsWith("m");
+    return (
+      entry.data.artist.toLowerCase().startsWith("m") && !entry.data.isOther
+    );
   })
 ).sort((a, b) => a.data.artist.localeCompare(b.data.artist));
 const nCds = (
   await getCollection("targetCds", (entry: CollectionEntry<"targetCds">) => {
-    return entry.data.artist.toLowerCase().startsWith("n");
+    return (
+      entry.data.artist.toLowerCase().startsWith("n") && !entry.data.isOther
+    );
   })
 ).sort((a, b) => a.data.artist.localeCompare(b.data.artist));
 const oCds = (
   await getCollection("targetCds", (entry: CollectionEntry<"targetCds">) => {
-    return entry.data.artist.toLowerCase().startsWith("o");
+    return (
+      entry.data.artist.toLowerCase().startsWith("o") && !entry.data.isOther
+    );
   })
 ).sort((a, b) => a.data.artist.localeCompare(b.data.artist));
 const pCds = (
   await getCollection("targetCds", (entry: CollectionEntry<"targetCds">) => {
-    return entry.data.artist.toLowerCase().startsWith("p");
+    return (
+      entry.data.artist.toLowerCase().startsWith("p") && !entry.data.isOther
+    );
   })
 ).sort((a, b) => a.data.artist.localeCompare(b.data.artist));
 const qCds = (
   await getCollection("targetCds", (entry: CollectionEntry<"targetCds">) => {
-    return entry.data.artist.toLowerCase().startsWith("q");
+    return (
+      entry.data.artist.toLowerCase().startsWith("q") && !entry.data.isOther
+    );
   })
 ).sort((a, b) => a.data.artist.localeCompare(b.data.artist));
 const rCds = (
   await getCollection("targetCds", (entry: CollectionEntry<"targetCds">) => {
-    return entry.data.artist.toLowerCase().startsWith("r");
+    return (
+      entry.data.artist.toLowerCase().startsWith("r") && !entry.data.isOther
+    );
   })
 ).sort((a, b) => a.data.artist.localeCompare(b.data.artist));
 const sCds = (
   await getCollection("targetCds", (entry: CollectionEntry<"targetCds">) => {
-    return entry.data.artist.toLowerCase().startsWith("s");
+    return (
+      entry.data.artist.toLowerCase().startsWith("s") && !entry.data.isOther
+    );
   })
 ).sort((a, b) => a.data.artist.localeCompare(b.data.artist));
 const tCds = (
   await getCollection("targetCds", (entry: CollectionEntry<"targetCds">) => {
-    return entry.data.artist.toLowerCase().startsWith("t");
+    return (
+      entry.data.artist.toLowerCase().startsWith("t") && !entry.data.isOther
+    );
   })
 ).sort((a, b) => a.data.artist.localeCompare(b.data.artist));
 const uCds = (
   await getCollection("targetCds", (entry: CollectionEntry<"targetCds">) => {
-    return entry.data.artist.toLowerCase().startsWith("u");
+    return (
+      entry.data.artist.toLowerCase().startsWith("u") && !entry.data.isOther
+    );
   })
 ).sort((a, b) => a.data.artist.localeCompare(b.data.artist));
 const vCds = (
   await getCollection("targetCds", (entry: CollectionEntry<"targetCds">) => {
-    return entry.data.artist.toLowerCase().startsWith("v");
+    return (
+      entry.data.artist.toLowerCase().startsWith("v") && !entry.data.isOther
+    );
   })
 ).sort((a, b) => a.data.artist.localeCompare(b.data.artist));
 const wCds = (
   await getCollection("targetCds", (entry: CollectionEntry<"targetCds">) => {
-    return entry.data.artist.toLowerCase().startsWith("w");
+    return (
+      entry.data.artist.toLowerCase().startsWith("w") && !entry.data.isOther
+    );
   })
 ).sort((a, b) => a.data.artist.localeCompare(b.data.artist));
 const yCds = (
   await getCollection("targetCds", (entry: CollectionEntry<"targetCds">) => {
-    return entry.data.artist.toLowerCase().startsWith("y");
+    return (
+      entry.data.artist.toLowerCase().startsWith("y") && !entry.data.isOther
+    );
   })
 ).sort((a, b) => a.data.artist.localeCompare(b.data.artist));
 const zCds = (
   await getCollection("targetCds", (entry: CollectionEntry<"targetCds">) => {
-    return entry.data.artist.toLowerCase().startsWith("z");
+    return (
+      entry.data.artist.toLowerCase().startsWith("z") && !entry.data.isOther
+    );
   })
 ).sort((a, b) => a.data.artist.localeCompare(b.data.artist));
 ---
