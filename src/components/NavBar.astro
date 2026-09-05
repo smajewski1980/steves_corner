@@ -40,15 +40,15 @@ import logo from "../images/steves-corner-logo.webp";
       id='navbar-default'
     >
       <ul>
-        <li>
+        <!-- <li>
           <a
             href={"/"}
             aria-current='page'
             >Home</a
           >
-        </li>
+        </li> -->
         <li>
-          <a href={"/about/"}>About</a>
+          <a href={"/about/"}>About Steve</a>
         </li>
         <li>
           <a href={"/coding/"}>Coding</a>
@@ -198,7 +198,7 @@ import logo from "../images/steves-corner-logo.webp";
         padding: 0;
         margin-block-start: 0;
         border: 0;
-        gap: 2rem;
+        gap: 2.5rem;
       }
 
       li a {
@@ -217,5 +217,9 @@ import logo from "../images/steves-corner-logo.webp";
         }
       }
     }
+  }
+
+  ul li:first-child a {
+    word-spacing: -3px;
   }
 </style>
