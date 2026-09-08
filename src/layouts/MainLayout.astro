@@ -1,6 +1,4 @@
 ---
-import { Image } from "astro:assets";
-import logo from "../images/logo.png";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../constants";
 import NavBar from "../components/NavBar.astro";
 import Footer from "../components/Footer.astro";
@@ -62,6 +60,10 @@ interface Props {
     --jpn: hsla(0deg, 100%, 70%, 0.3);
     --wg: hsla(45, 100%, 50%, 0.3);
     --other: hsla(200deg, 70%, 60%, 0.3);
+  }
+
+  *::selection {
+    background-color: chartreuse;
   }
 
   html {

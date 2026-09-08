@@ -27,7 +27,7 @@ tags.sort((a: string, b: string): number => {
   {
     tags.map((tag: string, idx: number) => (
       <span class={idx % 2 === 0 ? "tag" : "tag alternate-color"}>
-        <a href={"/tag/" + `${tag === "R.E.M." ? "rem" : tag}`}>{tag}</a>
+        <a href={"/tag/" + tag.toLowerCase().replaceAll(".", "")}>{tag}</a>
       </span>
     ))
   }
