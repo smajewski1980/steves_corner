@@ -20,13 +20,15 @@ export async function getStaticPaths() {
   const allTags = allContent.flatMap((entry) => entry.data.tags || []);
 
   // 2. Deduplicate the tags using a Set so you only create one route per unique tag
-  const uniqueTags = [...new Set(allTags)];
+  const uniqueTags = [...new Set(allTags)].map((tag) =>
+    tag === "R.E.M." ? "rem" : tag,
+  );
 
   // 3. Map over the unique tags to return the path objects
   return uniqueTags.map((tag) => {
     // Optional: filter articles that include this current tag
     const filteredContent = allContent.filter((entry: any) =>
-      entry.data.tags?.includes(tag),
+      entry.data.tags?.includes(tag === "rem" ? "R.E.M." : tag),
     );
 
     return {
