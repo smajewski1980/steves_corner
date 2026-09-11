@@ -48,16 +48,16 @@ import logo from "../images/steves-corner-logo.webp";
           >
         </li> -->
         <li>
-          <a href={"/about/"}>About Steve</a>
+          <a href={"/about/"}><span>About Steve</span></a>
         </li>
         <li>
-          <a href={"/coding/"}>Coding</a>
+          <a href={"/coding/"}><span>Coding</span></a>
         </li>
         <li>
-          <a href={"/music/1"}>Music</a>
+          <a href={"/music/1"}><span>Music</span></a>
         </li>
         <li>
-          <a href={"/nascar/"}>Nascar</a>
+          <a href={"/nascar/"}><span>Nascar</span></a>
         </li>
       </ul>
     </div>
@@ -206,14 +206,28 @@ import logo from "../images/steves-corner-logo.webp";
         display: block;
         padding: 0.5rem 1rem;
         border-radius: 5px;
+        outline: 1px solid var(--text-color-400);
+        transition: all 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        box-shadow:
+          0 10px 15px -3px hsl(from var(--text-color-700) h s l / 0.1),
+          0 4px 6px -4px hsl(from var(--text-color-700) h s l / 0.1);
 
         &:hover {
-          outline: 2px solid currentColor;
-          outline-offset: 5px;
+          outline: 2px solid var(--text-color-700);
+          outline-offset: 3px;
+          color: var(--text-color-700);
+          box-shadow:
+            0 10px 15px -3px hsl(from var(--text-color-400) h s l / 0.1),
+            0 4px 6px -4px hsl(from var(--text-color-400) h s l / 0.1);
+        }
+
+        &:hover span {
+          display: inline-block;
+          transform: scale(0.97);
         }
 
         @media (min-width: 768px) {
-          padding: 0;
+          padding: 0.5rem 1rem;
         }
       }
     }
