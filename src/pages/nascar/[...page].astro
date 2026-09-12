@@ -10,6 +10,7 @@ import type { CollectionEntry } from "astro:content";
 import type { GetStaticPaths } from "astro";
 import { formatDate } from "../../utils";
 import BackToTop from "../../components/BackToTop.astro";
+import NascarTags from "../../components/NascarTags.astro";
 
 export const getStaticPaths = (async ({ paginate }) => {
   const allNascarPosts: CollectionEntry<"nascar">[] = (
@@ -74,6 +75,7 @@ const currentPageRange = {
     />
   </section>
   <BackToTop />
+  <NascarTags />
   <NascarStats />
 </MainLayout>
 

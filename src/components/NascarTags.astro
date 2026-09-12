@@ -1,0 +1,22 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
+import Tags from "./Tags.astro";
+
+const allNascarItems: CollectionEntry<"nascar">[] =
+  await getCollection("nascar");
+const tags: string[] = allNascarItems.flatMap((item) => item.data.tags);
+const uniqueTags: string[] = [...new Set(tags)].sort();
+---
+
+<div class='nascar-tags-wrapper'>
+  <Tags tags={uniqueTags} />
+</div>
+
+<style>
+  .nascar-tags-wrapper {
+    margin-block-start: 2rem;
+    max-width: 75%;
+    margin-inline: auto;
+  }
+</style>

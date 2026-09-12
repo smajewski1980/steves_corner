@@ -23,7 +23,7 @@ tags.sort((a: string, b: string): number => {
       ? "tags-wrapper music-tags"
       : "tags-wrapper"}
 >
-  {isMusicTags && <h4>Music Tags:</h4>}
+  {isMusicTags ? <h4>Music Tags:</h4> : <h4>Nascar Tags:</h4>}
   {
     tags.map((tag: string, idx: number) => (
       <span class={idx % 2 === 0 ? "tag" : "tag alternate-color"}>
