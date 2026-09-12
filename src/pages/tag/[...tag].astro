@@ -54,8 +54,10 @@ const headingText = activeCollection === "music" ? "Music " : "Nascar ";
 <MainLayout>
   <section>
     <BackButton />
-    <h1>
-      {headingText}items tagged with: {tag}
+    <h1 class='tag-page-heading'>
+      {headingText}items tagged with: {
+        tag === "rem" ? "R.E.M." : tag.replaceAll("-", " ")
+      }
     </h1>
 
     <p><span class='asterisk'>*</span>: {HA_ATTRIBUTION}</p>
@@ -83,11 +85,12 @@ const headingText = activeCollection === "music" ? "Music " : "Nascar ";
     margin-block-start: 3.5rem;
     color: var(--text-color-700);
   }
-  h1 {
+  .tag-page-heading {
     font-size: var(--heading-1-size);
     line-height: 1.25;
     font-weight: 700;
     margin-block-start: 2rem;
+    text-transform: capitalize;
   }
 
   .asterisk {
