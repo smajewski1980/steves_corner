@@ -26,7 +26,10 @@ interface Props {
       <p>
         {formatDate(post.data.raceDate)}
       </p>
-      <Tags tags={post.data.tags} />
+      <Tags
+        tags={post.data.tags}
+        isCard={true}
+      />
     </div>
   </div>
 </div>

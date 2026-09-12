@@ -1,9 +1,9 @@
 ---
-const { tags, isMusicCard, isMusicTags } = Astro.props;
+const { tags, isCard, isMusicTags } = Astro.props;
 
 interface Props {
   tags: string[];
-  isMusicCard?: boolean;
+  isCard?: boolean;
   isMusicTags?: boolean;
 }
 
@@ -17,13 +17,14 @@ tags.sort((a: string, b: string): number => {
 ---
 
 <div
-  class={isMusicCard
+  class={isCard
     ? "tags-wrapper centered-tags"
     : isMusicTags
       ? "tags-wrapper music-tags"
       : "tags-wrapper"}
 >
-  {isMusicTags ? <h4>Music Tags:</h4> : <h4>Nascar Tags:</h4>}
+  {console.log(isCard)}
+  {isCard ? "" : isMusicTags ? <h4>Music Tags:</h4> : <h4>Nascar Tags:</h4>}
   {
     tags.map((tag: string, idx: number) => (
       <span class={idx % 2 === 0 ? "tag" : "tag alternate-color"}>
