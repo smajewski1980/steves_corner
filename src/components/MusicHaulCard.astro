@@ -19,7 +19,8 @@ const postHref = `/music/music-haul-blog/${post.id}`;
       alt={coverImageAlt}
     />
     <div class='content-wrapper'>
-      {formatDate(date)}: {title}
+      <p><small>{formatDate(date)}</small></p>
+      <p><strong>{title}</strong></p>
     </div>
   </div>
 </a>
