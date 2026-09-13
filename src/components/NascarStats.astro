@@ -1,26 +1,51 @@
 ---
-import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 import { countStrings } from "../utils";
 import ExternalLinkIcon from "../../public/external-link-svg.svg";
 
-const allNascarPosts: CollectionEntry<"nascar">[] =
-  await getCollection("nascar");
+interface Props {
+  posts: CollectionEntry<"nascar">[];
+}
 
-const allDrivers = allNascarPosts.map((post) => post.data.tags[0]);
-const allYears = allNascarPosts.map((post) => post.data.tags[1]);
-const allTracks = allNascarPosts.map((post) => post.data.tags[2]);
-const allSeries = allNascarPosts.map((post) => post.data.tags[3]);
+const { posts } = Astro.props;
+
+const seriesKeywords = ["cup-series", "xfinity-series", "truck-series"];
+const allYears = posts.map(
+  (post) =>
+    post.data.tags.find((tag) => /^\d{4}$/.test(tag?.trim())) || "Unknown Year",
+);
+const allSeries = posts.map(
+  (post) =>
+    post.data.tags.find((tag) =>
+      seriesKeywords.some((k) => tag?.toLowerCase().includes(k)),
+    ) || "Unknown Series",
+);
+const trackKeywords = ["dover", "loudon", "pocono", "watkins-glen", "richmond"];
+const allTracks = posts.map(
+  (post) =>
+    post.data.tags.find((tag) =>
+      trackKeywords.some((k) => tag?.toLowerCase().includes(k)),
+    ) || "Unknown Track",
+);
+const allDrivers = posts.map(
+  (post) =>
+    post.data.tags.find(
+      (tag) =>
+        !/^\d{4}$/.test(tag?.trim()) &&
+        !seriesKeywords.some((k) => tag?.toLowerCase().includes(k)) &&
+        !trackKeywords.some((k) => tag?.toLowerCase().includes(k)),
+    ) || "Unknown Driver",
+);
 
 const countedDrivers = Object.entries(countStrings(allDrivers));
 const countedYears = Object.entries(countStrings(allYears));
 const countedTracks = Object.entries(countStrings(allTracks));
 const countedSeries = Object.entries(countStrings(allSeries));
 
-const countedDriversSorted = countedDrivers.sort((a, b) => b[1] - a[1]);
-const countedYearsSorted = countedYears.sort((a, b) => b[1] - a[1]);
-const countedTracksSorted = countedTracks.sort((a, b) => b[1] - a[1]);
-const countedSeriesSorted = countedSeries.sort((a, b) => b[1] - a[1]);
+const countedDriversSorted = countedDrivers.toSorted((a, b) => b[1] - a[1]);
+const countedYearsSorted = countedYears.toSorted((a, b) => b[1] - a[1]);
+const countedTracksSorted = countedTracks.toSorted((a, b) => b[1] - a[1]);
+const countedSeriesSorted = countedSeries.toSorted((a, b) => b[1] - a[1]);
 ---
 
 <section class='stats-wrapper'>

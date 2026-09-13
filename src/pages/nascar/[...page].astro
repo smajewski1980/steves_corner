@@ -15,13 +15,15 @@ import NascarTags from "../../components/NascarTags.astro";
 export const getStaticPaths = (async ({ paginate }) => {
   const allNascarPosts: CollectionEntry<"nascar">[] = (
     await getCollection("nascar")
-  ).sort(
+  ).toSorted(
     (a: CollectionEntry<"nascar">, b: CollectionEntry<"nascar">) =>
       b.data.raceDate.valueOf() - a.data.raceDate.valueOf(),
   );
 
   return paginate(allNascarPosts, { pageSize: NASCAR_CARDS_PER_PAGE });
 }) satisfies GetStaticPaths;
+
+const postsForStats = await getCollection("nascar");
 
 const { page } = Astro.props;
 const prevUrl = page.url.prev;
@@ -76,7 +78,7 @@ const currentPageRange = {
   </section>
   <BackToTop />
   <NascarTags />
-  <NascarStats />
+  <NascarStats posts={postsForStats} />
 </MainLayout>
 
 <style>
