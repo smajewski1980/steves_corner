@@ -1,21 +1,29 @@
 ---
-
+import FooterNav from "./FooterNav.astro";
 ---
 
 <footer>
-  <p>
-    © 2026 Steve Majewski. All rights reserved. Original characters and
-    animations are the property of the author.
-  </p>
+  <div class='footer-content'>
+    <FooterNav />
+    <p>
+      © 2026 Steve Majewski. All rights reserved. Original characters and
+      animations are the property of the author.
+    </p>
+  </div>
 </footer>
 
 <style>
   footer {
-    max-width: var(--max-width);
-    margin-inline: auto;
-    padding: 3.5rem;
-    /* margin-block-start: 3rem; */
     color: var(--text-color-700);
+    background-color: var(--footer-header-bg);
+    margin-block-start: 2rem;
+    border-top: 1px solid var(--text-color-700);
+
+    .footer-content {
+      padding-block: 5rem;
+      max-width: var(--max-width);
+      margin-inline: auto;
+    }
   }
 
   p {

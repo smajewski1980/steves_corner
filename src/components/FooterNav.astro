@@ -1,0 +1,50 @@
+---
+
+---
+
+<nav>
+  <h3>Explore Steve's Corner:</h3>
+  <ul>
+    <li><a href='/'>Home</a></li>
+    <li><a href='/about'>About Steve</a></li>
+    <li><a href='/coding'>Coding</a></li>
+    <li><a href='/nascar'>Nascar</a></li>
+  </ul>
+
+  <ul>
+    <li><a href='/music/music-haul-blog'>Music: Weekly Music Haul Blog</a></li>
+    <li><a href='/music/target-cds'>Music: Target/Early CDs Page</a></li>
+  </ul>
+  <ul>
+    <li><a href='/music'>Music</a></li>
+    <li><a href='/music/category/physical-media'>Music: Physical Media</a></li>
+    <li><a href='/music/category/memorabilia'>Music: Memorabilia</a></li>
+    <li><a href='/music/category/equipment'>Music: Equipment</a></li>
+  </ul>
+</nav>
+
+<style>
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    margin-block-end: 2rem;
+    justify-content: center;
+
+    ul {
+      display: grid;
+      gap: 0.5rem;
+
+      & li:first-child {
+        align-self: end;
+      }
+      & li:last-child {
+        align-self: start;
+      }
+
+      a {
+        text-decoration: underline;
+        text-underline-offset: 5px;
+      }
+    }
+  }
+</style>
