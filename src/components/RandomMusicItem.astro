@@ -2,10 +2,7 @@
 import { Image } from "astro:assets";
 ---
 
-<div
-  id='random-music-card'
-  class='featured-card'
->
+<div id='random-music-card'>
   <p>a random item...</p>
 
   <h2 id='random-title'>Loading . . .</h2>
@@ -63,22 +60,29 @@ import { Image } from "astro:assets";
 <style>
   #random-music-card {
     cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    display: grid;
+    gap: 0.5rem;
+    border: 1px solid var(--text-color-700);
+    padding: 0.75rem;
+    max-width: 50%;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: calc(var(--shadow-offset) * -1) var(--shadow-offset)
+      var(--text-color-700);
+    &:hover {
+      opacity: 0.7;
+    }
   }
 
   img {
-    width: 50%;
-    border-radius: 15px;
-    margin-inline: auto;
+    width: 100%;
     display: block;
   }
 
   h2 {
     font-size: 1.5rem;
     font-weight: 600;
-    max-width: 30ch;
+    max-width: 25ch;
     text-align: center;
     margin-inline: auto;
     margin-block-start: 0;
@@ -86,10 +90,6 @@ import { Image } from "astro:assets";
 
     @media (max-width: 640px) {
       font-size: 1.875rem;
-    }
-
-    &:hover {
-      opacity: 0.7;
     }
   }
   p:has(+ h2) {

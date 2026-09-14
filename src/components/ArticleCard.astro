@@ -13,7 +13,7 @@ const articleHref = `/music/${article.id}`;
 const coverImageAttribution = article.data.imageAttribution;
 ---
 
-<div class='card-wrapper'>
+<div class='card-wrapper card-shadow'>
   <div class='content-wrapper'>
     <div class='top-wrapper'>
       <h2 class='card-heading'>
@@ -50,9 +50,7 @@ const coverImageAttribution = article.data.imageAttribution;
     margin-block-start: 2.5rem;
     max-width: 28rem;
     margin-block: auto;
-    box-shadow:
-      0 10px 15px -3px hsl(from var(--text-color-700) h s l / 0.1),
-      0 4px 6px -4px hsl(from var(--text-color-700) h s l / 0.1);
+
     width: 100%;
     height: 100%;
 

@@ -61,6 +61,7 @@ interface Props {
     --wg: hsla(45, 100%, 50%, 0.3);
     --other: hsla(200deg, 70%, 60%, 0.3);
     --footer-header-bg: hsl(from var(--primary-purple) h s calc(l + 17));
+    --shadow-offset: 3px;
   }
 
   *::selection {
@@ -187,5 +188,11 @@ interface Props {
     aspect-ratio: 16 / 9;
     margin-inline: auto;
     display: block;
+  }
+
+  .card-shadow {
+    filter: drop-shadow(
+      calc(var(--shadow-offset) * -1) var(--shadow-offset) var(--text-color-700)
+    );
   }
 </style>

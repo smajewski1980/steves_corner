@@ -10,17 +10,6 @@ export function formatDate(date: Date): string {
 }
 
 export function countStrings(arr: string[]): Record<string, number> {
-  // const counted: Record<string, number> = {};
-
-  // arr.forEach((str) => {
-  //   if (counted[str]) {
-  //     counted[str]++;
-  //   } else {
-  //     counted[str] = 1;
-  //   }
-  // });
-  // return counted;
-
   return arr.reduce(
     (acc, str) => {
       if (str) {
@@ -31,5 +20,3 @@ export function countStrings(arr: string[]): Record<string, number> {
     {} as Record<string, number>,
   );
 }
-
-// export { formatDate, countStrings };
