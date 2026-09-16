@@ -5,12 +5,11 @@ import heroImage from "../images/homepage_hero_test.webp";
 import codingImage from "../images/coding_image.webp";
 import musicImage from "../images/music_image.webp";
 import nascarImage from "../images/nascar_image.webp";
-import team3 from "../images/team3.png";
 ---
 
 <MainLayout>
   <section>
-    <h1>About Steve's Corner of the Internet</h1>
+    <h1>About Steve</h1>
     <div class='hero'>
       <div class='image-wrapper'>
         <Image
@@ -20,7 +19,6 @@ import team3 from "../images/team3.png";
       </div>
 
       <div class='hero-content-wrapper'>
-        <!-- <h2>Who We Are</h2> -->
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus sunt
           quibusdam, consequatur praesentium fuga aut soluta iusto tenetur eos
@@ -36,10 +34,8 @@ import team3 from "../images/team3.png";
       </div>
     </div>
 
-    <!-- topics -->
     <div>
       <h2>The Sides That Form The Corner</h2>
-      <!-- <p>the walls that meet to make the corner</p> -->
       <div class='topics-wrapper'>
         <div class='topic-card'>
           <Image
@@ -47,7 +43,13 @@ import team3 from "../images/team3.png";
             alt='coding'
           />
           <div class='text-wrapper'>
-            <h3>Coding</h3>
+            <h3>
+              <a
+                href='/coding'
+                class='card-link'
+                >Coding</a
+              >
+            </h3>
             <p>
               I absolutely love to code. I would love to be able to make a
               living doing it someday.
@@ -60,7 +62,13 @@ import team3 from "../images/team3.png";
             alt='physical music collection'
           />
           <div class='text-wrapper'>
-            <h3>Music</h3>
+            <h3>
+              <a
+                href='/music'
+                class='card-link'
+                >Music</a
+              >
+            </h3>
             <p>
               A kick ass collection of physical media and music memorabilia.
             </p>
@@ -72,7 +80,13 @@ import team3 from "../images/team3.png";
             alt='nascar races'
           />
           <div class='text-wrapper'>
-            <h3>NASCAR</h3>
+            <h3>
+              <a
+                href='/nascar'
+                class='card-link'
+                >NASCAR</a
+              >
+            </h3>
             <p>
               My first race was in Loudon, NH in 2007. Here is my digital
               journal of races I have attended.
@@ -202,6 +216,8 @@ import team3 from "../images/team3.png";
       0 10px 15px -3px rgb(0 0 0 / 0.1),
       0 4px 6px -4px rgb(0 0 0 / 0.1);
     padding: 0.25rem;
+    position: relative;
+    cursor: pointer;
 
     img {
       width: 100%;
@@ -218,5 +234,12 @@ import team3 from "../images/team3.png";
       font-weight: 600;
       margin-block-end: 0.5rem;
     }
+  }
+
+  .card-link::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    outline: 2px solid lime;
   }
 </style>
