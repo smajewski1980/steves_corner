@@ -60,7 +60,13 @@ const headingText = activeCollection === "music" ? "Music " : "Nascar ";
       }
     </h1>
 
-    <p><span class='asterisk'>*</span>: {HA_ATTRIBUTION}</p>
+    {
+      activeCollection === "music" && (
+        <p>
+          <span class='asterisk'>*</span>: {HA_ATTRIBUTION}
+        </p>
+      )
+    }
 
     <div class='card-wrapper'>
       {
