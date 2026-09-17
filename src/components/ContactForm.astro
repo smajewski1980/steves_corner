@@ -63,6 +63,8 @@ const SITE_KEY = "0x4AAAAAAE612OzoHO6ja5Cq";
   <div
     class='cf-turnstile'
     data-sitekey={SITE_KEY}
+    data-theme='light'
+    data-size='normal'
   >
   </div>
   <button type='submit'>Send</button>
@@ -90,18 +92,11 @@ const SITE_KEY = "0x4AAAAAAE612OzoHO6ja5Cq";
     }
   })();
 </script>
-<script
-  src='https://cloudflare.com'
-  is:inline
-  async
-  defer
-></script>
 
 <style>
   form {
     border: 1px solid var(--text-color-700);
     max-width: 40rem;
-    /* margin-inline: auto; */
     padding: 1rem;
     display: grid;
 
@@ -118,15 +113,11 @@ const SITE_KEY = "0x4AAAAAAE612OzoHO6ja5Cq";
         margin-block-end: 1rem;
       }
 
-      /* label {
-        flex-basis: 100px;
-      } */
-
       input,
       textarea {
         flex: 1;
-        /* font: inherit; */
         color: var(--text-color-700);
+        border: 1px solid currentColor;
 
         &:focus-visible {
           outline: 2px solid var(--text-color-700);
@@ -163,6 +154,34 @@ const SITE_KEY = "0x4AAAAAAE612OzoHO6ja5Cq";
       padding: 0.5rem 5rem;
       width: fit-content;
       margin-inline-start: auto;
+      background-color: transparent;
+      color: var(--text-color-400);
+      border-color: currentColor;
+      border-radius: 5px;
+      border: 1px solid currentColor;
+      outline: 1px solid var(--text-color-400);
+      outline-offset: -1px;
+      transition: all 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      cursor: pointer;
+      box-shadow:
+        0 10px 15px -3px hsl(from var(--text-color-700) h s l / 0.1),
+        0 4px 6px -4px hsl(from var(--text-color-700) h s l / 0.1);
+
+      &:hover,
+      &:focus-visible {
+        outline: 2px solid var(--text-color-700);
+        outline-offset: 3px;
+        color: var(--text-color-700);
+        box-shadow:
+          0 10px 15px -3px hsl(from var(--text-color-400) h s l / 0.1),
+          0 4px 6px -4px hsl(from var(--text-color-400) h s l / 0.1);
+      }
+    }
+
+    .cf-turnstile {
+      margin-left: auto;
+      margin-block: 1rem;
+      min-height: 68px;
     }
   }
 
@@ -186,7 +205,7 @@ const SITE_KEY = "0x4AAAAAAE612OzoHO6ja5Cq";
     }
   }
 
-  /* for the sweetness */
+  /* for the bot sweetness in a pot*/
   .band-name {
     position: absolute;
     width: 1px;

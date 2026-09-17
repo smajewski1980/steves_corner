@@ -4,13 +4,15 @@ import ContactForm from "../components/ContactForm.astro";
 ---
 
 <MainLayout>
-  <h1>Contact Steve</h1>
-  <p>
-    Would you like to comment on something you saw on my site? Or maybe you are
-    another developer who would like to work on something together, feel free to
-    reach out and say hi.
-  </p>
-  <ContactForm />
+  <main id='contact-wrapper'>
+    <h1>Contact Steve</h1>
+    <p>
+      Would you like to comment on something you saw on my site? Or maybe you
+      are another developer who would like to work on something together, feel
+      free to reach out and say hi.
+    </p>
+    <ContactForm />
+  </main>
 </MainLayout>
 
 <style>
@@ -21,5 +23,10 @@ import ContactForm from "../components/ContactForm.astro";
   p {
     max-width: 65ch;
     margin-block-end: 2rem;
+  }
+
+  #contact-wrapper {
+    display: grid;
+    place-content: center;
   }
 </style>

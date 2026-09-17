@@ -40,13 +40,6 @@ import logo from "../images/steves-corner-logo.webp";
       id='navbar-default'
     >
       <ul>
-        <!-- <li>
-          <a
-            href={"/"}
-            aria-current='page'
-            >Home</a
-          >
-        </li> -->
         <li>
           <a href={"/about/"}><span>About Steve</span></a>
         </li>
@@ -144,10 +137,10 @@ import logo from "../images/steves-corner-logo.webp";
 
     button {
       color: var(--text-color-400);
+      border-radius: 10px;
       justify-items: center;
       width: 2.5rem;
       height: 2.5rem;
-      border-radius: 10px;
 
       &:focus {
         outline: none;
@@ -207,13 +200,16 @@ import logo from "../images/steves-corner-logo.webp";
         padding: 0.5rem 1rem;
         border-radius: 5px;
         outline: 1px solid var(--text-color-400);
+        outline-offset: -1px;
         transition: all 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         box-shadow:
           0 10px 15px -3px hsl(from var(--text-color-700) h s l / 0.1),
           0 4px 6px -4px hsl(from var(--text-color-700) h s l / 0.1);
+        border: 1px solid var(--text-color-700);
 
-        &:hover {
-          outline: 2px solid var(--text-color-700);
+        &:hover,
+        &:focus-visible {
+          outline: 1px solid var(--text-color-700);
           outline-offset: 3px;
           color: var(--text-color-700);
           box-shadow:
