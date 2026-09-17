@@ -25,6 +25,7 @@ pnpm-debug.log*
 
 # developer notes
 notes.txt
+coding-page-notes.txt
 
 # for test deploys
 .netlify
