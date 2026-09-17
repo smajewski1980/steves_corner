@@ -1,0 +1,200 @@
+---
+const FORM_URL = "https://submit-form.com/QMg5IXG4G";
+const TEST_URL = "https://submit-form.com/echo";
+const SITE_KEY = "0x4AAAAAAE612OzoHO6ja5Cq";
+---
+
+<form
+  action={FORM_URL}
+  method='POST'
+>
+  <small>* all fields are required</small>
+  <div class='band-name'>
+    <label for='band-name'>Band Name (Leave blank if human)</label>
+    <input
+      type='text'
+      id='band-name'
+      name='band-name'
+      autocomplete='off'
+    />
+  </div>
+
+  <div class='input-wrapper'>
+    <label for='email'>Email</label>
+    <input
+      type='email'
+      name='email'
+      id='email'
+      required
+      autocomplete='off'
+    />
+  </div>
+  <div class='input-wrapper'>
+    <label for='first-name'>First Name</label>
+    <input
+      type='text'
+      name='first-name'
+      id='first-name'
+      required
+      autocomplete='off'
+    />
+  </div>
+  <!-- i was thinking maybe add a silly one -->
+  <!-- <div class='input-wrapper'>
+    <label for=''></label>
+    <input
+      type='text'
+      name=''
+      id=''
+      required
+      autocomplete='off'
+    />
+  </div> -->
+  <div class='input-wrapper'>
+    <label for='message'>Message</label>
+    <textarea
+      name='message'
+      id='message'
+      required
+      maxlength='1000'
+    ></textarea>
+  </div>
+  <p class='warning'>* Limit of 1,000 characters has been reached.</p>
+  <div
+    class='cf-turnstile'
+    data-sitekey={SITE_KEY}
+  >
+  </div>
+  <button type='submit'>Send</button>
+</form>
+
+<script>
+  const textarea = document.getElementById("message") as HTMLTextAreaElement;
+
+  textarea.addEventListener("input", (e) => {
+    const target = e.target as HTMLTextAreaElement;
+    const warning = document.querySelector(".warning") as HTMLParagraphElement;
+
+    if (target.value.length === 1000) {
+      warning.classList.add("warn");
+    } else {
+      warning.classList.remove("warn");
+    }
+  });
+
+  (function () {
+    const honeypot = document.getElementById("band-name");
+    if (honeypot) {
+      // Silently strip it from the tab order for the human user
+      honeypot.setAttribute("tabindex", "-1");
+    }
+  })();
+</script>
+<script
+  src='https://cloudflare.com'
+  is:inline
+  async
+  defer
+></script>
+
+<style>
+  form {
+    border: 1px solid var(--text-color-700);
+    max-width: 40rem;
+    /* margin-inline: auto; */
+    padding: 1rem;
+    display: grid;
+
+    small {
+      margin-block-end: 2rem;
+    }
+
+    .input-wrapper {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+
+      &:not(:last-child) {
+        margin-block-end: 1rem;
+      }
+
+      /* label {
+        flex-basis: 100px;
+      } */
+
+      input,
+      textarea {
+        flex: 1;
+        /* font: inherit; */
+        color: var(--text-color-700);
+
+        &:focus-visible {
+          outline: 2px solid var(--text-color-700);
+        }
+      }
+
+      input {
+        padding: 0.75rem 0.5rem;
+        width: 100%;
+      }
+
+      textarea {
+        resize: none;
+        width: 0;
+        min-height: 5lh;
+        field-sizing: content;
+        padding: 0.5rem;
+      }
+    }
+
+    .warning {
+      margin-inline-start: 108px;
+      color: firebrick;
+      display: none;
+    }
+    .warn {
+      display: block;
+    }
+    .input-wrapper:has(~ .warn) textarea {
+      outline: 2px solid red;
+    }
+
+    button {
+      padding: 0.5rem 5rem;
+      width: fit-content;
+      margin-inline-start: auto;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .input-wrapper {
+      flex-direction: column;
+    }
+
+    textarea {
+      min-width: 100%;
+    }
+
+    p.warning {
+      margin: 0;
+    }
+  }
+
+  @media (min-width: 500px) {
+    .input-wrapper label {
+      flex-basis: 100px;
+    }
+  }
+
+  /* for the sweetness */
+  .band-name {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+</style>

@@ -1,5 +1,25 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
+import ContactForm from "../components/ContactForm.astro";
 ---
 
-<MainLayout />
+<MainLayout>
+  <h1>Contact Steve</h1>
+  <p>
+    Would you like to comment on something you saw on my site? Or maybe you are
+    another developer who would like to work on something together, feel free to
+    reach out and say hi.
+  </p>
+  <ContactForm />
+</MainLayout>
+
+<style>
+  h1 {
+    margin-block-end: 2rem;
+  }
+
+  p {
+    max-width: 65ch;
+    margin-block-end: 2rem;
+  }
+</style>
