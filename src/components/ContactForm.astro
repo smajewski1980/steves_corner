@@ -7,6 +7,7 @@ const SITE_KEY = "0x4AAAAAAE612OzoHO6ja5Cq";
 <form
   action={FORM_URL}
   method='POST'
+  class='form-shadow'
 >
   <small>* all fields are required</small>
 
@@ -40,6 +41,7 @@ const SITE_KEY = "0x4AAAAAAE612OzoHO6ja5Cq";
       id='email'
       required
       autocomplete='off'
+      class='form-shadow'
     />
   </div>
   <div class='input-wrapper'>
@@ -50,6 +52,7 @@ const SITE_KEY = "0x4AAAAAAE612OzoHO6ja5Cq";
       id='first-name'
       required
       autocomplete='off'
+      class='form-shadow'
     />
   </div>
   <!-- i was thinking maybe add a silly one -->
@@ -70,17 +73,22 @@ const SITE_KEY = "0x4AAAAAAE612OzoHO6ja5Cq";
       id='message'
       required
       maxlength='1000'
+      class='form-shadow'
     ></textarea>
   </div>
   <p class='warning'>* Limit of 1,000 characters has been reached.</p>
   <div
-    class='cf-turnstile'
+    class='cf-turnstile form-shadow'
     data-sitekey={SITE_KEY}
     data-theme='light'
     data-size='normal'
   >
   </div>
-  <button type='submit'>Send</button>
+  <button
+    type='submit'
+    class='form-shadow'
+    >Send</button
+  >
 </form>
 
 <script>
@@ -108,7 +116,7 @@ const SITE_KEY = "0x4AAAAAAE612OzoHO6ja5Cq";
 
 <style>
   form {
-    border: 1px solid var(--text-color-700);
+    border: 2px solid var(--text-color-700);
     max-width: 40rem;
     padding: 1rem;
     display: grid;
@@ -138,11 +146,13 @@ const SITE_KEY = "0x4AAAAAAE612OzoHO6ja5Cq";
       }
 
       input {
+        --shadow-offset: 2px;
         padding: 0.75rem 0.5rem;
         width: 100%;
       }
 
       textarea {
+        --shadow-offset: 2px;
         resize: none;
         width: 0;
         min-height: 5lh;
@@ -176,9 +186,9 @@ const SITE_KEY = "0x4AAAAAAE612OzoHO6ja5Cq";
       outline-offset: -1px;
       transition: all 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       cursor: pointer;
-      box-shadow:
+      /* box-shadow:
         0 10px 15px -3px hsl(from var(--text-color-700) h s l / 0.1),
-        0 4px 6px -4px hsl(from var(--text-color-700) h s l / 0.1);
+        0 4px 6px -4px hsl(from var(--text-color-700) h s l / 0.1); */
 
       &:hover,
       &:focus-visible {
@@ -195,6 +205,7 @@ const SITE_KEY = "0x4AAAAAAE612OzoHO6ja5Cq";
       margin-left: auto;
       margin-block: 1rem;
       min-height: 68px;
+      outline: 1px solid var(--text-color-700);
     }
   }
 
