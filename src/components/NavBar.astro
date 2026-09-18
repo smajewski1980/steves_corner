@@ -9,13 +9,13 @@ import logo from "../images/steves-corner-logo.webp";
       <Image
         src={logo}
         alt='Steves Corner Logo'
-        width='100'
+        width='125'
       />
     </a>
     <button
       data-collapse-toggle='navbar-default'
       type='button'
-      class='hamburger'
+      class='hamburger card-shadow'
       aria-controls='navbar-default'
       aria-expanded='false'
     >
@@ -39,17 +39,17 @@ import logo from "../images/steves-corner-logo.webp";
       class='my-hidden'
       id='navbar-default'
     >
-      <ul>
-        <li>
+      <ul class='form-shadow'>
+        <li class='form-shadow'>
           <a href={"/about/"}><span>About Steve</span></a>
         </li>
-        <li>
+        <li class='form-shadow'>
           <a href={"/coding/"}><span>Coding</span></a>
         </li>
-        <li>
+        <li class='form-shadow'>
           <a href={"/music/1"}><span>Music</span></a>
         </li>
-        <li>
+        <li class='form-shadow'>
           <a href={"/nascar/"}><span>Nascar</span></a>
         </li>
       </ul>
@@ -91,7 +91,6 @@ import logo from "../images/steves-corner-logo.webp";
     position: fixed;
     top: 0;
     left: 0;
-    padding-inline-start: 1rem;
     padding-block-start: 0.5rem;
     width: 100%;
     z-index: 9999;
@@ -127,7 +126,7 @@ import logo from "../images/steves-corner-logo.webp";
   }
 
   nav {
-    padding: 1rem 3.5rem;
+    padding: 1rem;
     max-width: var(--max-width);
     margin-inline: auto;
     display: flex;
@@ -174,6 +173,10 @@ import logo from "../images/steves-corner-logo.webp";
         display: block;
         width: auto;
       }
+
+      img {
+        margin-inline-start: 2rem;
+      }
     }
 
     ul {
@@ -183,15 +186,28 @@ import logo from "../images/steves-corner-logo.webp";
       margin-block-start: 1rem;
       font-weight: 500;
       border: 2px solid var(--text-color-400);
-      border-radius: 10px;
+      border-radius: 5px;
       gap: 1rem;
 
       @media (min-width: 768px) {
         flex-direction: row;
         padding: 0;
         margin-block-start: 0;
+        margin-inline-end: 2rem;
         border: 0;
         gap: 2.5rem;
+        box-shadow: none;
+      }
+
+      li {
+        --shadow-offset: 2px;
+        transition: all 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        border-radius: 5px;
+        &:hover,
+        &:focus-visible {
+          box-shadow: none;
+          transform: translate(-2px, 2px);
+        }
       }
 
       li a {
@@ -199,22 +215,14 @@ import logo from "../images/steves-corner-logo.webp";
         display: block;
         padding: 0.5rem 1rem;
         border-radius: 5px;
-        outline: 1px solid var(--text-color-400);
+        outline: 1px solid var(--text-color-700);
         outline-offset: -1px;
         transition: all 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        box-shadow:
-          0 10px 15px -3px hsl(from var(--text-color-700) h s l / 0.1),
-          0 4px 6px -4px hsl(from var(--text-color-700) h s l / 0.1);
         border: 1px solid var(--text-color-700);
 
-        &:hover,
         &:focus-visible {
-          outline: 1px solid var(--text-color-700);
-          outline-offset: 3px;
+          outline-offset: 5px;
           color: var(--text-color-700);
-          box-shadow:
-            0 10px 15px -3px hsl(from var(--text-color-400) h s l / 0.1),
-            0 4px 6px -4px hsl(from var(--text-color-400) h s l / 0.1);
         }
 
         &:hover span {
@@ -222,11 +230,19 @@ import logo from "../images/steves-corner-logo.webp";
           transform: scale(0.97);
         }
 
+        &:hover {
+          border-color: transparent;
+        }
+
         @media (min-width: 768px) {
           padding: 0.5rem 1rem;
         }
       }
     }
+  }
+
+  .hamburger {
+    border: 1px solid var(--text-color-700);
   }
 
   ul li:first-child a {
