@@ -48,7 +48,7 @@ interface Props {
   </head>
   <body>
     <NavBar />
-    <section>
+    <section id='stretch'>
       <slot />
     </section>
     <Footer />
@@ -99,6 +99,9 @@ interface Props {
     margin: 0;
     padding: 8rem 0rem 0rem;
     color: var(--text-color-700);
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100dvh - 8rem);
 
     section {
       margin-inline: auto;
@@ -108,6 +111,10 @@ interface Props {
       @media (min-width: 768px) {
         padding-inline: 2rem;
       }
+    }
+
+    #stretch {
+      flex-grow: 1;
     }
 
     .screen-reader-only {

@@ -9,6 +9,7 @@ const SITE_KEY = "0x4AAAAAAE612OzoHO6ja5Cq";
   method='POST'
 >
   <small>* all fields are required</small>
+
   <div class='band-name'>
     <label for='band-name'>Band Name (Leave blank if human)</label>
     <input
@@ -18,6 +19,18 @@ const SITE_KEY = "0x4AAAAAAE612OzoHO6ja5Cq";
       autocomplete='off'
     />
   </div>
+  <!-- redirect after a successful submission -->
+  <input
+    type='hidden'
+    name='_redirect'
+    value={`${Astro.url.origin}/thanks`}
+  />
+  <!-- this stops the data from getting appended to the URL -->
+  <input
+    type='hidden'
+    name='_append'
+    value='false'
+  />
 
   <div class='input-wrapper'>
     <label for='email'>Email</label>
