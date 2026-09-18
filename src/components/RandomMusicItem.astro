@@ -64,11 +64,14 @@ import { Image } from "astro:assets";
     gap: 0.5rem;
     border: 1px solid var(--text-color-700);
     padding: 0.75rem;
-    max-width: 50%;
     border-radius: 15px;
     overflow: hidden;
     box-shadow: calc(var(--shadow-offset) * -1) var(--shadow-offset)
       var(--text-color-700);
+
+    @media (min-width: 768px) {
+      max-width: 50%;
+    }
     &:hover {
       opacity: 0.7;
     }

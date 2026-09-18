@@ -17,15 +17,10 @@ const postIds: object[] = posts.map((p) => {
     class='screen-reader-only'
     >Search</label
   >
-  <input
-    type='text'
-    id='query'
-    name='query'
-    placeholder='Search collection items...'
-    autocomplete='off'
-    required
-  />
-  <button type='submit'>
+  <button
+    type='submit'
+    class='form-shadow'
+  >
     <svg
       width='16'
       height='16'
@@ -44,6 +39,15 @@ const postIds: object[] = posts.map((p) => {
     </svg>
     <span class='screen-reader-only'>Search</span>
   </button>
+  <input
+    type='text'
+    id='query'
+    class='form-shadow'
+    name='query'
+    placeholder='Search collection items...'
+    autocomplete='off'
+    required
+  />
 </form>
 
 <script define:vars={{ postIds }}>
@@ -78,6 +82,8 @@ const postIds: object[] = posts.map((p) => {
       pickerIsOpen = true;
       // create selectlist with to hold possible choices
       selectEl = document.createElement("select");
+      selectEl.id = "search-dropdown";
+      selectEl.classList.add("form-shadow");
       const placeholder = document.createElement("option");
       placeholder.textContent = "Choose an item...";
       placeholder.value = "";
@@ -95,9 +101,11 @@ const postIds: object[] = posts.map((p) => {
       // which wouldn't trigger a change if it was selected
       selectEl.value = "";
       selectEl.addEventListener("input", (e) => {
+        if (!e.target.value) return;
         const slug = encodeURI(e.target.value);
         window.location.href = `/music/${slug}`;
       });
+      selectEl.focus();
     }
   });
 
@@ -114,30 +122,59 @@ const postIds: object[] = posts.map((p) => {
 
 <style>
   form {
+    --shadow-offset: 2px;
     display: flex;
     align-items: center;
     margin-block-end: 1.5rem;
     color: var(--text-color-700);
     gap: 0.5rem;
+    flex-wrap: wrap;
+    row-gap: 1rem;
+    justify-content: center;
 
     button {
       padding: 0.5rem;
-      /* font-size: 0.875rem; */
-      color: var(--text-color-100);
-      background-color: var(--text-color-700);
-      border-radius: 10px;
+      border-radius: 5px;
       transition: all 0.2s ease;
       display: grid;
       place-content: center;
+      border: 1px solid var(--text-color-700);
+      color: var(--text-color-700);
+      cursor: pointer;
+      margin-inline-end: 0.5rem;
 
       &:hover {
-        color: var(--text-color-700);
         background-color: var(--text-color-100);
+        color: var(--text-color-700);
       }
 
       &:focus-visible {
         outline: 1px solid var(--text-color-700);
         outline-offset: 5px;
+      }
+    }
+    #search-dropdown {
+      padding: 0.5rem;
+      outline: 0px solid var(--text-color-700);
+      transition: all 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      margin-inline-start: 0.5rem;
+      font: inherit;
+      color: var(--text-color-700);
+      border-radius: 5px;
+
+      option {
+        max-width: 50px;
+      }
+
+      @media (max-width: 500px) {
+        & {
+          width: 100%;
+        }
+      }
+
+      &:focus-visible {
+        outline: 2px solid var(--text-color-700);
+        outline-offset: 8px;
       }
     }
   }
@@ -146,13 +183,27 @@ const postIds: object[] = posts.map((p) => {
     width: 100%;
     background-color: hsla(0, 0%, 97%);
     border: 1px solid currentColor;
-    font-size: 0.875rem;
-    border-radius: 10px;
-    padding: 0.4rem 0.5rem;
+    border-radius: 5px;
+    padding: 0.5rem;
+    transition: all 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    font: inherit;
+    color: var(--text-color-700);
+    flex: 1;
+
+    @media (max-width: 500px) {
+      & {
+        width: auto;
+      }
+    }
+
+    &::placeholder {
+      color: var(--text-color-400);
+      opacity: 0.8;
+    }
   }
 
   #query:focus-visible {
     outline: 1px solid currentColor;
-    outline-offset: 5px;
+    outline-offset: 8px;
   }
 </style>
