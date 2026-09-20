@@ -1,19 +1,35 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
+import { Image } from "astro:assets";
+import messengerSteve from "../images/messenger_steve.webp";
 ---
 
 <MainLayout>
-  <h1>THANK YOU!</h1>
+  <h1 class='screen-reader-only'>THANK YOU!</h1>
+  <div class='img-wrapper'>
+    <Image
+      src={messengerSteve}
+      alt=''
+    />
+  </div>
   <p><a href='/'>Back To Home</a></p>
 </MainLayout>
 
 <style>
-  h1 {
-    margin-block-end: 1rem;
+  .img-wrapper {
+    margin-block-end: 2rem;
+    max-width: 300px;
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
   }
 
   a {
     text-decoration: underline;
     text-underline-offset: 4px;
+    display: block;
+    text-align: center;
   }
 </style>
