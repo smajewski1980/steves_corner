@@ -40,7 +40,10 @@ const { Content } = await render(entry);
         {entry.data.title}
       </h1>
 
-      <Tags tags={entry.data.tags} />
+      <Tags
+        tags={entry.data.tags}
+        isMusicTags={true}
+      />
       <Image
         src={entry.data.coverImage}
         alt='Article Image'
