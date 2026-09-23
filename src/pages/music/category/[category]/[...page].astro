@@ -43,7 +43,7 @@ if (!category) {
 ---
 
 <MainLayout>
-  <section>
+  <section id="music-category-section">
     <BackButton />
     <h1>Music Items - Category: {page.data[0].data.category.replace('-', ' ')}</h1>
 
@@ -82,6 +82,8 @@ if (!category) {
 </MainLayout>
 
 <style>
+
+
   .asterisk {
     color: var(--text-color-700);
     font-size: 1rem;
