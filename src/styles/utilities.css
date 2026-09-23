@@ -1,0 +1,68 @@
+.back-link {
+  background-color: var(--text-color-700);
+  border: 1px solid currentColor;
+  border-radius: 10px;
+  color: var(--text-color-100);
+  cursor: pointer;
+  font: inherit;
+  outline: 1px solid var(--text-color-700);
+  outline-offset: -3px;
+  padding: 0.75rem 1.5rem;
+  transition: all 0.2s ease;
+
+  &:hover {
+    color: var(--text-color-700);
+    background-color: var(--text-color-100);
+  }
+  &:focus-visible {
+    outline: 1px solid var(--text-color-700);
+    outline-offset: 2px;
+  }
+}
+
+.youtube-iframe {
+  max-width: 750px;
+  width: 100%;
+  max-height: 422px;
+  aspect-ratio: 16 / 9;
+  margin-inline: auto;
+  display: block;
+}
+
+.card-shadow {
+  filter: drop-shadow(
+    calc(var(--shadow-offset) * -1) var(--shadow-offset) var(--text-color-700)
+  );
+}
+
+.form-shadow {
+  box-shadow: calc(var(--shadow-offset) * -1) var(--shadow-offset)
+    var(--text-color-700);
+}
+
+.txt-deco-none {
+  text-decoration: none;
+}
+
+@keyframes smoke-ring {
+  50% {
+    opacity: 1;
+  }
+
+  80% {
+    opacity: 0;
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+}
+
+@keyframes thumbnailLoadIn {
+  97% {
+    filter: contrast(103%) brightness(103%) blur(1px) opacity(0.3);
+  }
+  to {
+    filter: contrast(100%) brightness(100%) blur(0px) opacity(1);
+  }
+}

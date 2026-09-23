@@ -17,7 +17,9 @@ const coverImageAttribution = article.data.imageAttribution;
   <div class='content-wrapper'>
     <div class='top-wrapper'>
       <h2 class='card-heading'>
-        <a href={articleHref}
+        <a
+          class='txt-deco-none'
+          href={articleHref}
           >{article.data.title}<span class='asterisk'
             >{coverImageAttribution && " *"}</span
           >{coverImageAttribution && <sup>HA</sup>}</a
@@ -56,6 +58,7 @@ const coverImageAttribution = article.data.imageAttribution;
 
     h2 {
       text-wrap: balance;
+      margin-block-end: 0.5rem;
     }
   }
 
