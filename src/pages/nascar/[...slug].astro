@@ -49,6 +49,7 @@ const { Content } = await render(entry);
       <Content />
     </div>
     <BackToTop />
+    <BackButton />
   </main>
 </MainLayout>
 
@@ -56,6 +57,10 @@ const { Content } = await render(entry);
   main {
     color: var(--text-color-700);
     padding-inline: 1.5rem;
+
+    #back-button {
+      margin-block-start: 2rem;
+    }
   }
 
   .nascar-post-header,
