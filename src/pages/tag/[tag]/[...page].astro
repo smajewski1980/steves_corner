@@ -94,6 +94,7 @@ const headingText = activeCollection === "music" ? "Music " : "Nascar ";
       currentPage={page.currentPage}
       nextUrl={nextUrl}
     />
+    <BackButton />
   </section>
 </MainLayout>
 
@@ -102,6 +103,10 @@ const headingText = activeCollection === "music" ? "Music " : "Nascar ";
     margin-inline: auto;
     margin-block-start: 3.5rem;
     color: var(--text-color-700);
+
+    #back-button {
+      margin-block-start: 2rem;
+    }
   }
   .tag-page-heading {
     font-size: var(--heading-1-size);
