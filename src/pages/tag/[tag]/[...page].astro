@@ -1,13 +1,21 @@
 ---
-import MainLayout from "../../layouts/MainLayout.astro";
-import ArticleCard from "../../components/ArticleCard.astro";
-import NascarPostCard from "../../components/NascarPostCard.astro";
+import type { Page, GetStaticPathsOptions, GetStaticPathsResult } from "astro";
+import MainLayout from "../../../layouts/MainLayout.astro";
+import ArticleCard from "../../../components/ArticleCard.astro";
+import NascarPostCard from "../../../components/NascarPostCard.astro";
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
-import { HA_ATTRIBUTION } from "../../constants";
-import BackButton from "../../components/BackButton.astro";
+import { HA_ATTRIBUTION, MUSIC_CARDS_PER_PAGE } from "../../../constants";
+import BackButton from "../../../components/BackButton.astro";
+import Pagination from "../../../components/Pagination.astro";
 
-export async function getStaticPaths() {
+interface Props {
+  page: Page<CollectionEntry<"music">>;
+}
+
+export const getStaticPaths = async ({
+  paginate,
+}: GetStaticPathsOptions): Promise<GetStaticPathsResult> => {
   const allMusicArticles: CollectionEntry<"music">[] =
     await getCollection("music");
 
@@ -25,28 +33,29 @@ export async function getStaticPaths() {
   );
 
   // 3. Map over the unique tags to return the path objects
-  return uniqueTags.map((tag) => {
-    // Optional: filter articles that include this current tag
+  return uniqueTags.flatMap((tag) => {
     const filteredContent = allContent.filter((entry: any) =>
       entry.data.tags?.includes(tag === "rem" ? "R.E.M." : tag),
     );
 
-    return {
-      params: { tag }, // Must be a string
-      props: { posts: filteredContent },
-    };
+    return paginate(filteredContent, {
+      params: { tag },
+      pageSize: MUSIC_CARDS_PER_PAGE,
+    });
   });
-}
+};
 
+const { page } = Astro.props;
 const { tag } = Astro.params;
-const { posts } = Astro.props;
+const prevUrl = page.url.prev;
+const nextUrl = page.url.next;
 
 if (!tag) {
   throw new Error("Tag is required.");
 }
 
 // Peek at the first post to detect the active collection
-const activeCollection = posts[0]?.collection;
+const activeCollection = page.data[0]?.collection;
 // set the heading text accordingly
 const headingText = activeCollection === "music" ? "Music " : "Nascar ";
 ---
@@ -70,7 +79,7 @@ const headingText = activeCollection === "music" ? "Music " : "Nascar ";
 
     <div class='card-wrapper'>
       {
-        posts.map((post: any) => {
+        page.data.map((post: any) => {
           if (post.collection === "music") {
             return <ArticleCard article={post} />;
           } else if (post.collection === "nascar") {
@@ -79,15 +88,18 @@ const headingText = activeCollection === "music" ? "Music " : "Nascar ";
         })
       }
     </div>
+    <Pagination
+      prevUrl={prevUrl}
+      currentPageRange={undefined}
+      currentPage={page.currentPage}
+      nextUrl={nextUrl}
+    />
   </section>
 </MainLayout>
 
 <style>
   section {
-    /* width: 100%; */
     margin-inline: auto;
-    /* max-width: var(--max-width); */
-    /* padding-inline: 2rem; */
     margin-block-start: 3.5rem;
     color: var(--text-color-700);
   }
