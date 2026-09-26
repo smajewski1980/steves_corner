@@ -44,6 +44,18 @@
   text-decoration: none;
 }
 
+@media (min-width: 768px) {
+  .scale-down {
+    width: 50%;
+    display: block;
+    margin-inline: auto;
+  }
+  .move-up {
+    display: block;
+    transform: translateY(-10rem);
+  }
+}
+
 @keyframes smoke-ring {
   50% {
     opacity: 1;
