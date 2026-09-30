@@ -40,6 +40,12 @@ const { Content } = await render(entry);
         {entry.data.title}
       </h1>
 
+      <p class='category-link'>
+        Category: <a href=`/music/category/${entry.data.category}`
+          >{entry.data.category}</a
+        >
+      </p>
+
       <Tags
         tags={entry.data.tags}
         isMusicTags={true}
@@ -89,11 +95,6 @@ const { Content } = await render(entry);
       font-size: 2.25rem;
     }
 
-    h3 {
-      font-size: 1.125rem;
-      margin-block-end: 1.25rem;
-    }
-
     img {
       width: 100%;
       height: auto;
@@ -105,6 +106,13 @@ const { Content } = await render(entry);
       max-width: 70ch;
       margin-inline: auto;
       text-align: center;
+    }
+
+    .category-link {
+      font-size: 1.125rem;
+      margin-block-end: 1.25rem;
+      margin-inline: 0;
+      text-align: start;
     }
   }
 
