@@ -27,6 +27,7 @@ export const getStaticPaths = (async ({ paginate }) => {
 const { page } = Astro.props;
 const prevUrl = page.url.prev;
 const nextUrl = page.url.next;
+const lastPage = page.lastPage;
 ---
 
 <MainLayout>
@@ -87,6 +88,7 @@ const nextUrl = page.url.next;
       currentPageRange={undefined}
       currentPage={page.currentPage}
       nextUrl={nextUrl}
+      lastPage={lastPage}
     />
     <MusicTags />
     <BackToTop />

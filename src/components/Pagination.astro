@@ -1,5 +1,6 @@
 ---
-const { prevUrl, nextUrl, currentPageRange, currentPage } = Astro.props;
+const { prevUrl, nextUrl, currentPageRange, currentPage, lastPage } =
+  Astro.props;
 
 interface CurrentPageRange {
   high: string;
@@ -11,6 +12,7 @@ interface Props {
   nextUrl: string | undefined;
   currentPageRange: CurrentPageRange | undefined;
   currentPage: number;
+  lastPage?: number | undefined;
 }
 ---
 
@@ -22,7 +24,7 @@ interface Props {
         {currentPageRange?.high} - {currentPageRange?.low}
       </p>
     ) : (
-      `Page ${currentPage}`
+      `Page ${currentPage} of ${lastPage?.toString()}`
     )
   }
   <a href={nextUrl}> Next </a>
