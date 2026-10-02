@@ -24,7 +24,7 @@ interface Props {
         {currentPageRange?.high} - {currentPageRange?.low}
       </p>
     ) : (
-      `Page ${currentPage} of ${lastPage?.toString()}`
+      `Page ${currentPage} of ${lastPage ? lastPage.toString() : "1"}`
     )
   }
   <a href={nextUrl}> Next </a>

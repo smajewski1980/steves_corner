@@ -72,11 +72,16 @@ const lastPage = page.lastPage;
       </div>
       <RandomMusicItem />
     </div>
-
   
-    <CategoryNav />
+    <CategoryNav />    
 
-    
+    <Pagination
+      prevUrl={prevUrl}
+      currentPageRange={undefined}
+      currentPage={page.currentPage}
+      nextUrl={nextUrl}
+      lastPage={lastPage}
+    />
 
     <SearchForm />
 
