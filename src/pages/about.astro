@@ -1,7 +1,7 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
 import { Image } from "astro:assets";
-import heroImage from "../images/homepage_hero_test.webp";
+import profilePic from "../images/profilePic_300x300.png";
 import codingImage from "../images/coding_image.webp";
 import musicImage from "../images/music_image.webp";
 import nascarImage from "../images/nascar_image.webp";
@@ -11,33 +11,46 @@ import nascarImage from "../images/nascar_image.webp";
   <section>
     <h1>About Steve</h1>
     <div class='hero'>
-      <div class='image-wrapper'>
-        <Image
-          src={heroImage}
-          alt="Steve's Corner of the Internet"
-        />
-      </div>
-
       <div class='hero-content-wrapper'>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus sunt
-          quibusdam, consequatur praesentium fuga aut soluta iusto tenetur eos
-          neque libero cupiditate id quos veniam.
+          I am a video production engineer for the New York State Assembly. I
+          have been with them for over 13 years. I have met some cool people and
+          seen some really interesting stuff around New York State. The historic
+          capital building in Albany is such an awesome place to just wander
+          around.
         </p>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur quo
-          repellendus nulla, minus sunt hic dolor optio fugiat voluptatum modi
-          saepe quasi inventore architecto magni eligendi consectetur voluptates
-          doloribus, id suscipit sapiente numquam perspiciatis quaerat sed
-          rerum?
+          I started to collect Cds when I was kid and it has turned into a
+          collection of many thousands of pieces of physical media with lots of
+          other items of memorabilia also. I had always had an interest in being
+          able to catalog my collection and I finally started learning about
+          databases, around 2019.
         </p>
+        <p>
+          Then between covid and having a job with a lot of down time, I managed
+          to create a database and catalog all of my music which I have kept
+          current ever since. I wanted my own custom way to interact with it,
+          which led to my learning to write some code.
+        </p>
+        <p>
+          I really enjoy and have fun when I write code. I do understand that AI
+          coding has it's place, but I am not trying to farm out my fun. It's
+          all human creations here on this site.
+        </p>
+        <p></p>
+      </div>
+      <div class='image-wrapper'>
+        <Image
+          src={profilePic}
+          alt="Steve's Corner of the Internet"
+        />
       </div>
     </div>
 
     <div>
       <h2>The Sides That Form The Corner</h2>
       <div class='topics-wrapper'>
-        <div class='topic-card'>
+        <div class='topic-card card-shadow'>
           <Image
             src={codingImage}
             alt='coding'
@@ -56,7 +69,7 @@ import nascarImage from "../images/nascar_image.webp";
             </p>
           </div>
         </div>
-        <div class='topic-card'>
+        <div class='topic-card card-shadow'>
           <Image
             src={musicImage}
             alt='physical music collection'
@@ -74,7 +87,7 @@ import nascarImage from "../images/nascar_image.webp";
             </p>
           </div>
         </div>
-        <div class='topic-card'>
+        <div class='topic-card card-shadow'>
           <Image
             src={nascarImage}
             alt='nascar races'
@@ -99,27 +112,30 @@ import nascarImage from "../images/nascar_image.webp";
 </MainLayout>
 
 <style>
+  body {
+    padding-block-start: 5rem;
+  }
+
   section {
     margin-inline: auto;
     max-width: var(--max-width);
     padding-inline: 2rem;
-    margin-block-start: 2.5rem;
+    /* margin-block-start: 2.5rem; */
     color: var(--text-color-700);
 
     h1 {
-      text-align: center;
       font-size: 2.5rem;
       line-height: 1.25;
       font-weight: 700;
-      margin-block: 1rem 2rem;
+      margin-block-end: 3rem;
     }
   }
 
   .hero {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
+    align-items: start;
+    justify-content: center;
     gap: 1.5rem;
     margin-block-end: 1rem;
 
@@ -136,17 +152,17 @@ import nascarImage from "../images/nascar_image.webp";
   }
 
   .image-wrapper {
-    width: 100%;
-    /* margin-bottom: 2rem; */
+    margin-block-start: 0.5rem;
+    max-width: 350px;
+    filter: drop-shadow(
+      -2px 2px 7px hsl(from var(--text-color-700) h s l / 0.5)
+    );
 
     img {
       width: 100%;
       height: auto;
       border-radius: 10px;
       display: block;
-      box-shadow:
-        0 10px 15px -3px hsl(from var(--text-color-700) h s l / 0.1),
-        0 4px 6px -4px hsl(from var(--text-color-700) h s l / 0.1);
     }
 
     @media (min-width: 768px) {
@@ -155,39 +171,27 @@ import nascarImage from "../images/nascar_image.webp";
         margin-bottom: 0rem;
         align-self: center;
       }
-      img {
-        max-width: 350px;
-        justify-self: end;
-      }
     }
   }
 
+  /* @media (min-width: 768px) { */
   .hero-content-wrapper {
-    width: 100%;
+    max-width: 65ch;
   }
-
-  @media (min-width: 768px) {
-    .hero-content-wrapper {
-      width: 50%;
-    }
-
-    p {
-      max-width: 40ch;
-    }
-  }
+  /* } */
 
   h2 {
     font-size: 1.875rem;
     font-weight: 700;
-    margin-block: 5rem 1rem;
+    margin-block: 3rem 1rem;
   }
 
   p {
     line-height: 1.65;
   }
 
-  p:first-child {
-    margin-block-end: 1.5rem;
+  p {
+    margin-block-end: 1lh;
   }
 
   .topics-wrapper {
@@ -212,17 +216,16 @@ import nascarImage from "../images/nascar_image.webp";
     background-color: rgb(255 255 255);
     border-radius: 0.5rem;
     overflow: hidden;
-    box-shadow:
-      0 10px 15px -3px rgb(0 0 0 / 0.1),
-      0 4px 6px -4px rgb(0 0 0 / 0.1);
     padding: 0.25rem;
     position: relative;
     cursor: pointer;
+    outline: 1px solid hsl(from var(--text-color-700) h s l / 0.3);
 
     img {
+      border-radius: 0.5rem;
       width: 100%;
       height: auto;
-      outline: 1px solid hsl(from var(--text-color-700) h s l / 0.3);
+      /* outline: 1px solid hsl(from var(--text-color-700) h s l / 0.3); */
     }
 
     .text-wrapper {
