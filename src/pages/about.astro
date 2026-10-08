@@ -37,7 +37,17 @@ import nascarImage from "../images/nascar_image.webp";
           coding has it's place, but I am not trying to farm out my fun. It's
           all human creations here on this site.
         </p>
-        <p></p>
+        <p>
+          I started getting into Nascar around 2000ish, then got into it heavily
+          around 2005. Tony Stewart was my driver in those days. I went to my
+          first race in 2007 at Loudon, NH. I have now been to over 40 events
+          across all 3 top series. You can see all my ticket stubs and some
+          media from the races on my Nascar page.
+        </p>
+        <p>
+          The wizard below isn't as obvious as the others, he is a cylinder
+          record.
+        </p>
       </div>
       <div class='image-wrapper'>
         <Image
@@ -142,10 +152,8 @@ import nascarImage from "../images/nascar_image.webp";
     & > * {
       flex-basis: 50%;
     }
-  }
 
-  @media (min-width: 768px) {
-    .hero {
+    @media (min-width: 1000px) {
       flex-direction: row;
       gap: 3rem;
     }
@@ -165,20 +173,18 @@ import nascarImage from "../images/nascar_image.webp";
       display: block;
     }
 
-    @media (min-width: 768px) {
-      .image-wrapper {
-        width: 50%;
-        margin-bottom: 0rem;
-        align-self: center;
-      }
+    @media (max-width: 1000px) {
+      align-self: center;
     }
   }
 
-  /* @media (min-width: 768px) { */
   .hero-content-wrapper {
     max-width: 65ch;
+    @media (max-width: 1000px) {
+      max-width: 100dvw;
+      order: 2;
+    }
   }
-  /* } */
 
   h2 {
     font-size: 1.875rem;
@@ -229,7 +235,7 @@ import nascarImage from "../images/nascar_image.webp";
     }
 
     .text-wrapper {
-      padding: 1.5rem;
+      padding: 1.5rem 1.5rem 0;
     }
 
     h3 {
