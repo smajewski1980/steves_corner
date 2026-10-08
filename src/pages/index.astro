@@ -45,6 +45,7 @@ import heroTest from "../images/homepage_hero_test.webp";
     justify-content: center;
     align-items: center;
     margin-block-end: 2rem;
+    max-width: var(--max-width);
 
     & > * {
       flex-basis: calc(50% - 2rem);
@@ -70,10 +71,11 @@ import heroTest from "../images/homepage_hero_test.webp";
   }
 
   .image-wrapper {
-    min-width: 500px;
-    @media (max-width: 525px) {
-      width: 100%;
-      height: auto;
+    width: 100%;
+    height: auto;
+
+    @media (min-width: 525px) {
+      min-width: 500px;
     }
   }
 
@@ -86,6 +88,7 @@ import heroTest from "../images/homepage_hero_test.webp";
 
     @media (max-width: 1000px) {
       margin-inline: auto;
+      width: 80%;
       margin-block-start: 2rem;
     }
   }
