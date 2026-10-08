@@ -18,7 +18,8 @@ export const getStaticPaths = (async ({ paginate }) => {
     await getCollection("music")
   ).sort(
     (a: CollectionEntry<"music">, b: CollectionEntry<"music">) =>
-      b.data.dateAdded.valueOf() - a.data.dateAdded.valueOf(),
+      // b.data.dateAdded.valueOf() - a.data.dateAdded.valueOf(),
+      a.data.title.localeCompare(b.data.title)
   );
 
   return paginate(allMusicArticles, { pageSize: MUSIC_CARDS_PER_PAGE });
@@ -105,7 +106,7 @@ const lastPage = page.lastPage;
     margin-inline: auto;
     max-width: var(--max-width);
     color: var(--text-color-700);
-    /* padding-inline: 2rem; */
+    padding-inline: 1rem;
 
     h1 {
       font-size: var(--heading-1-size);
@@ -113,12 +114,8 @@ const lastPage = page.lastPage;
       font-weight: 700;
       margin-block: 1rem 0rem;
     }
-
-    
-
   }
-  
-  
+
   .music-hero-wrapper {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr));
@@ -126,6 +123,19 @@ const lastPage = page.lastPage;
     gap: 1rem;
     margin-block: 3rem;
     justify-items: center;
+
+    .text-wrapper p:not(:last-child) {
+      margin-block-end: 1lh;
+    }
+
+    @media (max-width: 768px) {
+      margin-block: 1.5rem;
+      gap: 2rem;
+
+      .text-wrapper {
+        order: 2;
+      }
+    }
   }
 
     span.icon-wrapper {
