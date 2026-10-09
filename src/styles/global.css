@@ -84,10 +84,6 @@ body {
   ul {
     list-style-type: none;
   }
-
-  /* @media (max-width: 800px) {
-    padding-inline: 1rem;
-  } */
 }
 
 p {
