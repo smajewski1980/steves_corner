@@ -54,10 +54,6 @@ body {
     }
   }
 
-  section:not(:has(#music-category-section)) {
-    margin-inline: auto;
-  }
-
   #stretch {
     flex-grow: 1;
     max-width: 100%;

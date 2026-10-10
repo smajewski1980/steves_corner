@@ -8,6 +8,7 @@ import type { CollectionEntry } from "astro:content";
 import { HA_ATTRIBUTION, MUSIC_CARDS_PER_PAGE } from "../../../constants";
 import BackButton from "../../../components/BackButton.astro";
 import Pagination from "../../../components/Pagination.astro";
+import BackToTop from "../../../components/BackToTop.astro";
 
 interface Props {
   page: Page<CollectionEntry<"music">>;
@@ -95,17 +96,27 @@ const headingText = activeCollection === "music" ? "Music " : "Nascar ";
       nextUrl={nextUrl}
     />
     <BackButton />
+    <BackToTop />
   </section>
 </MainLayout>
 
 <style>
+  body {
+    padding-block-start: 3rem;
+  }
+
   section {
     margin-inline: auto;
     margin-block-start: 3.5rem;
     color: var(--text-color-700);
+    padding-inline: 1rem;
 
     #back-button {
       margin-block-start: 2rem;
+    }
+
+    #back-button:has(+ .back-to-top) {
+      margin-block-start: 5rem;
     }
   }
   .tag-page-heading {
@@ -129,5 +140,6 @@ const headingText = activeCollection === "music" ? "Music " : "Nascar ";
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 275px), 1fr));
     gap: 2rem 1rem;
+    margin-block-end: 4rem;
   }
 </style>
