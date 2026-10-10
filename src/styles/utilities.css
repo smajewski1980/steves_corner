@@ -78,3 +78,32 @@
     filter: contrast(100%) brightness(100%) blur(0px) opacity(1);
   }
 }
+
+/* for the blog post images with awkward whitespace */
+.trim-space-sm {
+  display: block;
+  object-fit: contain;
+  margin-block: -2.5vw;
+
+  @media (min-width: 768px) {
+    margin-block: -4vw;
+  }
+}
+.trim-space-reg {
+  display: block;
+  object-fit: contain;
+  margin-block: -5vw;
+
+  @media (min-width: 768px) {
+    margin-block: -8vw;
+  }
+}
+.trim-space-lg {
+  display: block;
+  object-fit: contain;
+  margin-block: -7.5vw;
+
+  @media (min-width: 768px) {
+    margin-block: -10.5vw;
+  }
+}
