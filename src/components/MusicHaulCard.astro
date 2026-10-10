@@ -13,7 +13,7 @@ const postHref = `/music/music-haul-blog/${post.id}`;
 ---
 
 <a href={postHref}>
-  <div class='music-haul-blog-card'>
+  <div class='music-haul-blog-card form-shadow'>
     <Image
       src={coverImage}
       alt={coverImageAlt}
@@ -30,10 +30,17 @@ const postHref = `/music/music-haul-blog/${post.id}`;
     display: flex;
     align-items: center;
     gap: 1rem;
+    outline: 1px solid var(--text-color-700);
+    padding: 0.25rem;
 
     img {
       width: 100px;
       height: 75px;
+    }
+
+    p:first-child {
+      display: inline-block;
+      text-decoration: none;
     }
   }
 </style>
