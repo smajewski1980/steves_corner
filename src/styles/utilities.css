@@ -107,3 +107,26 @@
     margin-block: -10.5vw;
   }
 }
+
+#ha-attribution {
+  margin-block-end: 5rem;
+}
+
+.move-up-sm {
+  margin-block-start: -2.5vw;
+
+  @media (min-width: 768px) {
+    margin-block-start: -4vw;
+  }
+}
+.move-up-md {
+  margin-block-start: -5vw;
+
+  @media (min-width: 768px) {
+    margin-block-start: -8vw;
+  }
+}
+
+.whtsp-no-wrap {
+  white-space: nowrap;
+}

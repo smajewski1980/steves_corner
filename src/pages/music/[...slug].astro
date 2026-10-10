@@ -39,6 +39,7 @@ const { Content } = await render(entry);
       <h1>
         {entry.data.title}
       </h1>
+      <p class='item-year'>{entry.data.year}</p>
 
       <p class='category-link'>
         Category: <a href=`/music/category/${entry.data.category}`
@@ -103,6 +104,10 @@ const { Content } = await render(entry);
       font-size: clamp(1.5rem, 1.2065rem + 1.3043vw, 2.25rem);
     }
 
+    h2 {
+      margin-block: 1lh 0.5lh;
+    }
+
     img {
       width: 100%;
       height: auto;
@@ -114,6 +119,12 @@ const { Content } = await render(entry);
       max-width: 70ch;
       margin-inline: auto;
       text-align: center;
+    }
+
+    .item-year {
+      text-align: left;
+      margin: 0;
+      font-size: 1.25rem;
     }
 
     .category-link {
@@ -129,6 +140,6 @@ const { Content } = await render(entry);
   }
 
   .content-component-wrapper :global(p) {
-    margin-block-end: 1lh;
+    margin-block-end: 2lh;
   }
 </style>

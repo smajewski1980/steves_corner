@@ -79,6 +79,7 @@ const musicCollection = defineCollection({
       coverImageAlt: z.string(),
       dateAdded: z.date(),
       imageAttribution: z.string().optional(),
+      year: z.number().optional(),
     }),
 });
 
