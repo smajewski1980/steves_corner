@@ -46,13 +46,16 @@ body {
   min-height: calc(100dvh - 8rem);
 
   section {
-    margin-inline: auto;
     margin-block-start: 2.5rem;
     max-width: var(--max-width);
 
     @media (min-width: 768px) {
       padding-inline: 2rem;
     }
+  }
+
+  section:not(:has(#music-category-section)) {
+    margin-inline: auto;
   }
 
   #stretch {

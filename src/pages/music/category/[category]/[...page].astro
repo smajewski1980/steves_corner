@@ -11,6 +11,7 @@ import Pagination from "../../../../components/Pagination.astro";
 import CategoryNav from "../../../../components/CategoryNav.astro";
 import BackButton from "../../../../components/BackButton.astro";
 import ExternalLinkIcon from "/public/external-link-svg.svg";
+import BackToTop from "../../../../components/BackToTop.astro";
 
 interface Props {
   page: Page<CollectionEntry<"music">>;
@@ -79,15 +80,32 @@ if (!category) {
       nextUrl={nextUrl}
     />
     <BackButton />
+    <BackToTop />
   </section>
 </MainLayout>
 
 <style>
 
-  section {
-    #back-button {
+  body:has(#music-category-section) {
+    padding-block-start: 5.5rem;
+  }
+
+  #music-category-section {
+    margin-inline:auto;
+
+    @media (max-width: 768px) {
+      padding-inline: 1rem;
+    }
+
+    button:nth-of-type(2) {
+      margin-block-start: 5rem;
+    }
+  }
+
+    
+  #back-button {
     margin-block-start: 2rem;
-  }}
+  }
 
 
   .asterisk {
@@ -111,6 +129,7 @@ if (!category) {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 275px), 1fr));
     gap: 2rem 1rem;
+    margin-block-end: 4rem;
 
     @media (min-width: 1000px) {
       margin-block-start: 2rem;
