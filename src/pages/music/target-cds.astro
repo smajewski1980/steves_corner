@@ -211,420 +211,426 @@ const zCds = (
 ---
 
 <MainLayout>
-  <BackButton />
-  <h1>Target CD Collection</h1>
-  <p class='disc-qty'>Currently {currentQty} discs.</p>
+  <section id='target-section'>
+    <BackButton />
+    <h1>Target CD Collection</h1>
+    <p class='disc-qty'>Currently {currentQty} discs.</p>
 
-  <p class='jump-to-nav'>
-    <a
-      class='txt-deco-none'
-      href='#jump-to-a'
-      >A</a
-    > /&nbsp;
-    <a
-      class='txt-deco-none'
-      href='#jump-to-b'
-      >B</a
-    > /&nbsp;
-    <a
-      class='txt-deco-none'
-      href='#jump-to-c'
-      >C</a
-    > /&nbsp;
-    <a
-      class='txt-deco-none'
-      href='#jump-to-d'
-      >D</a
-    > /&nbsp;
-    <a
-      class='txt-deco-none'
-      href='#jump-to-e'
-      >E</a
-    > /&nbsp;
-    <a
-      class='txt-deco-none'
-      href='#jump-to-f'
-      >F</a
-    > /&nbsp;
-    <a
-      class='txt-deco-none'
-      href='#jump-to-g'
-      >G</a
-    > /&nbsp;
-    <a
-      class='txt-deco-none'
-      href='#jump-to-h'
-      >H</a
-    > /&nbsp;
-    <a
-      class='txt-deco-none'
-      href='#jump-to-i'
-      >I</a
-    > /&nbsp;
-    <a
-      class='txt-deco-none'
-      href='#jump-to-j'
-      >J</a
-    > /&nbsp;
-    <a
-      class='txt-deco-none'
-      href='#jump-to-k'
-      >K</a
-    > /&nbsp;
-    <a
-      class='txt-deco-none'
-      href='#jump-to-l'
-      >L</a
-    > /&nbsp;
-    <a
-      class='txt-deco-none'
-      href='#jump-to-m'
-      >M</a
-    > /&nbsp;
-    <a
-      class='txt-deco-none'
-      href='#jump-to-n'
-      >N</a
-    > /&nbsp;
-    <a
-      class='txt-deco-none'
-      href='#jump-to-o'
-      >O</a
-    > /&nbsp;
-    <a
-      class='txt-deco-none'
-      href='#jump-to-p'
-      >P</a
-    > /&nbsp;
-    <a
-      class='txt-deco-none'
-      href='#jump-to-q'
-      >Q</a
-    > /&nbsp;
-    <a
-      class='txt-deco-none'
-      href='#jump-to-r'
-      >R</a
-    > /&nbsp;
-    <a
-      class='txt-deco-none'
-      href='#jump-to-s'
-      >S</a
-    > /&nbsp;
-    <a
-      class='txt-deco-none'
-      href='#jump-to-t'
-      >T</a
-    > /&nbsp;
-    <a
-      class='txt-deco-none'
-      href='#jump-to-u'
-      >U</a
-    > /&nbsp;
-    <a
-      class='txt-deco-none'
-      href='#jump-to-v'
-      >V</a
-    > /&nbsp;
-    <a
-      class='txt-deco-none'
-      href='#jump-to-w'
-      >W</a
-    > /&nbsp;
-    <a
-      class='txt-deco-none'
-      href='#jump-to-x'
-      >X</a
-    > /&nbsp;
-    <a
-      class='txt-deco-none'
-      href='#jump-to-y'
-      >Y</a
-    > /&nbsp;
-    <a
-      class='txt-deco-none'
-      href='#jump-to-z'
-      >Z</a
-    >
-  </p>
-
-  <div class='text-wrapper'>
-    <p>
-      If you don't know what these are, the short explanation is they are early
-      CDs that were pressed for the US market before we could make them here. If
-      you would like better or more in-depth details, check out this <a
-        href='https://www.discogs.com/forum/thread/398106'
-        target='_blank'
-        >Discogs forum page</a
-      ><ExternalLinkIcon />.
+    <p class='jump-to-nav'>
+      <a
+        class='txt-deco-none'
+        href='#jump-to-a'
+        >A</a
+      > /&nbsp;
+      <a
+        class='txt-deco-none'
+        href='#jump-to-b'
+        >B</a
+      > /&nbsp;
+      <a
+        class='txt-deco-none'
+        href='#jump-to-c'
+        >C</a
+      > /&nbsp;
+      <a
+        class='txt-deco-none'
+        href='#jump-to-d'
+        >D</a
+      > /&nbsp;
+      <a
+        class='txt-deco-none'
+        href='#jump-to-e'
+        >E</a
+      > /&nbsp;
+      <a
+        class='txt-deco-none'
+        href='#jump-to-f'
+        >F</a
+      > /&nbsp;
+      <a
+        class='txt-deco-none'
+        href='#jump-to-g'
+        >G</a
+      > /&nbsp;
+      <a
+        class='txt-deco-none'
+        href='#jump-to-h'
+        >H</a
+      > /&nbsp;
+      <a
+        class='txt-deco-none'
+        href='#jump-to-i'
+        >I</a
+      > /&nbsp;
+      <a
+        class='txt-deco-none'
+        href='#jump-to-j'
+        >J</a
+      > /&nbsp;
+      <a
+        class='txt-deco-none'
+        href='#jump-to-k'
+        >K</a
+      > /&nbsp;
+      <a
+        class='txt-deco-none'
+        href='#jump-to-l'
+        >L</a
+      > /&nbsp;
+      <a
+        class='txt-deco-none'
+        href='#jump-to-m'
+        >M</a
+      > /&nbsp;
+      <a
+        class='txt-deco-none'
+        href='#jump-to-n'
+        >N</a
+      > /&nbsp;
+      <a
+        class='txt-deco-none'
+        href='#jump-to-o'
+        >O</a
+      > /&nbsp;
+      <a
+        class='txt-deco-none'
+        href='#jump-to-p'
+        >P</a
+      > /&nbsp;
+      <a
+        class='txt-deco-none'
+        href='#jump-to-q'
+        >Q</a
+      > /&nbsp;
+      <a
+        class='txt-deco-none'
+        href='#jump-to-r'
+        >R</a
+      > /&nbsp;
+      <a
+        class='txt-deco-none'
+        href='#jump-to-s'
+        >S</a
+      > /&nbsp;
+      <a
+        class='txt-deco-none'
+        href='#jump-to-t'
+        >T</a
+      > /&nbsp;
+      <a
+        class='txt-deco-none'
+        href='#jump-to-u'
+        >U</a
+      > /&nbsp;
+      <a
+        class='txt-deco-none'
+        href='#jump-to-v'
+        >V</a
+      > /&nbsp;
+      <a
+        class='txt-deco-none'
+        href='#jump-to-w'
+        >W</a
+      > /&nbsp;
+      <a
+        class='txt-deco-none'
+        href='#jump-to-x'
+        >X</a
+      > /&nbsp;
+      <a
+        class='txt-deco-none'
+        href='#jump-to-y'
+        >Y</a
+      > /&nbsp;
+      <a
+        class='txt-deco-none'
+        href='#jump-to-z'
+        >Z</a
+      >
     </p>
 
-    <p>
-      Click on any of the images to see a larger version. Any multiple entries
-      are multiple copies in my collection. Sometimes they will be variants with
-      minor differences, sometimes they will be duplicates.
-    </p>
-    <p>
-      The cards are color coded by country of origin, Japan<span class='jpn'
-      ></span>, West Germany<span class='wg'></span>, Other<span class='other'
-      ></span>.
-    </p>
-    <p>
-      At the <a href='#jump-to-other'>bottom of the page</a> are some other "target-era"
-      discs from the collection.
-    </p>
-  </div>
-
-  <section
-    id='jump-to-a'
-    class='jump-to-link'
-  >
-    <h2>A</h2>
-    <div class='target-card-wrapper'>
-      {aCds && aCds.map((cd) => <TargetCdCard cd={cd} />)}
-    </div>
-  </section>
-  <section
-    id='jump-to-b'
-    class='jump-to-link'
-  >
-    <h2>B</h2>
-    <div class='target-card-wrapper'>
-      {bCds && bCds.map((cd) => <TargetCdCard cd={cd} />)}
-    </div>
-  </section>
-  <section
-    id='jump-to-c'
-    class='jump-to-link'
-  >
-    <h2>C</h2>
-    <div class='target-card-wrapper'>
-      {cCds && cCds.map((cd) => <TargetCdCard cd={cd} />)}
-    </div>
-  </section>
-  <section
-    id='jump-to-d'
-    class='jump-to-link'
-  >
-    <h2>D</h2>
-    <div class='target-card-wrapper'>
-      {dCds && dCds.map((cd) => <TargetCdCard cd={cd} />)}
-    </div>
-  </section>
-  <section
-    id='jump-to-e'
-    class='jump-to-link'
-  >
-    <h2>E</h2>
-    <div class='target-card-wrapper'>
-      {eCds && eCds.map((cd) => <TargetCdCard cd={cd} />)}
-    </div>
-  </section>
-  <section
-    id='jump-to-f'
-    class='jump-to-link'
-  >
-    <h2>F</h2>
-    <div class='target-card-wrapper'>
-      {fCds && fCds.map((cd) => <TargetCdCard cd={cd} />)}
-    </div>
-  </section>
-  <section
-    id='jump-to-g'
-    class='jump-to-link'
-  >
-    <h2>G</h2>
-    <div class='target-card-wrapper'>
-      {gCds && gCds.map((cd) => <TargetCdCard cd={cd} />)}
-    </div>
-  </section>
-  <section
-    id='jump-to-h'
-    class='jump-to-link'
-  >
-    <h2>H</h2>
-    <div class='target-card-wrapper'>
-      {hCds && hCds.map((cd) => <TargetCdCard cd={cd} />)}
-    </div>
-  </section>
-  <section
-    id='jump-to-i'
-    class='jump-to-link'
-  >
-    <h2>I</h2>
-    <div class='target-card-wrapper'>
-      {iCds && iCds.map((cd) => <TargetCdCard cd={cd} />)}
-    </div>
-  </section>
-  <section
-    id='jump-to-j'
-    class='jump-to-link'
-  >
-    <h2>J</h2>
-    <div class='target-card-wrapper'>
-      {jCds && jCds.map((cd) => <TargetCdCard cd={cd} />)}
-    </div>
-  </section>
-  <section
-    id='jump-to-k'
-    class='jump-to-link'
-  >
-    <h2>K</h2>
-    <div class='target-card-wrapper'>
-      {kCds && kCds.map((cd) => <TargetCdCard cd={cd} />)}
-    </div>
-  </section>
-  <section
-    id='jump-to-l'
-    class='jump-to-link'
-  >
-    <h2>L</h2>
-    <div class='target-card-wrapper'>
-      {lCds && lCds.map((cd) => <TargetCdCard cd={cd} />)}
-    </div>
-  </section>
-  <section
-    id='jump-to-m'
-    class='jump-to-link'
-  >
-    <h2>M</h2>
-    <div class='target-card-wrapper'>
-      {mCds && mCds.map((cd) => <TargetCdCard cd={cd} />)}
-    </div>
-  </section>
-  <section
-    id='jump-to-n'
-    class='jump-to-link'
-  >
-    <h2>N</h2>
-    <div class='target-card-wrapper'>
-      {nCds && nCds.map((cd) => <TargetCdCard cd={cd} />)}
-    </div>
-  </section>
-  <section
-    id='jump-to-o'
-    class='jump-to-link'
-  >
-    <h2>O</h2>
-    <div class='target-card-wrapper'>
-      {oCds && oCds.map((cd) => <TargetCdCard cd={cd} />)}
-    </div>
-  </section>
-  <section
-    id='jump-to-p'
-    class='jump-to-link'
-  >
-    <h2>P</h2>
-    <div class='target-card-wrapper'>
-      {pCds && pCds.map((cd) => <TargetCdCard cd={cd} />)}
-    </div>
-  </section>
-  <section
-    id='jump-to-q'
-    class='jump-to-link'
-  >
-    <h2>Q</h2>
-    <div class='target-card-wrapper'>
-      {qCds && qCds.map((cd) => <TargetCdCard cd={cd} />)}
-    </div>
-  </section>
-  <section
-    id='jump-to-r'
-    class='jump-to-link'
-  >
-    <h2>R</h2>
-    <div class='target-card-wrapper'>
-      {rCds && rCds.map((cd) => <TargetCdCard cd={cd} />)}
-    </div>
-  </section>
-  <section
-    id='jump-to-s'
-    class='jump-to-link'
-  >
-    <h2>S</h2>
-    <div class='target-card-wrapper'>
-      {sCds && sCds.map((cd) => <TargetCdCard cd={cd} />)}
-    </div>
-  </section>
-  <section
-    id='jump-to-t'
-    class='jump-to-link'
-  >
-    <h2>T</h2>
-    <div class='target-card-wrapper'>
-      {tCds && tCds.map((cd) => <TargetCdCard cd={cd} />)}
-    </div>
-  </section>
-  <section
-    id='jump-to-u'
-    class='jump-to-link'
-  >
-    <h2>U</h2>
-    <div class='target-card-wrapper'>
-      {uCds && uCds.map((cd) => <TargetCdCard cd={cd} />)}
-    </div>
-  </section>
-  <section
-    id='jump-to-v'
-    class='jump-to-link'
-  >
-    <h2>V</h2>
-    <div class='target-card-wrapper'>
-      {vCds && vCds.map((cd) => <TargetCdCard cd={cd} />)}
-    </div>
-  </section>
-  <section
-    id='jump-to-w'
-    class='jump-to-link'
-  >
-    <h2>W</h2>
-    <div class='target-card-wrapper'>
-      {wCds && wCds.map((cd) => <TargetCdCard cd={cd} />)}
-    </div>
-  </section>
-  <section
-    id='jump-to-x'
-    class='jump-to-link'
-  >
-    <h2>X</h2>
-    <div class='target-card-wrapper'>
+    <div class='text-wrapper'>
       <p>
-        It would seem that there weren't any target CDs made by an artist or
-        band starting with the letter X.
+        If you don't know what these are, the short explanation is they are
+        early CDs that were pressed for the US market before we could make them
+        here. If you would like better or more in-depth details, check out this <a
+          href='https://www.discogs.com/forum/thread/398106'
+          target='_blank'
+          >Discogs forum page</a
+        ><ExternalLinkIcon />.
+      </p>
+
+      <p>
+        Click on any of the images to see a larger version. Any multiple entries
+        are multiple copies in my collection. Sometimes they will be variants
+        with minor differences, sometimes they will be duplicates.
+      </p>
+      <p>
+        The cards are color coded by country of origin, Japan<span class='jpn'
+        ></span>, West Germany<span class='wg'></span>, Other<span class='other'
+        ></span>.
+      </p>
+      <p>
+        At the <a href='#jump-to-other'>bottom of the page</a> are some other "target-era"
+        discs from the collection.
       </p>
     </div>
+
+    <section
+      id='jump-to-a'
+      class='jump-to-link'
+    >
+      <h2>A</h2>
+      <div class='target-card-wrapper'>
+        {aCds && aCds.map((cd) => <TargetCdCard cd={cd} />)}
+      </div>
+    </section>
+    <section
+      id='jump-to-b'
+      class='jump-to-link'
+    >
+      <h2>B</h2>
+      <div class='target-card-wrapper'>
+        {bCds && bCds.map((cd) => <TargetCdCard cd={cd} />)}
+      </div>
+    </section>
+    <section
+      id='jump-to-c'
+      class='jump-to-link'
+    >
+      <h2>C</h2>
+      <div class='target-card-wrapper'>
+        {cCds && cCds.map((cd) => <TargetCdCard cd={cd} />)}
+      </div>
+    </section>
+    <section
+      id='jump-to-d'
+      class='jump-to-link'
+    >
+      <h2>D</h2>
+      <div class='target-card-wrapper'>
+        {dCds && dCds.map((cd) => <TargetCdCard cd={cd} />)}
+      </div>
+    </section>
+    <section
+      id='jump-to-e'
+      class='jump-to-link'
+    >
+      <h2>E</h2>
+      <div class='target-card-wrapper'>
+        {eCds && eCds.map((cd) => <TargetCdCard cd={cd} />)}
+      </div>
+    </section>
+    <section
+      id='jump-to-f'
+      class='jump-to-link'
+    >
+      <h2>F</h2>
+      <div class='target-card-wrapper'>
+        {fCds && fCds.map((cd) => <TargetCdCard cd={cd} />)}
+      </div>
+    </section>
+    <section
+      id='jump-to-g'
+      class='jump-to-link'
+    >
+      <h2>G</h2>
+      <div class='target-card-wrapper'>
+        {gCds && gCds.map((cd) => <TargetCdCard cd={cd} />)}
+      </div>
+    </section>
+    <section
+      id='jump-to-h'
+      class='jump-to-link'
+    >
+      <h2>H</h2>
+      <div class='target-card-wrapper'>
+        {hCds && hCds.map((cd) => <TargetCdCard cd={cd} />)}
+      </div>
+    </section>
+    <section
+      id='jump-to-i'
+      class='jump-to-link'
+    >
+      <h2>I</h2>
+      <div class='target-card-wrapper'>
+        {iCds && iCds.map((cd) => <TargetCdCard cd={cd} />)}
+      </div>
+    </section>
+    <section
+      id='jump-to-j'
+      class='jump-to-link'
+    >
+      <h2>J</h2>
+      <div class='target-card-wrapper'>
+        {jCds && jCds.map((cd) => <TargetCdCard cd={cd} />)}
+      </div>
+    </section>
+    <section
+      id='jump-to-k'
+      class='jump-to-link'
+    >
+      <h2>K</h2>
+      <div class='target-card-wrapper'>
+        {kCds && kCds.map((cd) => <TargetCdCard cd={cd} />)}
+      </div>
+    </section>
+    <section
+      id='jump-to-l'
+      class='jump-to-link'
+    >
+      <h2>L</h2>
+      <div class='target-card-wrapper'>
+        {lCds && lCds.map((cd) => <TargetCdCard cd={cd} />)}
+      </div>
+    </section>
+    <section
+      id='jump-to-m'
+      class='jump-to-link'
+    >
+      <h2>M</h2>
+      <div class='target-card-wrapper'>
+        {mCds && mCds.map((cd) => <TargetCdCard cd={cd} />)}
+      </div>
+    </section>
+    <section
+      id='jump-to-n'
+      class='jump-to-link'
+    >
+      <h2>N</h2>
+      <div class='target-card-wrapper'>
+        {nCds && nCds.map((cd) => <TargetCdCard cd={cd} />)}
+      </div>
+    </section>
+    <section
+      id='jump-to-o'
+      class='jump-to-link'
+    >
+      <h2>O</h2>
+      <div class='target-card-wrapper'>
+        {oCds && oCds.map((cd) => <TargetCdCard cd={cd} />)}
+      </div>
+    </section>
+    <section
+      id='jump-to-p'
+      class='jump-to-link'
+    >
+      <h2>P</h2>
+      <div class='target-card-wrapper'>
+        {pCds && pCds.map((cd) => <TargetCdCard cd={cd} />)}
+      </div>
+    </section>
+    <section
+      id='jump-to-q'
+      class='jump-to-link'
+    >
+      <h2>Q</h2>
+      <div class='target-card-wrapper'>
+        {qCds && qCds.map((cd) => <TargetCdCard cd={cd} />)}
+      </div>
+    </section>
+    <section
+      id='jump-to-r'
+      class='jump-to-link'
+    >
+      <h2>R</h2>
+      <div class='target-card-wrapper'>
+        {rCds && rCds.map((cd) => <TargetCdCard cd={cd} />)}
+      </div>
+    </section>
+    <section
+      id='jump-to-s'
+      class='jump-to-link'
+    >
+      <h2>S</h2>
+      <div class='target-card-wrapper'>
+        {sCds && sCds.map((cd) => <TargetCdCard cd={cd} />)}
+      </div>
+    </section>
+    <section
+      id='jump-to-t'
+      class='jump-to-link'
+    >
+      <h2>T</h2>
+      <div class='target-card-wrapper'>
+        {tCds && tCds.map((cd) => <TargetCdCard cd={cd} />)}
+      </div>
+    </section>
+    <section
+      id='jump-to-u'
+      class='jump-to-link'
+    >
+      <h2>U</h2>
+      <div class='target-card-wrapper'>
+        {uCds && uCds.map((cd) => <TargetCdCard cd={cd} />)}
+      </div>
+    </section>
+    <section
+      id='jump-to-v'
+      class='jump-to-link'
+    >
+      <h2>V</h2>
+      <div class='target-card-wrapper'>
+        {vCds && vCds.map((cd) => <TargetCdCard cd={cd} />)}
+      </div>
+    </section>
+    <section
+      id='jump-to-w'
+      class='jump-to-link'
+    >
+      <h2>W</h2>
+      <div class='target-card-wrapper'>
+        {wCds && wCds.map((cd) => <TargetCdCard cd={cd} />)}
+      </div>
+    </section>
+    <section
+      id='jump-to-x'
+      class='jump-to-link'
+    >
+      <h2>X</h2>
+      <div class='target-card-wrapper'>
+        <p>
+          It would seem that there weren't any target CDs made by an artist or
+          band starting with the letter X.
+        </p>
+      </div>
+    </section>
+    <section
+      id='jump-to-y'
+      class='jump-to-link'
+    >
+      <h2>Y</h2>
+      <div class='target-card-wrapper'>
+        {yCds && yCds.map((cd) => <TargetCdCard cd={cd} />)}
+      </div>
+    </section>
+    <section
+      id='jump-to-z'
+      class='jump-to-link'
+    >
+      <h2>Z</h2>
+      <div class='target-card-wrapper'>
+        {zCds && zCds.map((cd) => <TargetCdCard cd={cd} />)}
+      </div>
+    </section>
+    <section
+      id='jump-to-other'
+      class='jump-to-link'
+    >
+      <h2>Other Target Era Discs</h2>
+      <div class='target-card-wrapper'>
+        {targetEraCds && targetEraCds.map((cd) => <TargetCdCard cd={cd} />)}
+      </div>
+    </section>
+    <BackToTop />
   </section>
-  <section
-    id='jump-to-y'
-    class='jump-to-link'
-  >
-    <h2>Y</h2>
-    <div class='target-card-wrapper'>
-      {yCds && yCds.map((cd) => <TargetCdCard cd={cd} />)}
-    </div>
-  </section>
-  <section
-    id='jump-to-z'
-    class='jump-to-link'
-  >
-    <h2>Z</h2>
-    <div class='target-card-wrapper'>
-      {zCds && zCds.map((cd) => <TargetCdCard cd={cd} />)}
-    </div>
-  </section>
-  <section
-    id='jump-to-other'
-    class='jump-to-link'
-  >
-    <h2>Other Target Era Discs</h2>
-    <div class='target-card-wrapper'>
-      {targetEraCds && targetEraCds.map((cd) => <TargetCdCard cd={cd} />)}
-    </div>
-  </section>
-  <BackToTop />
 </MainLayout>
 
 <style>
+  #target-section {
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
   h1 {
     margin-block: 2rem 0.5rem;
   }
