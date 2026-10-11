@@ -5,34 +5,40 @@ import heroTest from "../images/homepage_hero_test.webp";
 ---
 
 <MainLayout>
-  <h1>Welcome to Steve's Corner of the Internet!</h1>
-  <div class='hero'>
-    <div class='hero-text-wrapper'>
-      <p>
-        Hi! I'm Steve and welcome to my corner of the internet. This site was
-        built by just I, not AI.
-      </p>
-      <p>
-        This site is my personal journal of sorts for my coding projects, some
-        cool music collection items I have acquired over the years and my
-        digital Nascar scrapbook for all the races I have been to.
-      </p>
-      <p>
-        So come on in and look around, and be sure to check back there will be
-        new items added often.
-      </p>
+  <section>
+    <h1>Welcome to Steve's Corner of the Internet!</h1>
+    <div class='hero'>
+      <div class='hero-text-wrapper'>
+        <p>
+          Hi! I'm Steve and welcome to my corner of the internet. This site was
+          built by just I, not AI.
+        </p>
+        <p>
+          This site is my personal journal of sorts for my coding projects, some
+          cool music collection items I have acquired over the years and my
+          digital Nascar scrapbook for all the races I have been to.
+        </p>
+        <p>
+          So come on in and look around, and be sure to check back there will be
+          new items added often.
+        </p>
+      </div>
+      <div class='image-wrapper'>
+        <Image
+          class='hero-image'
+          src={heroTest}
+          alt=''
+        />
+      </div>
     </div>
-    <div class='image-wrapper'>
-      <Image
-        class='hero-image'
-        src={heroTest}
-        alt=''
-      />
-    </div>
-  </div>
+  </section>
 </MainLayout>
 
 <style>
+  section {
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
   h1 {
     text-align: center;
     margin-block: 1rem 2rem;
