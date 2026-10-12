@@ -9,28 +9,39 @@ interface Props {
 
 const { posts } = Astro.props;
 
+// this setup ensures the order of the tags doesnt matter
+
+// the valid series strings
 const seriesKeywords = ["cup-series", "xfinity-series", "truck-series"];
+// loop through the posts and grab the tag that is a number (the year)
 const allYears = posts.map(
   (post) =>
     post.data.tags.find((tag) => /^\d{4}$/.test(tag?.trim())) || "Unknown Year",
 );
+// compare the tags to the series array, get the matching ones
 const allSeries = posts.map(
   (post) =>
     post.data.tags.find((tag) =>
+      // does the tag name match any of the series names
       seriesKeywords.some((k) => tag?.toLowerCase().includes(k)),
     ) || "Unknown Series",
 );
+// the valid tracks
 const trackKeywords = ["dover", "loudon", "pocono", "watkins-glen", "richmond"];
+// compare the tags to the tracks array, get the matching ones
 const allTracks = posts.map(
   (post) =>
     post.data.tags.find((tag) =>
+      // does the tag name match any of the track names
       trackKeywords.some((k) => tag?.toLowerCase().includes(k)),
     ) || "Unknown Track",
 );
+// get all the drivers names
 const allDrivers = posts.map(
   (post) =>
     post.data.tags.find(
       (tag) =>
+        // if its not a date, not a series or a track, it must be a driver
         !/^\d{4}$/.test(tag?.trim()) &&
         !seriesKeywords.some((k) => tag?.toLowerCase().includes(k)) &&
         !trackKeywords.some((k) => tag?.toLowerCase().includes(k)),
@@ -63,8 +74,9 @@ const countedSeriesSorted = countedSeries.toSorted((a, b) => b[1] - a[1]);
       /></span
     > to do just that.
   </p>
-  ''
   <h3>STATS:</h3>
+  <!-- turn these into details/summary elements -->
+  <!-- check and style the copy at the top of the page -->
   <h4>Total Races Attended by series:</h4>
   <p>
     {
@@ -75,7 +87,6 @@ const countedSeriesSorted = countedSeries.toSorted((a, b) => b[1] - a[1]);
       ))
     }
   </p>
-  ''
   <h4>Total Races Attended by track(including all series):</h4>
   <p>
     {
@@ -86,7 +97,6 @@ const countedSeriesSorted = countedSeries.toSorted((a, b) => b[1] - a[1]);
       ))
     }
   </p>
-  ''
   <h4>Total Races Attended by year(including all series):</h4>
   <p>
     {
@@ -97,7 +107,6 @@ const countedSeriesSorted = countedSeries.toSorted((a, b) => b[1] - a[1]);
       ))
     }
   </p>
-  ''
   <h4>Total Races Attended by driver who won:</h4>
   <p>
     {
@@ -111,6 +120,13 @@ const countedSeriesSorted = countedSeries.toSorted((a, b) => b[1] - a[1]);
 </section>
 
 <style>
+  .stats-wrapper {
+    padding-inline: 1rem;
+
+    p:first-child {
+      margin-block-end: 2rem;
+    }
+  }
   span {
     display: inline-block;
   }

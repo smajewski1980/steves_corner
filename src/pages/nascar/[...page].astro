@@ -11,6 +11,8 @@ import type { GetStaticPaths } from "astro";
 import { formatDate } from "../../utils";
 import BackToTop from "../../components/BackToTop.astro";
 import NascarTags from "../../components/NascarTags.astro";
+import dover50Flag from "../../images/5-5-2019_dover_flag.webp";
+import { Image } from "astro:assets";
 
 export const getStaticPaths = (async ({ paginate }) => {
   const allNascarPosts: CollectionEntry<"nascar">[] = (
@@ -40,25 +42,35 @@ const currentPageRange = {
 
 <MainLayout>
   <section>
-    <h1>Nascar Posts</h1>
-
-    <!-- <SearchForm /> -->
-    <p>
-      Welcome to my digital Nascar scrapbook. I went to my first race in 2007,
-      since then, I've gone to a few more... Since I am making this website long
-      after most of these races occurred, there may be less comments in some
-      posts than others.
-    </p>
-    <p>
-      There were a few races that I couldn't find any pictures that we took....
-      But for the most part, in addition to the ticket stubs, I added a few race
-      pics, video if I had it and there are some pit passes in there too.
-    </p>
-    <p>
-      At the bottom of the page, check out my stats and a link to my race
-      weather page that I made for myself to see the weather for the upcoming
-      race weekend.
-    </p>
+    <h1>Nascar Page</h1>
+    <div class='nascar-hero-wrapper'>
+      <!-- <SearchForm /> -->
+      <div class='image-wrapper'>
+        <Image
+          src={dover50Flag}
+          alt='A commemorative Dover 50 checkered flag with many driver signatures.'
+        />
+      </div>
+      <div class='text-wrapper'>
+        <p>
+          Welcome to my digital Nascar scrapbook. I went to my first race in
+          2007, since then, I've gone to a few more... Since I am making this
+          website long after most of these races occurred, there may be less
+          comments in some posts than others.
+        </p>
+        <p>
+          There were a few races that I couldn't find any pictures that we
+          took... But for the most part, in addition to the ticket stubs, I
+          added a few race pics, video if I had it and there are some pit passes
+          in there too.
+        </p>
+        <p>
+          At the bottom of the page, check out my stats and a link to my race
+          weather page that I made for myself to see the weather for the
+          upcoming race weekend.
+        </p>
+      </div>
+    </div>
     <Pagination
       prevUrl={prevUrl}
       nextUrl={nextUrl}
@@ -93,6 +105,33 @@ const currentPageRange = {
       line-height: 1.25;
       font-weight: 700;
       margin-block: 1rem 2rem;
+    }
+
+    .nascar-hero-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      row-gap: 2rem;
+
+      .text-wrapper {
+        flex-basis: 55ch;
+      }
+
+      .image-wrapper {
+        flex: 1;
+        max-width: 35rem;
+        min-width: 21rem;
+        align-content: center;
+
+        img {
+          width: 100%;
+          height: auto;
+        }
+      }
+    }
+
+    p {
+      margin-block-end: 0.5lh;
     }
   }
 
