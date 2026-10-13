@@ -152,14 +152,14 @@ const countedSeriesSorted = countedSeries.toSorted((a, b) => b[1] - a[1]);
   const yearPara = yearDetails?.querySelector("p");
   const driverPara = driverDetails?.querySelector("p");
 
-  const nameThisIfItWorks = [
+  const statElems = [
     [seriesDetails, seriesPara],
     [trackDetails, trackPara],
     [yearDetails, yearPara],
     [driverDetails, driverPara],
   ];
 
-  nameThisIfItWorks.forEach((elems) => {
+  statElems.forEach((elems) => {
     elems[0]?.addEventListener("toggle", (e) => {
       const target = e.target as HTMLDetailsElement;
 
@@ -217,18 +217,41 @@ const countedSeriesSorted = countedSeries.toSorted((a, b) => b[1] - a[1]);
     details {
       max-width: fit-content;
 
+      summary {
+        font-weight: 600;
+        margin-block-end: 0.25rem;
+        list-style-type: none;
+      }
+
+      summary::before {
+        content: "";
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        margin-inline-end: 0.5rem;
+        vertical-align: middle;
+        background-image: url("/images/checkered.png");
+        background-repeat: no-repeat;
+        background-size: contain;
+        transform: rotate(-45deg) translateY(-50%);
+        transform-origin: 100% 50%;
+        clip-path: polygon(100% 0%, 100% 100%, 0% 100%, 100% 0%);
+        transition:
+          transform 0.2s ease,
+          clip-path 0.2s ease;
+      }
+
       @media (max-width: 768px) {
         max-width: calc(100dvw - 4rem);
       }
     }
 
-    details p {
-      text-transform: capitalize;
+    details[open] summary::before {
+      transform: rotate(45deg);
     }
 
-    details summary {
-      font-weight: 600;
-      margin-block-end: 0.25rem;
+    details p {
+      text-transform: capitalize;
     }
 
     .details-series-tally p {
