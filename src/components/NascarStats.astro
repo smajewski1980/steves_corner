@@ -142,8 +142,35 @@ const countedSeriesSorted = countedSeries.toSorted((a, b) => b[1] - a[1]);
   </aside>
 </section>
 
+<script>
+  const seriesDetails = document.querySelector(".details-series-tally");
+  const trackDetails = document.querySelector(".details-track-tally");
+  const yearDetails = document.querySelector(".details-year-tally");
+  const driverDetails = document.querySelector(".details-driver-tally");
+  const seriesPara = seriesDetails?.querySelector("p");
+  const trackPara = trackDetails?.querySelector("p");
+  const yearPara = yearDetails?.querySelector("p");
+  const driverPara = driverDetails?.querySelector("p");
+
+  const nameThisIfItWorks = [
+    [seriesDetails, seriesPara],
+    [trackDetails, trackPara],
+    [yearDetails, yearPara],
+    [driverDetails, driverPara],
+  ];
+
+  nameThisIfItWorks.forEach((elems) => {
+    elems[0]?.addEventListener("toggle", (e) => {
+      const target = e.target as HTMLDetailsElement;
+
+      if (target.open) {
+        elems[1]?.classList.add("slide-in");
+      }
+    });
+  });
+</script>
+
 <style>
-  /* for the details/summary i want to have the details open blank, delay an animation to slide in the text from the side */
   section {
     margin-inline: auto;
     padding-inline: 1rem;
@@ -156,7 +183,6 @@ const countedSeriesSorted = countedSeries.toSorted((a, b) => b[1] - a[1]);
   aside {
     display: flex;
     flex-wrap: wrap;
-    /* align-items: start; */
     justify-content: center;
     gap: 2rem;
   }
@@ -181,6 +207,7 @@ const countedSeriesSorted = countedSeries.toSorted((a, b) => b[1] - a[1]);
     padding: 1rem;
     outline: 1px solid var(--text-color-700);
     align-self: center;
+    overflow: hidden;
 
     h3,
     details:not(:last-child) {
@@ -207,11 +234,15 @@ const countedSeriesSorted = countedSeries.toSorted((a, b) => b[1] - a[1]);
     .details-series-tally p {
       display: flex;
       justify-content: space-between;
+      transform: translateX(-25rem);
+      filter: blur(2px);
     }
 
     .details-track-tally p {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
+      transform: translateX(30rem);
+      filter: blur(2px);
 
       @media (min-width: 768px) {
         grid-template-columns: repeat(3, 1fr);
@@ -222,6 +253,8 @@ const countedSeriesSorted = countedSeries.toSorted((a, b) => b[1] - a[1]);
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(min(100%, 10ch), 1fr));
       margin-block-start: 0.75rem;
+      transform: translateX(-25rem);
+      filter: blur(2px);
 
       @media (max-width: 768px) {
         line-height: 1;
@@ -232,6 +265,9 @@ const countedSeriesSorted = countedSeries.toSorted((a, b) => b[1] - a[1]);
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       column-gap: 4rem;
+      transform: translateX(30rem);
+      filter: blur(2px);
+
       @media (max-width: 768px) {
         grid-template-columns: 1fr;
       }
@@ -249,5 +285,25 @@ const countedSeriesSorted = countedSeries.toSorted((a, b) => b[1] - a[1]);
   a.weather-link {
     font-size: 1.125rem;
     font-style: italic;
+  }
+
+  .slide-in {
+    animation: slide-in 0.3s 0.1s ease-out forwards;
+  }
+
+  @keyframes slide-in {
+    to {
+      transform: translateX(0);
+      filter: blur(0);
+    }
+  }
+
+  @media (min-width: 768px) {
+    @keyframes slide-in {
+      to {
+        transform: translateX(1rem);
+        filter: blur(0);
+      }
+    }
   }
 </style>
