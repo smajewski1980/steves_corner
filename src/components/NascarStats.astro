@@ -2,6 +2,8 @@
 import type { CollectionEntry } from "astro:content";
 import { countStrings } from "../utils";
 import ExternalLinkIcon from "../../public/external-link-svg.svg";
+import { Image } from "astro:assets";
+import racecarSteve from "../images/racecar_steve.webp";
 
 interface Props {
   posts: CollectionEntry<"nascar">[];
@@ -131,7 +133,12 @@ const countedSeriesSorted = countedSeries.toSorted((a, b) => b[1] - a[1]);
         </p>
       </details>
     </div>
-    <div>here will go another pic</div>
+    <div class='image-wrapper'>
+      <Image
+        src={racecarSteve}
+        alt="A doctored pic of Cartoon Steve driving Denny Hamlin's racecar."
+      />
+    </div>
   </aside>
 </section>
 
@@ -149,14 +156,31 @@ const countedSeriesSorted = countedSeries.toSorted((a, b) => b[1] - a[1]);
   aside {
     display: flex;
     flex-wrap: wrap;
-    align-items: start;
+    /* align-items: start; */
     justify-content: center;
     gap: 2rem;
+  }
+
+  .image-wrapper {
+    max-width: 500px;
+    align-self: start;
+    border-radius: 10px;
+    overflow: hidden;
+
+    @media (max-width: 768px) {
+      max-width: calc(100dvw - 2rem);
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
   }
 
   .stats-wrapper {
     padding: 1rem;
     outline: 1px solid var(--text-color-700);
+    align-self: center;
 
     h3,
     details:not(:last-child) {
