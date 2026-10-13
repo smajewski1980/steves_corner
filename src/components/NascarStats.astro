@@ -59,8 +59,8 @@ const countedTracksSorted = countedTracks.toSorted((a, b) => b[1] - a[1]);
 const countedSeriesSorted = countedSeries.toSorted((a, b) => b[1] - a[1]);
 ---
 
-<section class='stats-wrapper'>
-  <p>
+<section>
+  <p class='weatherWeRace'>
     I wanted to be able, with one click, to see the upcoming race weather in one
     place for all three series. So I threw together <a
       class='weather-link'
@@ -74,61 +74,148 @@ const countedSeriesSorted = countedSeries.toSorted((a, b) => b[1] - a[1]);
       /></span
     > to do just that.
   </p>
-  <h3>STATS:</h3>
-  <!-- turn these into details/summary elements -->
-  <!-- check and style the copy at the top of the page -->
-  <h4>Total Races Attended by series:</h4>
-  <p>
-    {
-      countedSeriesSorted.map((s) => (
-        <span>
-          {s[0]}: {s[1]}&nbsp;&nbsp; &nbsp;{" "}
-        </span>
-      ))
-    }
-  </p>
-  <h4>Total Races Attended by track(including all series):</h4>
-  <p>
-    {
-      countedTracksSorted.map((s) => (
-        <span>
-          {s[0]}: {s[1]}&nbsp;&nbsp; &nbsp;{" "}
-        </span>
-      ))
-    }
-  </p>
-  <h4>Total Races Attended by year(including all series):</h4>
-  <p>
-    {
-      countedYearsSorted.map((s) => (
-        <span>
-          {s[0]}: {s[1]}&nbsp;&nbsp; &nbsp;{" "}
-        </span>
-      ))
-    }
-  </p>
-  <h4>Total Races Attended by driver who won:</h4>
-  <p>
-    {
-      countedDriversSorted.map((s) => (
-        <span>
-          {s[0]}: {s[1]}&nbsp;&nbsp; &nbsp;{" "}
-        </span>
-      ))
-    }
-  </p>
+  <aside>
+    <div class='stats-wrapper form-shadow'>
+      <h3>STATS:</h3>
+
+      <details class='details-series-tally'>
+        <summary>Total Races Attended By Series</summary>
+        <p>
+          {
+            countedSeriesSorted.map((s) => (
+              <span class='series-tally'>
+                {s[0].split("-")[0].replace("xfinity", "o'Reilly")}: {s[1]}
+              </span>
+            ))
+          }
+        </p>
+      </details>
+
+      <details class='details-track-tally'>
+        <summary>Total Races Attended By Track (incl. all series)</summary>
+
+        <p>
+          {
+            countedTracksSorted.map((s) => (
+              <span class='track-tally'>
+                {s[0]}: {s[1]}
+              </span>
+            ))
+          }
+        </p>
+      </details>
+
+      <details class='details-year-tally'>
+        <summary>Total Races Attended By Year(incl. all series)</summary>
+        <p>
+          {
+            countedYearsSorted.map((s) => (
+              <span class='year-tally'>
+                {s[0]}: {s[1]}&nbsp;&nbsp; &nbsp;{" "}
+              </span>
+            ))
+          }
+        </p>
+      </details>
+
+      <details class='details-driver-tally'>
+        <summary>Total Races Attended By Winning Driver</summary>
+        <p>
+          {
+            countedDriversSorted.map((s) => (
+              <span>
+                {s[0].replaceAll("-", " ")}: {s[1]}
+              </span>
+            ))
+          }
+        </p>
+      </details>
+    </div>
+    <div>here will go another pic</div>
+  </aside>
 </section>
 
 <style>
-  .stats-wrapper {
+  /* for the details/summary i want to have the details open blank, delay an animation to slide in the text from the side */
+  section {
+    margin-inline: auto;
     padding-inline: 1rem;
-
-    p:first-child {
-      margin-block-end: 2rem;
-    }
   }
-  span {
-    display: inline-block;
+  /* get the checkered flag icon from weatherwerace.com for the details carats */
+  .weatherWeRace {
+    margin-block-end: 2rem;
+  }
+
+  aside {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: start;
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  .stats-wrapper {
+    padding: 1rem;
+    outline: 1px solid var(--text-color-700);
+
+    h3,
+    details:not(:last-child) {
+      margin-block-end: 1rem;
+    }
+
+    details {
+      max-width: fit-content;
+
+      @media (max-width: 768px) {
+        max-width: calc(100dvw - 4rem);
+      }
+    }
+
+    details p {
+      text-transform: capitalize;
+    }
+
+    details summary {
+      font-weight: 600;
+      margin-block-end: 0.25rem;
+    }
+
+    .details-series-tally p {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .details-track-tally p {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+
+      @media (min-width: 768px) {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .details-year-tally p {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 10ch), 1fr));
+      margin-block-start: 0.75rem;
+
+      @media (max-width: 768px) {
+        line-height: 1;
+      }
+    }
+
+    .details-driver-tally p {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      column-gap: 4rem;
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .track-tally {
+      white-space: nowrap;
+    }
   }
 
   span.icon-wrapper {
