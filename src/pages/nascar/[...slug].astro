@@ -45,7 +45,7 @@ const { Content } = await render(entry);
       src={entry.data.mainImage}
       alt={entry.data.mainImageAlt}
     />
-    <div class='contentWrapper'>
+    <div class='content-wrapper'>
       <Content />
     </div>
     <BackToTop />
@@ -91,10 +91,11 @@ const { Content } = await render(entry);
     height: auto;
     display: block;
     margin-inline: auto;
+  }
 
-    &:first-of-type {
-      margin-block-end: 3rem;
-    }
+  main:has(.content-wrapper > :first-child:is(img))
+    img:not(.content-wrapper img) {
+    margin-block-end: 3rem;
   }
 
   .tags-wrapper {
@@ -106,21 +107,16 @@ const { Content } = await render(entry);
       text-align: center;
     }
   }
-  .contentWrapper {
+  .content-wrapper {
     max-width: var(--max-width);
     margin-inline: auto;
     color: var(--text-color-700);
 
     p {
       text-align: center;
-      margin-block-end: 1rem;
       max-width: 60ch;
       margin-inline: auto;
-    }
-
-    p:has(+ img),
-    p:has(+ iframe) {
-      margin-block-end: 3rem;
+      margin-block: 0.5rem 2.5rem;
     }
 
     img {

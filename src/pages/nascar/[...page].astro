@@ -42,14 +42,16 @@ const currentPageRange = {
 
 <MainLayout>
   <section>
-    <h1>Nascar Page</h1>
+    <h1>Nascar Scrapbook</h1>
+
+    {page.currentPage === 1 && 
     <div class='nascar-hero-wrapper'>
       <!-- <SearchForm /> -->
       <div class='image-wrapper'>
         <Image
           src={dover50Flag}
           alt='A commemorative Dover 50 checkered flag with many driver signatures.'
-        />
+          />
       </div>
       <div class='text-wrapper'>
         <p>
@@ -71,6 +73,7 @@ const currentPageRange = {
         </p>
       </div>
     </div>
+        }
     <Pagination
       prevUrl={prevUrl}
       nextUrl={nextUrl}
@@ -115,6 +118,11 @@ const currentPageRange = {
 
       .text-wrapper {
         flex-basis: 55ch;
+
+        p {
+
+          margin-block-end: 0.5lh;
+        }
       }
 
       .image-wrapper {
@@ -128,10 +136,6 @@ const currentPageRange = {
           height: auto;
         }
       }
-    }
-
-    p {
-      margin-block-end: 0.5lh;
     }
   }
 

@@ -27,6 +27,7 @@
   aspect-ratio: 16 / 9;
   margin-inline: auto;
   display: block;
+  margin-block-end: 0.5rem;
 }
 
 .card-shadow {
