@@ -111,7 +111,7 @@ const countedSeriesSorted = countedSeries.toSorted((a, b) => b[1] - a[1]);
       </details>
 
       <details class='details-year-tally'>
-        <summary>Total Races Attended By Year(incl. all series)</summary>
+        <summary>Total Races Attended By Year (incl. all series)</summary>
         <div class='expander'>
           <p>
             {
@@ -158,6 +158,7 @@ const countedSeriesSorted = countedSeries.toSorted((a, b) => b[1] - a[1]);
   const trackPara = trackDetails?.querySelector("p");
   const yearPara = yearDetails?.querySelector("p");
   const driverPara = driverDetails?.querySelector("p");
+  const heading = document.querySelector(".stats-wrapper h3");
 
   const statElems = [
     [seriesDetails, seriesPara],
@@ -171,21 +172,23 @@ const countedSeriesSorted = countedSeries.toSorted((a, b) => b[1] - a[1]);
     const pElem = elems[1] as HTMLElement;
     const summary = details?.querySelector("summary");
     const expander = details?.querySelector(".expander");
+    const ANIMATION_DELAY = 200;
 
     summary?.addEventListener("click", (e) => {
       e.preventDefault();
 
       if (!details.open) {
         details.open = true;
+        details.classList.add("open");
 
         requestAnimationFrame(() => {
-          pElem?.classList.remove("slide-out");
           expander?.classList.add("expanded");
           pElem?.classList.add("slide-in");
         });
       } else {
         pElem?.classList.add("slide-out");
         pElem?.classList.remove("slide-in");
+        details.classList.remove("open");
 
         setTimeout(() => {
           expander?.classList.remove("expanded");
@@ -193,11 +196,30 @@ const countedSeriesSorted = countedSeries.toSorted((a, b) => b[1] - a[1]);
           setTimeout(() => {
             details.open = false;
             pElem?.classList.remove("slide-out");
-          }, 300);
-        }, 300);
+          }, ANIMATION_DELAY);
+        }, ANIMATION_DELAY);
       }
     });
   });
+
+  // I wanted this for me, easter egg if anyone finds it
+  // double click the word stats to open them all
+  const handleOpenAllDetails = () => {
+    statElems.forEach((el) => {
+      const details = el[0] as HTMLDetailsElement;
+      const expander = details?.querySelector(".expander");
+
+      details.open = true;
+      details.classList.add("open");
+
+      requestAnimationFrame(() => {
+        expander?.classList.add("expanded");
+        el[1]?.classList.add("slide-in");
+      });
+    });
+  };
+
+  heading?.addEventListener("dblclick", handleOpenAllDetails);
 </script>
 
 <style>
@@ -245,12 +267,28 @@ const countedSeriesSorted = countedSeries.toSorted((a, b) => b[1] - a[1]);
     }
 
     details {
+      --animation-duration: 0.35s;
+      --animation-delay: 0.2s;
+      --springy-timing: linear(
+        0,
+        0.327 8.8%,
+        0.59 18.1%,
+        0.788 27.9%,
+        0.864 33%,
+        0.925 38.3%,
+        1 48.4%,
+        1.022 53.8%,
+        1.034 59.7%,
+        1.035 70%,
+        1
+      );
       max-width: fit-content;
+      cursor: pointer;
 
       summary {
         font-weight: 600;
-        margin-block-end: 0.25rem;
         list-style-type: none;
+        margin-block-end: 0.25rem;
       }
 
       summary::before {
@@ -276,7 +314,7 @@ const countedSeriesSorted = countedSeries.toSorted((a, b) => b[1] - a[1]);
       }
     }
 
-    details[open] summary::before {
+    details.open summary::before {
       transform: rotate(45deg);
     }
 
@@ -292,7 +330,6 @@ const countedSeriesSorted = countedSeries.toSorted((a, b) => b[1] - a[1]);
 
     .details-series-tally p {
       --start-x: -25rem;
-      --start-blur: 2px;
 
       display: flex;
       justify-content: space-between;
@@ -302,7 +339,6 @@ const countedSeriesSorted = countedSeries.toSorted((a, b) => b[1] - a[1]);
 
     .details-track-tally p {
       --start-x: 35rem;
-      --start-blur: 2px;
 
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -316,11 +352,9 @@ const countedSeriesSorted = countedSeries.toSorted((a, b) => b[1] - a[1]);
 
     .details-year-tally p {
       --start-x: -30rem;
-      --start-blur: 2px;
 
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(min(100%, 10ch), 1fr));
-      margin-block-start: 0.75rem;
       transform: translateX(var(--start-x));
       filter: blur(var(--start-blur));
 
@@ -331,7 +365,6 @@ const countedSeriesSorted = countedSeries.toSorted((a, b) => b[1] - a[1]);
 
     .details-driver-tally p {
       --start-x: 35rem;
-      --start-blur: 2px;
 
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -347,12 +380,12 @@ const countedSeriesSorted = countedSeries.toSorted((a, b) => b[1] - a[1]);
     .expander {
       display: grid;
       grid-template-rows: 0fr;
-      /* overflow: hidden; */
-      transition: grid-template-rows 0.3s ease;
+      transition: grid-template-rows 0.3s var(--springy-timing);
     }
 
     .expander.expanded {
       grid-template-rows: 1fr;
+      margin-block-start: 0.5rem;
     }
 
     .expander p {
@@ -374,11 +407,12 @@ const countedSeriesSorted = countedSeries.toSorted((a, b) => b[1] - a[1]);
   }
 
   .stats-wrapper details p.slide-in {
-    animation: slide-in 0.3s 0.3s ease-out forwards;
+    animation: slide-in var(--animation-duration) var(--animation-delay)
+      var(--springy-timing) forwards;
   }
 
   .stats-wrapper details p.slide-out {
-    animation: slide-out 0.3s ease-out forwards;
+    animation: slide-out var(--animation-duration) ease-out forwards;
   }
 
   @keyframes slide-in {

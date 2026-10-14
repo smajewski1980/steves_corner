@@ -14,6 +14,7 @@
   --other: hsla(200deg, 70%, 60%, 0.3);
   --footer-header-bg: hsl(from var(--primary-purple) h s calc(l + 17));
   --shadow-offset: 3px;
+  --start-blur: 1px;
 }
 
 @font-face {
