@@ -25,6 +25,8 @@ interface Props {
       </p>
     ) : (
       `Page ${currentPage} of ${lastPage ? lastPage.toString() : "1"}`
+      // this is not right in the category/[page], i think its because there is no lastPage
+      //  also the tags/[page]
     )
   }
   <a href={nextUrl}> Next </a>

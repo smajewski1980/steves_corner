@@ -82,55 +82,62 @@ const countedSeriesSorted = countedSeries.toSorted((a, b) => b[1] - a[1]);
 
       <details class='details-series-tally'>
         <summary>Total Races Attended By Series</summary>
-        <p>
-          {
-            countedSeriesSorted.map((s) => (
-              <span class='series-tally'>
-                {s[0].split("-")[0].replace("xfinity", "o'Reilly")}: {s[1]}
-              </span>
-            ))
-          }
-        </p>
+        <div class='expander'>
+          <p>
+            {
+              countedSeriesSorted.map((s) => (
+                <span class='series-tally'>
+                  {s[0].split("-")[0].replace("xfinity", "o'Reilly")}: {s[1]}
+                </span>
+              ))
+            }
+          </p>
+        </div>
       </details>
 
       <details class='details-track-tally'>
         <summary>Total Races Attended By Track (incl. all series)</summary>
-
-        <p>
-          {
-            countedTracksSorted.map((s) => (
-              <span class='track-tally'>
-                {s[0]}: {s[1]}
-              </span>
-            ))
-          }
-        </p>
+        <div class='expander'>
+          <p>
+            {
+              countedTracksSorted.map((s) => (
+                <span class='track-tally'>
+                  {s[0]}: {s[1]}
+                </span>
+              ))
+            }
+          </p>
+        </div>
       </details>
 
       <details class='details-year-tally'>
         <summary>Total Races Attended By Year(incl. all series)</summary>
-        <p>
-          {
-            countedYearsSorted.map((s) => (
-              <span class='year-tally'>
-                {s[0]}: {s[1]}&nbsp;&nbsp; &nbsp;{" "}
-              </span>
-            ))
-          }
-        </p>
+        <div class='expander'>
+          <p>
+            {
+              countedYearsSorted.map((s) => (
+                <span class='year-tally'>
+                  {s[0]}: {s[1]}&nbsp;&nbsp; &nbsp;{" "}
+                </span>
+              ))
+            }
+          </p>
+        </div>
       </details>
 
       <details class='details-driver-tally'>
         <summary>Total Races Attended By Winning Driver</summary>
-        <p>
-          {
-            countedDriversSorted.map((s) => (
-              <span>
-                {s[0].replaceAll("-", " ")}: {s[1]}
-              </span>
-            ))
-          }
-        </p>
+        <div class='expander'>
+          <p>
+            {
+              countedDriversSorted.map((s) => (
+                <span>
+                  {s[0].replaceAll("-", " ")}: {s[1]}
+                </span>
+              ))
+            }
+          </p>
+        </div>
       </details>
     </div>
     <div class='image-wrapper'>
@@ -160,11 +167,34 @@ const countedSeriesSorted = countedSeries.toSorted((a, b) => b[1] - a[1]);
   ];
 
   statElems.forEach((elems) => {
-    elems[0]?.addEventListener("toggle", (e) => {
-      const target = e.target as HTMLDetailsElement;
+    const details = elems[0] as HTMLDetailsElement;
+    const pElem = elems[1] as HTMLElement;
+    const summary = details?.querySelector("summary");
+    const expander = details?.querySelector(".expander");
 
-      if (target.open) {
-        elems[1]?.classList.add("slide-in");
+    summary?.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      if (!details.open) {
+        details.open = true;
+
+        requestAnimationFrame(() => {
+          pElem?.classList.remove("slide-out");
+          expander?.classList.add("expanded");
+          pElem?.classList.add("slide-in");
+        });
+      } else {
+        pElem?.classList.add("slide-out");
+        pElem?.classList.remove("slide-in");
+
+        setTimeout(() => {
+          expander?.classList.remove("expanded");
+
+          setTimeout(() => {
+            details.open = false;
+            pElem?.classList.remove("slide-out");
+          }, 300);
+        }, 300);
       }
     });
   });
@@ -175,7 +205,7 @@ const countedSeriesSorted = countedSeries.toSorted((a, b) => b[1] - a[1]);
     margin-inline: auto;
     padding-inline: 1rem;
   }
-  /* get the checkered flag icon from weatherwerace.com for the details carats */
+
   .weatherWeRace {
     margin-block-end: 2rem;
   }
@@ -253,19 +283,31 @@ const countedSeriesSorted = countedSeries.toSorted((a, b) => b[1] - a[1]);
     details p {
       text-transform: capitalize;
     }
+    @media (min-width: 768px) {
+      details p {
+        transform: translateX(1.5rem);
+        filter: blur(0);
+      }
+    }
 
     .details-series-tally p {
+      --start-x: -25rem;
+      --start-blur: 2px;
+
       display: flex;
       justify-content: space-between;
-      transform: translateX(-25rem);
-      filter: blur(2px);
+      transform: translateX(var(--start-x));
+      filter: blur(var(--start-blur));
     }
 
     .details-track-tally p {
+      --start-x: 35rem;
+      --start-blur: 2px;
+
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      transform: translateX(30rem);
-      filter: blur(2px);
+      transform: translateX(var(--start-x));
+      filter: blur(var(--start-blur));
 
       @media (min-width: 768px) {
         grid-template-columns: repeat(3, 1fr);
@@ -273,11 +315,14 @@ const countedSeriesSorted = countedSeries.toSorted((a, b) => b[1] - a[1]);
     }
 
     .details-year-tally p {
+      --start-x: -30rem;
+      --start-blur: 2px;
+
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(min(100%, 10ch), 1fr));
       margin-block-start: 0.75rem;
-      transform: translateX(-25rem);
-      filter: blur(2px);
+      transform: translateX(var(--start-x));
+      filter: blur(var(--start-blur));
 
       @media (max-width: 768px) {
         line-height: 1;
@@ -285,15 +330,33 @@ const countedSeriesSorted = countedSeries.toSorted((a, b) => b[1] - a[1]);
     }
 
     .details-driver-tally p {
+      --start-x: 35rem;
+      --start-blur: 2px;
+
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       column-gap: 4rem;
-      transform: translateX(30rem);
-      filter: blur(2px);
+      transform: translateX(var(--start-x));
+      filter: blur(var(--start-blur));
 
       @media (max-width: 768px) {
         grid-template-columns: 1fr;
       }
+    }
+
+    .expander {
+      display: grid;
+      grid-template-rows: 0fr;
+      /* overflow: hidden; */
+      transition: grid-template-rows 0.3s ease;
+    }
+
+    .expander.expanded {
+      grid-template-rows: 1fr;
+    }
+
+    .expander p {
+      min-height: 0;
     }
 
     .track-tally {
@@ -310,22 +373,60 @@ const countedSeriesSorted = countedSeries.toSorted((a, b) => b[1] - a[1]);
     font-style: italic;
   }
 
-  .slide-in {
-    animation: slide-in 0.3s 0.1s ease-out forwards;
+  .stats-wrapper details p.slide-in {
+    animation: slide-in 0.3s 0.3s ease-out forwards;
+  }
+
+  .stats-wrapper details p.slide-out {
+    animation: slide-out 0.3s ease-out forwards;
   }
 
   @keyframes slide-in {
+    from {
+      transform: translateX(var(--start-x));
+      filter: blur(var(--start-blur));
+    }
+
     to {
       transform: translateX(0);
       filter: blur(0);
     }
   }
 
+  @keyframes slide-out {
+    from {
+      transform: translateX(0);
+      filter: blur(0);
+    }
+
+    to {
+      transform: translateX(var(--start-x));
+      filter: blur(var(--start-blur));
+    }
+  }
+
   @media (min-width: 768px) {
     @keyframes slide-in {
+      from {
+        transform: translateX(var(--start-x));
+        filter: blur(var(--start-blur));
+      }
+
       to {
-        transform: translateX(1rem);
+        transform: translateX(1.5rem);
         filter: blur(0);
+      }
+    }
+
+    @keyframes slide-out {
+      from {
+        transform: translateX(1.5rem);
+        filter: blur(0);
+      }
+
+      to {
+        transform: translateX(var(--start-x));
+        filter: blur(var(--start-blur));
       }
     }
   }
