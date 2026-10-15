@@ -93,13 +93,6 @@ const { Content } = await render(entry);
     margin-inline: auto;
   }
 
-  main:has(.content-wrapper > :first-child:is(img))
-    img:not(.content-wrapper img) {
-    margin-block-end: 3rem;
-  }
-
-  /* 5-4-2019 has an iframe first */
-
   .tags-wrapper {
     display: grid;
     justify-content: center;
@@ -151,5 +144,25 @@ const { Content } = await render(entry);
       font-size: 2rem;
       text-align: center;
     }
+  }
+
+  /* edge case styles */
+  /* if a post starts with an img under the cover image */
+  main:has(.content-wrapper > :first-child:is(img))
+    img:not(.content-wrapper img) {
+    margin-block-end: 3rem;
+  }
+  /* if a post starts with an iframe under the cover img, this hits cover img */
+  main:has(.content-wrapper > :first-child:is(iframe))
+    img:not(.content-wrapper img) {
+    margin-block-end: 3rem;
+  }
+  /* in the post if an img is followed by another img */
+  .content-wrapper :global(img:has(+ img)) {
+    margin-block-end: 3rem;
+  }
+  /* in the post if an image is followed by an iframe */
+  .content-wrapper :global(img:has(+ iframe)) {
+    margin-block-end: 3rem;
   }
 </style>
