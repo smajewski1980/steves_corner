@@ -70,15 +70,28 @@ if (!category) {
     <!-- <SearchForm /> -->
     <CategoryNav />
 
+    {page.lastPage > 1 && (
+      <Pagination
+        prevUrl={prevUrl}
+        currentPageRange={undefined}
+        currentPage={page.currentPage}
+        nextUrl={nextUrl}
+        lastPage={page.lastPage}
+      />
+    )}
+
     <div class='card-wrapper'>
       {page.data.map((article: any) => <ArticleCard article={article} />)}
     </div>
+   {page.lastPage > 1 && (
     <Pagination
       prevUrl={prevUrl}
       currentPageRange={undefined}
       currentPage={page.currentPage}
       nextUrl={nextUrl}
+      lastPage={page.lastPage}
     />
+    )}
     <BackButton />
     <BackToTop />
   </section>

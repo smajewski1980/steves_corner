@@ -78,6 +78,18 @@ const headingText = activeCollection === "music" ? "Music " : "Nascar ";
       )
     }
 
+    {
+      page.lastPage > 1 && (
+        <Pagination
+          prevUrl={prevUrl}
+          currentPageRange={undefined}
+          currentPage={page.currentPage}
+          nextUrl={nextUrl}
+          lastPage={page.lastPage}
+        />
+      )
+    }
+
     <div class='card-wrapper'>
       {
         page.data.map((post: any) => {
@@ -89,12 +101,17 @@ const headingText = activeCollection === "music" ? "Music " : "Nascar ";
         })
       }
     </div>
-    <Pagination
-      prevUrl={prevUrl}
-      currentPageRange={undefined}
-      currentPage={page.currentPage}
-      nextUrl={nextUrl}
-    />
+    {
+      page.lastPage > 1 && (
+        <Pagination
+          prevUrl={prevUrl}
+          currentPageRange={undefined}
+          currentPage={page.currentPage}
+          nextUrl={nextUrl}
+          lastPage={page.lastPage}
+        />
+      )
+    }
     <BackButton />
     <BackToTop />
   </section>
@@ -140,6 +157,6 @@ const headingText = activeCollection === "music" ? "Music " : "Nascar ";
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 275px), 1fr));
     gap: 2rem 1rem;
-    margin-block-end: 4rem;
+    margin-block: 2rem 4rem;
   }
 </style>
