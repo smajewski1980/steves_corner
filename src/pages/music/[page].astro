@@ -12,6 +12,7 @@ import Pagination from "../../components/Pagination.astro";
 import ExternalLinkIcon from "/public/external-link-svg.svg";
 import MusicTags from "../../components/MusicTags.astro";
 import BackToTop from "../../components/BackToTop.astro";
+import HeritageAuctionAttribution from "../../components/HeritageAuctionAttribution.astro";
 
 export const getStaticPaths = (async ({ paginate }) => {
   const allMusicArticles: CollectionEntry<"music">[] = (
@@ -62,13 +63,20 @@ const lastPage = page.lastPage;
           also have more magnetic tape than rapunzel had hair.
         </p>
         <p>
-          Most of what I have is crap. Just stuff to listen to or have because
-          of what was on it, the content. But, out of seas of crap, I have some
-          cool shit too. Some, also because of what it is, not just what is on it.
+          Most of what I have is crap, just stuff to listen to or have because
+          of what is on it, the content. But, out of the seas of crap, I have some
+          cool shit too. Some items I have because of what it is, not necessarily for the content.
         </p>
         <p>
-          This page is about showcasing some of the more interesting and cooler
-          items that I have in my collection.
+          This page is about showcasing some of the more interesting items that I have in my collection. I have bought some items from &nbsp;
+          <a
+            href='https://www.ha.com'
+            target='_blank'
+          >Heritage Auctions</a>
+                      <ExternalLinkIcon
+              width='16px'
+              height='16px'
+            />, and they allow you without asking to use one picture from each listing. I could never take images of these items at the quality that they can, I try to use theirs when I can throughout.
         </p>
       </div>
       <RandomMusicItem />
