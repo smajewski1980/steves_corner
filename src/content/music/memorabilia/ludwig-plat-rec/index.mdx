@@ -1,5 +1,5 @@
 ---
-title: "RIAA Platinum Sales Award - R.E.M.'s Document"
+title: "R.E.M.'s Document RIAA Platinum Sales Award"
 artist: "R.E.M."
 category: "memorabilia"
 tags: ["1980s", "R.E.M."]
@@ -9,4 +9,25 @@ dateAdded: 2026-08-19
 imageAttribution: "Imaged by Heritage Auctions, HA.com"
 ---
 
-{frontmatter.imageAttribution}
+import { Image } from "astro:assets";
+import withCert from "./ludwig-riaa-document-w-cert.webp";
+import ExtLinkIcon from "./../../../../../public/external-link-svg.svg";
+
+<p id='ha-attribution'>
+  <a
+    href='https://www.ha.com'
+    target='_blank'
+  >
+    {frontmatter.imageAttribution}
+  </a>
+  <ExtLinkIcon />
+</p>
+
+When I got this, I opened it up to see it, hold it and drool around it, not on it. It then got packed back up safely where it has been since. Once we get a house and I set up a music room, wherever the R.E.M. "section" will be, this will be on the wall as the main attraction...
+
+I didn't want to take it back out and unwrap it for a picture for this page, plus I never would have got close to the quality of the Heritage pic. So just to prove I'm not nuts and do actually have it, lol...
+
+<Image
+  src={withCert}
+  alt='My bad quality pic of it with the certificate of authenticity next to it.'
+/>
