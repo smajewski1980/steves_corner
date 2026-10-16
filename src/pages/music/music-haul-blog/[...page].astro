@@ -62,16 +62,33 @@ const nextUrl = page.url.next;
       </p>
     </div>
 
+    {
+      page.lastPage > 1 && (
+        <Pagination
+          prevUrl={prevUrl}
+          currentPageRange={undefined}
+          currentPage={page.currentPage}
+          nextUrl={nextUrl}
+          lastPage={page.lastPage}
+        />
+      )
+    }
+
     <div class='posts-wrapper'>
       {page.data.map((post) => <MusicHaulCard post={post} />)}
     </div>
 
-    <Pagination
-      prevUrl={prevUrl}
-      currentPageRange={undefined}
-      currentPage={page.currentPage}
-      nextUrl={nextUrl}
-    />
+    {
+      page.lastPage > 1 && (
+        <Pagination
+          prevUrl={prevUrl}
+          currentPageRange={undefined}
+          currentPage={page.currentPage}
+          nextUrl={nextUrl}
+          lastPage={page.lastPage}
+        />
+      )
+    }
   </section>
 </MainLayout>
 
