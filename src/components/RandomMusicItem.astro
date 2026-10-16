@@ -68,7 +68,11 @@
     overflow: hidden;
     box-shadow: calc(var(--shadow-offset) * -1) var(--shadow-offset)
       var(--text-color-700);
-    max-width: 50%;
+    max-width: 17rem;
+
+    @media (min-width: 768px) {
+      max-width: 20rem;
+    }
 
     &:hover {
       opacity: 0.7;
