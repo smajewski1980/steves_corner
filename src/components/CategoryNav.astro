@@ -12,8 +12,10 @@ const cleanedUpCategories: string[] = MUSIC_COLLECTION_CATEGORIES.map((c) =>
     {
       cleanedUpCategories.map((c, idx) => (
         <li>
-          -&nbsp;
-          <a href={`/music/category/${MUSIC_COLLECTION_CATEGORIES[idx]}`}>
+          <a
+            href={`/music/category/${MUSIC_COLLECTION_CATEGORIES[idx]}`}
+            class='form-shadow'
+          >
             {c}
           </a>
         </li>
@@ -23,11 +25,18 @@ const cleanedUpCategories: string[] = MUSIC_COLLECTION_CATEGORIES.map((c) =>
 </nav>
 
 <p class='music-haul-blog-link'>
-  <a href='/music/music-haul-blog'>CLICK HERE</a> to go to my weekly music haul blog
-  page.
+  <a
+    href='/music/music-haul-blog'
+    class='form-shadow'
+    >WEEKLY MUSIC HAUL BLOG PAGE</a
+  >
 </p>
 <p class='target-cds-page-link'>
-  <a href='/music/target-cds'>CLICK HERE</a> to go to my WEA target cds page.
+  <a
+    href='/music/target-cds'
+    class='form-shadow'
+    >WEA TARGET CDS PAGE</a
+  >
 </p>
 
 <style>
@@ -59,19 +68,42 @@ const cleanedUpCategories: string[] = MUSIC_COLLECTION_CATEGORIES.map((c) =>
   li {
     text-transform: capitalize;
     word-spacing: -0.5ch;
+
+    &:hover,
+    &:focus-visible {
+      a {
+        box-shadow: none;
+      }
+      transform: translate(-2px, 2px);
+    }
+  }
+
+  p,
+  li {
+    margin-block: 1rem;
+    display: inline-block;
+    width: fit-content;
+
+    a {
+      border-radius: 5px;
+      outline: 1px solid var(--text-color-700);
+      padding: 0.5rem;
+      text-decoration: none;
+    }
+  }
+
+  .music-haul-blog-link {
+    margin-inline-end: 2rem;
   }
 
   .music-haul-blog-link,
   .target-cds-page-link {
-    margin-block-end: 0.5rem;
-    display: block;
-
-    a {
-      font-weight: 700;
-      display: inline-block;
+    &:hover,
+    &:focus-visible {
+      a {
+        box-shadow: none;
+      }
+      transform: translate(-2px, 2px);
     }
-  }
-  .target-cds-page-link {
-    margin-block-end: 2rem;
   }
 </style>
