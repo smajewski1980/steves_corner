@@ -124,17 +124,19 @@ const { src, alt, lightboxId } = Astro.props;
 
     &::backdrop {
       background-color: hsl(from var(--text-color-700) h s calc(l - 20) / 0.6);
+      /* closedby="any" wasnt working on my ipad, this may help */
+      pointer-events: none;
     }
 
     button {
       position: absolute;
-      top: 1rem;
-      right: 1rem;
-      padding-block-start: 0.25rem;
+      top: 1.5rem;
+      right: 1.5rem;
+      padding: 0.75rem;
+      padding-block-start: 1rem;
       background-color: var(--text-color-100);
       border: none;
       border-radius: 5px;
-      scale: 0.7;
     }
   }
 
