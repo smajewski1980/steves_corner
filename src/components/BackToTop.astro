@@ -5,7 +5,7 @@
 <button
   id='back-to-top'
   aria-label='Back to top'
-  class='back-to-top'
+  class='back-to-top form-shadow'
 >
   <svg
     xmlns='http://w3.org'
@@ -32,21 +32,24 @@
     padding: 0.5rem;
     border: none;
     border-radius: 10px;
-    background-color: var(--text-color-700);
-    color: var(--text-color-100);
+    background-color: var(--footer-header-bg);
+    color: var(--text-color-700);
+    outline: 1px solid var(--text-color-700);
     cursor: pointer;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     opacity: 0;
     visibility: hidden;
     transition:
       background-color 0.3s ease,
       color 0.3s ease,
       opacity 0.3s ease,
-      visibility 0.3s ease;
+      visibility 0.3s ease,
+      box-shadow 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+      transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
-    &:hover {
-      background-color: var(--text-color-100);
-      color: var(--text-color-700);
+    &:hover,
+    &:focus-visible {
+      box-shadow: none;
+      transform: translate(-2px, 2px);
     }
   }
   .back-to-top.show {

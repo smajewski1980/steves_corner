@@ -17,7 +17,12 @@ interface Props {
 ---
 
 <div class='pagination-wrapper'>
-  <a href={prevUrl}> Previous </a>
+  <a
+    href={prevUrl}
+    class='form-shadow pag-link'
+  >
+    Previous
+  </a>
   {
     currentPageRange ? (
       <p>
@@ -27,7 +32,12 @@ interface Props {
       `Page ${currentPage} of ${lastPage ? lastPage.toString() : "1"}`
     )
   }
-  <a href={nextUrl}> Next </a>
+  <a
+    href={nextUrl}
+    class='form-shadow pag-link'
+  >
+    Next
+  </a>
 </div>
 
 <style>
@@ -39,23 +49,31 @@ interface Props {
     flex-direction: column;
     gap: 1rem;
 
-    @media (min-width: 768px) {
+    @media (min-width: 500px) {
       flex-direction: row;
       gap: 0;
     }
 
-    a {
-      color: var(--text-color-100);
-      background-color: var(--text-color-700);
+    a.pag-link {
+      color: var(--text-color-700);
+      background-color: var(--footer-header-bg);
       border-radius: 10px;
       text-align: center;
       padding: 1rem 0.75rem;
       min-width: 125px;
+      width: calc(100% - 2rem);
       text-decoration: none;
+      outline: 1px solid var(--text-color-700);
+      transition: all 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
-      @media (min-width: 768px) {
+      &:hover,
+      &:focus-visible {
+        box-shadow: none;
+        transform: translate(-2px, 2px);
+      }
+
+      @media (min-width: 500px) {
         width: fit-content;
-        min-width: 76px;
         padding: 0.75rem;
       }
     }

@@ -3,7 +3,7 @@
 ---
 
 <button
-  class='back-link'
+  class='back-link form-shadow'
   id='back-button'
   >Back</button
 >
@@ -35,3 +35,23 @@
 
   setupBackButton();
 </script>
+
+<style>
+  .back-link {
+    background-color: var(--footer-header-bg);
+    outline: 1px solid currentColor;
+    border-radius: 10px;
+    color: var(--text-color-700);
+    cursor: pointer;
+    font: inherit;
+    outline: 1px solid var(--text-color-700);
+    padding: 0.75rem 1.5rem;
+    transition: all 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    &:hover,
+    &:focus-visible {
+      box-shadow: none;
+      transform: translate(-2px, 2px);
+    }
+  }
+</style>
