@@ -54,6 +54,9 @@ const lastPage = page.lastPage;
       }
     </p>
 
+    {page.currentPage === 1 && (
+
+    
     <div class='music-hero-wrapper'>
       <div class='text-wrapper'>
         <p>
@@ -81,7 +84,7 @@ const lastPage = page.lastPage;
       </div>
       <RandomMusicItem />
     </div>
-  
+  )}
     <CategoryNav />    
 
     <Pagination
@@ -110,6 +113,12 @@ const lastPage = page.lastPage;
 </MainLayout>
 
 <style>
+
+  @media (max-width: 768px) {
+    body {
+      padding-block-start: 5rem;
+    }
+  }
   section {
     margin-inline: auto;
     max-width: var(--max-width);
