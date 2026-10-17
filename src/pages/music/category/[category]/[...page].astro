@@ -23,7 +23,7 @@ export const getStaticPaths = (async ({ paginate }: GetStaticPathsOptions) => {
 
   return MUSIC_COLLECTION_CATEGORIES.flatMap((category) => {
     const filteredContent: CollectionEntry<"music">[] = allMusicArticles.filter(
-      (entry: any) => entry.data.category === category,
+      (entry: CollectionEntry<"music">) => entry.data.category === category,
     ).sort((a, b) => a.data.title.localeCompare(b.data.title));
 
     return paginate(filteredContent, {
@@ -81,7 +81,7 @@ if (!category) {
     )}
 
     <div class='card-wrapper'>
-      {page.data.map((article: any) => <ArticleCard article={article} />)}
+      {page.data.map((article: CollectionEntry<"music">) => <ArticleCard article={article} />)}
     </div>
    {page.lastPage > 1 && (
     <Pagination

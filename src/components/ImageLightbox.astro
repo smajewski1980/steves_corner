@@ -43,7 +43,7 @@ const { src, alt, lightboxId } = Astro.props;
 <!-- for browser support -->
 <script>
   // Check if the browser natively supports invoker commands
-  if (!HTMLButtonElement.prototype.hasOwnProperty("commandFor")) {
+  if (!Object.hasOwn(HTMLButtonElement.prototype, "commandfor")) {
     // Add a global listener for click events
     document.addEventListener("click", (event) => {
       const eventTarget = (event.target as Element) || null;

@@ -10,6 +10,8 @@ import BackButton from "../../../components/BackButton.astro";
 import Pagination from "../../../components/Pagination.astro";
 import BackToTop from "../../../components/BackToTop.astro";
 
+type SharedContentEntry = CollectionEntry<"music"> | CollectionEntry<"nascar">;
+
 interface Props {
   page: Page<CollectionEntry<"music">>;
 }
@@ -35,7 +37,7 @@ export const getStaticPaths = async ({
 
   // 3. Map over the unique tags to return the path objects
   return uniqueTags.flatMap((tag) => {
-    const filteredContent = allContent.filter((entry: any) =>
+    const filteredContent = allContent.filter((entry) =>
       entry.data.tags?.includes(tag === "rem" ? "R.E.M." : tag),
     );
 
@@ -92,7 +94,7 @@ const headingText = activeCollection === "music" ? "Music " : "Nascar ";
 
     <div class='card-wrapper'>
       {
-        page.data.map((post: any) => {
+        page.data.map((post: SharedContentEntry) => {
           if (post.collection === "music") {
             return <ArticleCard article={post} />;
           } else if (post.collection === "nascar") {
