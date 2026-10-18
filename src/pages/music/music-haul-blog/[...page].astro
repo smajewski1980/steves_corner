@@ -7,6 +7,8 @@ import Pagination from "../../../components/Pagination.astro";
 import { MUSIC_HAUL_BLOG_POSTS_PER_PAGE } from "../../../constants";
 import BackButton from "../../../components/BackButton.astro";
 import MusicHaulCard from "../../../components/MusicHaulCard.astro";
+import { Image } from "astro:assets";
+import thriftingSteve from "../../../images/thrifting-steve.webp";
 
 export const getStaticPaths = (async ({ paginate }) => {
   const allMusicHaulPosts: CollectionEntry<"musicHaulBlog">[] = (
@@ -33,33 +35,42 @@ const nextUrl = page.url.next;
 
     <h1>Music Haul Blog</h1>
 
-    <div class='hero-text'>
-      <p>
-        Between thrift stores, estate sales and the local music shops, I don't
-        have to spend much money to get quite a bit of stuff to listen to. Most
-        of the time it's stereotypical dollar bin crap, but once in a while
-        persistence pays off. I have also learned when we go on vacation to
-        bring a crate or two with us, I always seem to find some music at a flea
-        market or antique store.
-      </p>
+    <div class='hero'>
+      <div class='hero-text'>
+        <p>
+          Between thrift stores, estate sales and the local music shops, I don't
+          have to spend much money to get quite a bit of stuff to listen to.
+          Most of the time it's stereotypical dollar bin crap, but once in a
+          while persistence pays off. I have also learned when we go on vacation
+          to bring a crate or two with us, I always seem to find some music at a
+          flea market or antique store.
+        </p>
 
-      <p>
-        I tend to bring home at least one haul a week, a little less during the
-        first half of the year(work is busier). I am going to start this blog as
-        kind of a journal of the stuff I am bringing home and of what I am
-        listening to. Most of what I listen to at home is not played again, it
-        gets filed and cataloged into the collection after I listen to it.
-      </p>
+        <p>
+          I tend to bring home at least one haul a week, a little less during
+          the first half of the year(work is busier). I am going to start this
+          blog as kind of a journal of the stuff I am bringing home and of what
+          I am listening to. Most of what I listen to at home is not played
+          again, it gets filed and cataloged into the collection after I listen
+          to it.
+        </p>
 
-      <p>
-        About 75% of my home music listening is with records, the rest CDs. Once
-        in a while, I bust out the reel to reel player. I used to have a record
-        player on my desk at work, now I have 2 cd players. One is a Sony single
-        disc and the other is a Technics 5-disc CD changer (which are both
-        documented on my music collection page in the equipment category). I
-        also have all my CDs ripped and on a hard drive so I can listen to them
-        at work too.
-      </p>
+        <p>
+          About 75% of my home music listening is with records, the rest CDs.
+          Once in a while, I bust out the reel to reel player. I used to have a
+          record player on my desk at work, now I have 2 cd players. One is a
+          Sony single disc and the other is a Technics 5-disc CD changer (which
+          are both documented on my music collection page in the equipment
+          category). I also have all my CDs ripped and on a hard drive so I can
+          listen to them at work too.
+        </p>
+      </div>
+      <div class='image-wrapper'>
+        <Image
+          src={thriftingSteve}
+          alt='a decorative image of thrifting Steve'
+        />
+      </div>
     </div>
 
     {
@@ -97,6 +108,39 @@ const nextUrl = page.url.next;
     margin-inline: auto;
     padding-inline: 1rem;
   }
+
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    gap: 3rem;
+
+    > * {
+      flex-basis: 50%;
+    }
+
+    @media (min-width: 1000px) {
+      flex-direction: row;
+    }
+
+    .image-wrapper {
+      /* max-width: 50%; */
+      flex: 1;
+      display: grid;
+      place-items: center;
+
+      img {
+        max-width: 50%;
+        height: auto;
+
+        @media (max-width: 768px) {
+          max-width: 75%;
+        }
+      }
+    }
+  }
+
   .posts-wrapper {
     /* i tried dividing by 2, but it wrapped too early, so dividing by 3 and 
     not counting the gap makes two columns that wrap at a nice point */
@@ -114,6 +158,10 @@ const nextUrl = page.url.next;
 
   h1 {
     margin-block: 2rem;
+  }
+
+  .hero-text {
+    margin-inline: auto;
   }
   p {
     margin-block-end: 1rem;
