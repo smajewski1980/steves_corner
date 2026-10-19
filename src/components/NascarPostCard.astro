@@ -13,7 +13,7 @@ interface Props {
 
 <div class='nascar-card-wrapper card-shadow'>
   <div class='nascar-card-inner-wrapper'>
-    <a href={"/nascar/" + post.id}>
+    <a href={"/nascar/" + post.id.replace(/\/index\.(mdx|md)$/, "")}>
       <div class='image-wrapper'>
         <Image
           src={post.data.mainImage}
