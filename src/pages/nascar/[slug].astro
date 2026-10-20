@@ -1,0 +1,165 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import { getCollection, getEntry, render } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import { formatDate } from "../../utils";
+import Tags from "../../components/Tags.astro";
+import BackToTop from "../../components/BackToTop.astro";
+import { Image } from "astro:assets";
+import BackButton from "../../components/BackButton.astro";
+
+export async function getStaticPaths() {
+  const allNascarPosts: CollectionEntry<"nascar">[] =
+    await getCollection("nascar");
+
+  return allNascarPosts.map((post) => ({
+    params: {
+      slug: post.id.replace(/\/index$/, ""),
+    },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<MainLayout>
+  <main>
+    <BackButton />
+    <h1 class='nascar-post-header'>{post.data.raceTitle}</h1>
+    <h2>{formatDate(post.data.raceDate)}</h2>
+    <p class='race-winner'>
+      <strong>Race Winner: <em>{post.data.raceWinner}</em></strong>
+    </p>
+    <div class='tags-wrapper'>
+      <Tags tags={post.data.tags} />
+    </div>
+    <Image
+      src={post.data.mainImage}
+      alt={post.data.mainImageAlt}
+    />
+    <div class='content-wrapper'>
+      <Content />
+    </div>
+    <BackToTop />
+    <BackButton />
+  </main>
+</MainLayout>
+
+<style>
+  main {
+    color: var(--text-color-700);
+    padding-inline: 1.5rem;
+    max-width: var(--max-width);
+    margin-inline: auto;
+
+    #back-button {
+      margin-block: 2rem 4rem;
+      margin-inline-start: 2rem;
+    }
+  }
+
+  .nascar-post-header,
+  h2 {
+    text-align: center;
+    margin-block-end: 2rem;
+    font-weight: 600;
+    font-size: 2.5rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  p {
+    text-align: center;
+  }
+
+  .race-winner {
+    margin-block-end: 2rem;
+    em {
+      font-size: 1.25rem;
+    }
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-inline: auto;
+  }
+
+  .tags-wrapper {
+    display: grid;
+    justify-content: center;
+    margin-block-end: 5rem;
+
+    h4 {
+      text-align: center;
+    }
+  }
+  .content-wrapper {
+    max-width: var(--max-width);
+    margin-inline: auto;
+    color: var(--text-color-700);
+
+    p {
+      text-align: center;
+      max-width: 60ch;
+      margin-inline: auto;
+      margin-block: 0.5rem 2.5rem;
+    }
+
+    img {
+      max-width: 750px;
+      width: 100%;
+      height: auto;
+      margin-inline: auto;
+      display: block;
+    }
+
+    .taller-image {
+      max-height: 350px;
+      width: auto;
+    }
+
+    .ufp {
+      max-height: 175px;
+    }
+
+    .ticketmaster {
+      max-width: 375px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-block-end: 2rem;
+    }
+
+    h3 {
+      font-size: 2rem;
+      text-align: center;
+    }
+  }
+
+  /* edge case styles */
+  /* if a post starts with an img under the cover image */
+  main:has(.content-wrapper > :first-child:is(img))
+    img:not(.content-wrapper img) {
+    margin-block-end: 3rem;
+  }
+  /* if a post starts with an iframe under the cover img, this hits cover img */
+  main:has(.content-wrapper > :first-child:is(iframe))
+    img:not(.content-wrapper img) {
+    margin-block-end: 3rem;
+  }
+  /* in the post if an img is followed by another img */
+  .content-wrapper :global(img:has(+ img)) {
+    margin-block-end: 3rem;
+  }
+  /* in the post if an image is followed by an iframe */
+  .content-wrapper :global(img:has(+ iframe)) {
+    margin-block-end: 3rem;
+  }
+</style>

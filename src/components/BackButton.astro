@@ -39,7 +39,10 @@
 <style>
   .back-link {
     background-color: var(--footer-header-bg);
-    outline: 1px solid currentColor;
+    border: 1px solid var(--text-color-700);
+    outline: 0px solid var(--text-color-700);
+    outline-offset: -1px;
+    transition: all 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     border-radius: 5px;
     color: var(--text-color-700);
     cursor: pointer;
@@ -52,6 +55,9 @@
     &:focus-visible {
       box-shadow: none;
       transform: translate(-2px, 2px);
+    }
+    &:focus-visible {
+      outline-offset: 5px;
     }
   }
 </style>
