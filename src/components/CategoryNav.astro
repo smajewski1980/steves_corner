@@ -71,14 +71,11 @@ const cleanedUpCategories: string[] = MUSIC_COLLECTION_CATEGORIES.map((c) =>
   li {
     text-transform: capitalize;
     word-spacing: -0.5ch;
-
+    /* 
     &:hover,
     &:focus-visible {
-      a {
-        box-shadow: none;
-      }
       transform: translate(-2px, 2px);
-    }
+    } */
   }
 
   p,
@@ -89,9 +86,24 @@ const cleanedUpCategories: string[] = MUSIC_COLLECTION_CATEGORIES.map((c) =>
 
     a {
       border-radius: 5px;
+      border: 1px solid var(--text-color-700);
       outline: 1px solid var(--text-color-700);
+      outline-offset: -1px;
+      transition: all 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       padding: 0.5rem;
       text-decoration: none;
+      display: block;
+      background-color: var(--footer-header-bg);
+
+      &:hover,
+      &:focus-visible {
+        box-shadow: none;
+        transform: translate(-2px, 2px);
+      }
+
+      &:focus-visible {
+        outline-offset: 5px;
+      }
     }
   }
 

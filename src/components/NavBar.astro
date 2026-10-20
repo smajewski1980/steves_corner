@@ -40,17 +40,33 @@ import logo from "../images/steves-corner-logo.webp";
       id='navbar-default'
     >
       <ul class='form-shadow'>
-        <li class='form-shadow'>
-          <a href={"/about/"}><span>About Steve</span></a>
+        <li>
+          <a
+            href={"/about/"}
+            class='form-shadow'
+            ><span>About Steve</span></a
+          >
         </li>
-        <li class='form-shadow'>
-          <a href={"/coding/"}><span>Coding</span></a>
+        <li>
+          <a
+            href={"/coding/"}
+            class='form-shadow'
+            ><span>Coding</span></a
+          >
         </li>
-        <li class='form-shadow'>
-          <a href={"/music/1"}><span>Music</span></a>
+        <li>
+          <a
+            href={"/music/1"}
+            class='form-shadow'
+            ><span>Music</span></a
+          >
         </li>
-        <li class='form-shadow'>
-          <a href={"/nascar/"}><span>Nascar</span></a>
+        <li>
+          <a
+            href={"/nascar/"}
+            class='form-shadow'
+            ><span>Nascar</span></a
+          >
         </li>
       </ul>
     </div>
@@ -206,11 +222,6 @@ import logo from "../images/steves-corner-logo.webp";
       li {
         transition: all 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         border-radius: 5px;
-        &:hover,
-        &:focus-visible {
-          box-shadow: none;
-          transform: translate(-2px, 2px);
-        }
       }
 
       li a {
@@ -227,6 +238,8 @@ import logo from "../images/steves-corner-logo.webp";
         &:focus-visible {
           outline-offset: 5px;
           color: var(--text-color-700);
+          box-shadow: none;
+          transform: translate(-2px, 2px);
         }
 
         &:hover span {
@@ -236,6 +249,8 @@ import logo from "../images/steves-corner-logo.webp";
 
         &:hover {
           border-color: transparent;
+          box-shadow: none;
+          transform: translate(-2px, 2px);
         }
 
         @media (min-width: 768px) {

@@ -63,7 +63,9 @@ interface Props {
       min-width: 125px;
       width: calc(100% - 2rem);
       text-decoration: none;
+      border: 1px solid var(--text-color-700);
       outline: 1px solid var(--text-color-700);
+      outline-offset: -1px;
       transition: all 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
       &:hover,
@@ -72,16 +74,20 @@ interface Props {
         transform: translate(-2px, 2px);
       }
 
+      &:focus-visible {
+        outline-offset: 5px;
+      }
+
       @media (min-width: 650px) {
         width: fit-content;
         padding: 0.75rem;
       }
     }
 
-    a[href]:hover {
+    /* a[href]:hover {
       color: var(--text-color-700);
       background-color: var(--text-color-100);
-    }
+    } */
 
     a[href]:focus-visible {
       outline: 1px solid var(--text-color-700);
