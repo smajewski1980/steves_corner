@@ -5,6 +5,8 @@ import Tags from "./Tags.astro";
 import { Image } from "astro:assets";
 
 const { post } = Astro.props;
+// const postUrl = "/nascar/" + post.id + "/";
+const postUrl = `/nascar/${post.id.replace(/\/index$/, "")}/`;
 
 interface Props {
   post: CollectionEntry<"nascar">;
@@ -13,7 +15,7 @@ interface Props {
 
 <div class='nascar-card-wrapper card-shadow'>
   <div class='nascar-card-inner-wrapper'>
-    <a href={"/nascar/" + post.id}>
+    <a href={postUrl}>
       <div class='image-wrapper'>
         <Image
           src={post.data.mainImage}
@@ -23,7 +25,7 @@ interface Props {
     </a>
     <div class='nascar-card-inner-wrapper-bottom'>
       <h2>
-        <a href={"/nascar/" + post.id}>{post.data.raceTitle}</a>
+        <a href={"/nascar/" + post.id + "/"}>{post.data.raceTitle}</a>
       </h2>
       <p>
         {formatDate(post.data.raceDate)}

@@ -7,7 +7,4 @@ import mdx from "@astrojs/mdx";
 export default defineConfig({
   integrations: [mdx()],
   site: "https://stevescorneroftheinter.net/",
-  build: {
-    format: "file",
-  },
 });
