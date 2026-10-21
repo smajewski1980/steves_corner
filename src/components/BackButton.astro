@@ -9,31 +9,23 @@
 >
 
 <script>
-  function setupBackButton() {
-    const btns = document.querySelectorAll(".back-link");
-    const backBtn = btns[0];
-    const backBtnLower = btns[1];
-    if (!backBtn) return;
-
-    [backBtn, backBtnLower].forEach((btn) => {
-      if (!btn) return;
-
-      btn.addEventListener("click", () => {
-        // Check if the user came from this site
-        const hasInternalReferrer =
-          document.referrer && document.referrer.includes(window.location.host);
-
-        if (hasInternalReferrer && window.history.length > 1) {
-          window.history.back();
-        } else {
-          console.log("nowhere to go");
-          return;
-        }
-      });
-    });
-  }
-
-  setupBackButton();
+  // check all clicks
+  document.addEventListener("click", (event) => {
+    const target = event.target;
+    // check if an element was clicked
+    if (!(target instanceof Element)) return;
+    // if we didn't click a back btn, return
+    const btn = target.closest(".back-link");
+    if (!btn) return;
+    // see if the page was linked to from within this site
+    const hasInternalReferrer =
+      document.referrer && document.referrer.includes(window.location.host);
+    // if it was and there is more than one page in history, go back
+    if (hasInternalReferrer && window.history.length > 1) {
+      event.preventDefault();
+      window.history.back();
+    }
+  });
 </script>
 
 <style>
