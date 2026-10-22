@@ -1,26 +1,36 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
-import { getCollection, getEntry, render } from "astro:content";
+import { getCollection, render } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 import { formatDate } from "../../utils";
 import Tags from "../../components/Tags.astro";
 import BackToTop from "../../components/BackToTop.astro";
 import { Image } from "astro:assets";
 import BackButton from "../../components/BackButton.astro";
+import PrevNextLinks from "../../components/PrevNextLinks.astro";
 
 export async function getStaticPaths() {
-  const allNascarPosts: CollectionEntry<"nascar">[] =
-    await getCollection("nascar");
+  const allNascarPosts: CollectionEntry<"nascar">[] = (
+    await getCollection("nascar")
+  ).toSorted(
+    (a: CollectionEntry<"nascar">, b: CollectionEntry<"nascar">) =>
+      b.data.raceDate.valueOf() - a.data.raceDate.valueOf(),
+  );
 
-  return allNascarPosts.map((post) => ({
+  return allNascarPosts.map((post, index) => ({
     params: {
       slug: post.id.replace(/\/index$/, ""),
     },
-    props: { post },
+    props: {
+      post,
+      prevPost: index > 0 ? allNascarPosts[index - 1] : null,
+      nextPost:
+        index < allNascarPosts.length - 1 ? allNascarPosts[index + 1] : null,
+    },
   }));
 }
 
-const { post } = Astro.props;
+const { post, prevPost, nextPost } = Astro.props;
 const { Content } = await render(post);
 ---
 
@@ -29,6 +39,11 @@ const { Content } = await render(post);
     <BackButton />
     <h1 class='nascar-post-header'>{post.data.raceTitle}</h1>
     <h2>{formatDate(post.data.raceDate)}</h2>
+    <PrevNextLinks
+      prev={prevPost}
+      next={nextPost}
+      isNascarPost={true}
+    />
     <p class='race-winner'>
       <strong>Race Winner: <em>{post.data.raceWinner}</em></strong>
     </p>
@@ -42,6 +57,11 @@ const { Content } = await render(post);
     <div class='content-wrapper'>
       <Content />
     </div>
+    <PrevNextLinks
+      prev={prevPost}
+      next={nextPost}
+      isNascarPost={true}
+    />
     <BackToTop />
     <BackButton />
   </main>
@@ -57,6 +77,12 @@ const { Content } = await render(post);
     #back-button {
       margin-block: 2rem 4rem;
       margin-inline-start: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .prev-next-links-wrapper {
+        justify-content: center;
+      }
     }
   }
 

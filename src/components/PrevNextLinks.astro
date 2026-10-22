@@ -1,15 +1,39 @@
 ---
-const { prev, next } = Astro.props;
+import { formatDate } from "../utils";
+const { prev, next, isNascarPost } = Astro.props;
 ---
 
-<div class='prev-next-links-wrapper'>
-  <div>
-    {prev && <a href={`/music/${prev.id}`}>{`Previous: ${prev.data.title}`}</a>}
-  </div>
-  <div>
-    {next && <a href={`/music/${next.id}`}>{`Next: ${next.data.title}`}</a>}
-  </div>
-</div>
+{
+  isNascarPost ? (
+    <div class='prev-next-links-wrapper'>
+      <div>
+        {prev && (
+          <a
+            href={`/nascar/${prev.id.replace("index", "")}`}
+          >{`Previous: ${prev.data.raceTitle} ${formatDate(prev.data.raceDate)}`}</a>
+        )}
+      </div>
+      <div>
+        {next && (
+          <a
+            href={`/nascar/${next.id.replace("index", "")}`}
+          >{`Next: ${next.data.raceTitle} ${formatDate(next.data.raceDate)}`}</a>
+        )}
+      </div>
+    </div>
+  ) : (
+    <div class='prev-next-links-wrapper'>
+      <div>
+        {prev && (
+          <a href={`/music/${prev.id}`}>{`Previous: ${prev.data.title}`}</a>
+        )}
+      </div>
+      <div>
+        {next && <a href={`/music/${next.id}`}>{`Next: ${next.data.title}`}</a>}
+      </div>
+    </div>
+  )
+}
 
 <style>
   .prev-next-links-wrapper {
