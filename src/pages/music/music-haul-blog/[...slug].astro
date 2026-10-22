@@ -7,46 +7,66 @@ import { formatDate } from "../../../utils";
 import { Image } from "astro:assets";
 import BackButton from "../../../components/BackButton.astro";
 import BackToTop from "../../../components/BackToTop.astro";
+import PrevNextLinks from "../../../components/PrevNextLinks.astro";
 
 export const getStaticPaths = (async () => {
-  const allMusicHaulPosts: CollectionEntry<"musicHaulBlog">[] =
-    await getCollection("musicHaulBlog");
+  const allMusicHaulPosts: CollectionEntry<"musicHaulBlog">[] = (
+    await getCollection("musicHaulBlog")
+  ).sort(
+    (
+      a: CollectionEntry<"musicHaulBlog">,
+      b: CollectionEntry<"musicHaulBlog">,
+    ) => b.data.date.valueOf() - a.data.date.valueOf(),
+  );
 
-  return allMusicHaulPosts.map((post: CollectionEntry<"musicHaulBlog">) => ({
-    params: {
-      slug: post.id,
-    },
-    props: { post },
-  }));
+  return allMusicHaulPosts.map(
+    (post: CollectionEntry<"musicHaulBlog">, index) => ({
+      params: {
+        slug: post.id,
+      },
+      props: {
+        post,
+        prevPost: index > 0 ? allMusicHaulPosts[index - 1] : null,
+        nextPost:
+          index < allMusicHaulPosts.length - 1
+            ? allMusicHaulPosts[index + 1]
+            : null,
+      },
+    }),
+  );
 }) satisfies GetStaticPaths;
 
-const { slug } = Astro.params;
+const { post, prevPost, nextPost } = Astro.props;
 
-if (!slug) {
-  throw new Error("Slug is required");
-}
+if (!post) return Astro.redirect("/404");
 
-const entry = await getEntry("musicHaulBlog", slug);
-
-if (!entry) return Astro.redirect("/404");
-
-const { Content } = await render(entry);
+const { Content } = await render(post);
 ---
 
 <MainLayout>
   <section>
     <BackButton />
     <article>
-      <h1>{entry.data.title}</h1>
-      <p>{formatDate(entry.data.date)}</p>
+      <h1>{post.data.title}</h1>
+      <PrevNextLinks
+        prev={prevPost}
+        next={nextPost}
+        isMusicBlog={true}
+      />
+      <p>{formatDate(post.data.date)}</p>
 
       <Image
-        src={entry.data.coverImage}
-        alt={entry.data.coverImageAlt}
+        src={post.data.coverImage}
+        alt={post.data.coverImageAlt}
       />
       <div class='content-component-wrapper'>
         <Content />
       </div>
+      <PrevNextLinks
+        prev={prevPost}
+        next={nextPost}
+        isMusicBlog={true}
+      />
     </article>
     <BackButton />
   </section>

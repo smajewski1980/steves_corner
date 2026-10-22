@@ -1,6 +1,6 @@
 ---
 import { formatDate } from "../utils";
-const { prev, next, isNascarPost } = Astro.props;
+const { prev, next, isNascarPost, isMusicBlog } = Astro.props;
 ---
 
 {
@@ -25,11 +25,17 @@ const { prev, next, isNascarPost } = Astro.props;
     <div class='prev-next-links-wrapper'>
       <div>
         {prev && (
-          <a href={`/music/${prev.id}`}>{`Previous: ${prev.data.title}`}</a>
+          <a
+            href={`/music/${isMusicBlog ? "music-haul-blog/" : ""}${prev.id}`}
+          >{`Previous: ${prev.data.title}`}</a>
         )}
       </div>
       <div>
-        {next && <a href={`/music/${next.id}`}>{`Next: ${next.data.title}`}</a>}
+        {next && (
+          <a
+            href={`/music/${isMusicBlog ? "music-haul-blog/" : ""}${next.id}`}
+          >{`Next: ${next.data.title}`}</a>
+        )}
       </div>
     </div>
   )
