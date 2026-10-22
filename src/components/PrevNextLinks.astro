@@ -1,0 +1,43 @@
+---
+const { prev, next } = Astro.props;
+let prevHref, nextHref, prevTitle, nextTitle;
+
+if (prev) {
+  prevHref = prev.id;
+  prevTitle = prev.data.title;
+}
+
+if (next) {
+  nextHref = next.id;
+  nextTitle = next.data.title;
+}
+---
+
+<div class='prev-next-links-wrapper'>
+  <a href={prevHref ? `/music/${prevHref}` : "#"}
+    >{prevTitle && `Previous: ${prevTitle}`}</a
+  >
+  <a href={nextHref ? `/music/${nextHref}` : "#"}
+    >{nextTitle && `Next: ${nextTitle}`}</a
+  >
+</div>
+
+<style>
+  .prev-next-links-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-block-end: 1rem;
+    max-width: var(--max-width);
+    margin-inline: auto;
+    row-gap: 1rem;
+
+    > * {
+      --indent: 1rem;
+      max-width: 45ch;
+      padding-inline-start: var(--indent);
+      text-indent: calc(var(--indent) * -1);
+      line-height: 1.3;
+    }
+  }
+</style>

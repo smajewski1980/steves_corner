@@ -6,24 +6,34 @@ import Tags from "../../components/Tags.astro";
 import { Image } from "astro:assets";
 import BackButton from "../../components/BackButton.astro";
 import BackToTop from "../../components/BackToTop.astro";
+import PrevNextLinks from "../../components/PrevNextLinks.astro";
 
 export async function getStaticPaths() {
   const allMusicArticles: CollectionEntry<"music">[] =
     await getCollection("music");
 
-  return allMusicArticles.map((entry) => ({
+  allMusicArticles.sort(
+    (a: CollectionEntry<"music">, b: CollectionEntry<"music">) =>
+      a.data.title.localeCompare(b.data.title),
+  );
+
+  return allMusicArticles.map((entry, index) => ({
     params: {
       slug: entry.id,
     },
-    props: { entry },
+    props: {
+      entry,
+      prevEntry: index > 0 ? allMusicArticles[index - 1] : null,
+      nextEntry:
+        index < allMusicArticles.length - 1
+          ? allMusicArticles[index + 1]
+          : null,
+    },
   }));
 }
 
 const { slug } = Astro.params;
-
-if (!slug) {
-  throw new Error("Slug is required");
-}
+const { nextEntry, prevEntry } = Astro.props;
 
 const entry = await getEntry("music", slug);
 
@@ -39,11 +49,15 @@ const { Content } = await render(entry);
       <h1>
         {entry.data.title}
       </h1>
+      <PrevNextLinks
+        prev={prevEntry}
+        next={nextEntry}
+      />
       <p class='item-year'>{entry.data.year}</p>
 
       <p class='category-link'>
         Category: <a href=`/music/category/${entry.data.category}`
-          >{entry.data.category}</a
+          >{entry.data.category.replace("-", " ")}</a
         >
       </p>
 
@@ -58,6 +72,10 @@ const { Content } = await render(entry);
       <div class='content-component-wrapper'>
         <Content />
       </div>
+      <PrevNextLinks
+        prev={prevEntry}
+        next={nextEntry}
+      />
     </article>
     <BackButton />
     <BackToTop />
@@ -132,6 +150,7 @@ const { Content } = await render(entry);
       margin-block-end: 1.25rem;
       margin-inline: 0;
       text-align: start;
+      text-transform: capitalize;
     }
   }
 

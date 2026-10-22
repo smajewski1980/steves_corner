@@ -18,7 +18,6 @@ export const getStaticPaths = (async ({ paginate }) => {
     await getCollection("music")
   ).sort(
     (a: CollectionEntry<"music">, b: CollectionEntry<"music">) =>
-      // b.data.dateAdded.valueOf() - a.data.dateAdded.valueOf(),
       a.data.title.localeCompare(b.data.title)
   );
 
