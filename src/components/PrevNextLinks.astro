@@ -1,25 +1,14 @@
 ---
 const { prev, next } = Astro.props;
-let prevHref, nextHref, prevTitle, nextTitle;
-
-if (prev) {
-  prevHref = prev.id;
-  prevTitle = prev.data.title;
-}
-
-if (next) {
-  nextHref = next.id;
-  nextTitle = next.data.title;
-}
 ---
 
 <div class='prev-next-links-wrapper'>
-  <a href={prevHref ? `/music/${prevHref}` : "#"}
-    >{prevTitle && `Previous: ${prevTitle}`}</a
-  >
-  <a href={nextHref ? `/music/${nextHref}` : "#"}
-    >{nextTitle && `Next: ${nextTitle}`}</a
-  >
+  <div>
+    {prev && <a href={`/music/${prev.id}`}>{`Previous: ${prev.data.title}`}</a>}
+  </div>
+  <div>
+    {next && <a href={`/music/${next.id}`}>{`Next: ${next.data.title}`}</a>}
+  </div>
 </div>
 
 <style>
