@@ -55,9 +55,18 @@ const { prev, next, isNascarPost, isMusicBlog } = Astro.props;
     margin-inline: auto;
     row-gap: 1rem;
 
+    @media (max-width: 768px) {
+      a {
+        display: block;
+        z-index: 99;
+        position: relative;
+      }
+      
+    }
+
     > * {
       --indent: 1rem;
-      max-width: 45ch;
+      max-width: 47ch;
       padding-inline-start: var(--indent);
       text-indent: calc(var(--indent) * -1);
       line-height: 1.3;
@@ -67,6 +76,8 @@ const { prev, next, isNascarPost, isMusicBlog } = Astro.props;
       font-size: 1.125rem;
       font-weight: 700;
 
+
+
     }
     /* & div:first-child span {
       rotate: -25deg;
@@ -74,15 +85,24 @@ const { prev, next, isNascarPost, isMusicBlog } = Astro.props;
       display: inline-block;
     } */
     & div:last-child span {
-      rotate: -35deg;
+      --word-start-finish-angle: -35deg;
+      --word-start-finish-mid-point-angle: -39deg;
+      rotate: var(--word-start-finish-angle);
       transform-origin: top left;
       display: inline-block;
       position: relative;
       z-index: 1;
-      animation: hanging-steve 5s ease-in-out infinite;
-    }
+      animation: hanging-steve-word 5s ease-in-out infinite;
 
+      @media (max-width: 768px) {    
+        margin-block: 1rem 2rem;  
+        margin-inline-start: 2rem;  
+      }
+    }
+    
     & div:last-child span::after {
+      --start-finish-angle: 0deg;
+      --mid-point-angle: -5deg;
       content: '';
       width: 75px;
       height: 85px;
@@ -91,23 +111,40 @@ const { prev, next, isNascarPost, isMusicBlog } = Astro.props;
       left: -5.25rem;
       bottom: -4rem;
       z-index: -1;
+      transform-origin: top right;
+      rotate: var(--start-finish-angle);
+      animation: hanging-steve 3.7s ease-in-out infinite;
       background-image: url("../images/tiny-hanging-steve.webp");
       background-size: contain;
       background-repeat: no-repeat;
     }
   }
 
-  @keyframes hanging-steve {
+  @keyframes hanging-steve-word {
     from {
-      rotate: -35deg;
+      rotate: var(--word-start-finish-angle);
     }
 
     50% {
-      rotate: -40deg;
+      rotate: var(--word-start-finish-mid-point-angle);
     }
 
     to {
-      rotate: -35deg;
+      rotate: var(--word-start-finish-angle);
+    }
+
+  }
+  @keyframes hanging-steve {
+    from {
+      rotate: var(--start-finish-angle);
+    }
+
+    50% {
+      rotate: var(--mid-point-angle);
+    }
+
+    to {
+      rotate: var(--start-finish-angle);
     }
   }
 </style>
