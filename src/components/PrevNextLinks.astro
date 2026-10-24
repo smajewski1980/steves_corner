@@ -1,11 +1,11 @@
 ---
 import { formatDate } from "../utils";
-const { prev, next, isNascarPost, isMusicBlog } = Astro.props;
+const { prev, next, isNascarPost, isMusicBlog, animateSteve} = Astro.props;
 ---
 
 {
   isNascarPost ? (
-    <div class='prev-next-links-wrapper'>
+    <div class={animateSteve ? 'prev-next-links-wrapper animate-steve' : 'prev-next-links-wrapper'}>
       <div>
         {prev && (
             <span>Previous: </span>
@@ -24,7 +24,7 @@ const { prev, next, isNascarPost, isMusicBlog } = Astro.props;
       </div>
     </div>
   ) : (
-    <div class='prev-next-links-wrapper'>
+    <div class={animateSteve ? 'prev-next-links-wrapper animate-steve' : 'prev-next-links-wrapper'}>
       <div>
         {prev && (
             <span>Previous: </span>
@@ -75,32 +75,33 @@ const { prev, next, isNascarPost, isMusicBlog } = Astro.props;
     span {
       font-size: 1.125rem;
       font-weight: 700;
-
-
-
     }
-    /* & div:first-child span {
-      rotate: -25deg;
-      transform-origin: top left;
-      display: inline-block;
-    } */
-    & div:last-child span {
-      --word-start-finish-angle: -35deg;
-      --word-start-finish-mid-point-angle: -39deg;
+  }
+    .animate-steve div:last-child span {
+      --word-start-finish-angle: -39deg;
+      --word-start-finish-mid-point-angle: -41deg;
+      --hanging-steve-duration: 8s;
       rotate: var(--word-start-finish-angle);
-      transform-origin: top left;
+      transform-origin: top right;
       display: inline-block;
       position: relative;
       z-index: 1;
-      animation: hanging-steve-word 5s ease-in-out infinite;
-
+      transform: translateY(-2rem);
+      animation: hanging-steve-word 
+      var(--hanging-steve-duration) linear infinite;
+      
       @media (max-width: 768px) {    
-        margin-block: 1rem 2rem;  
-        margin-inline-start: 2rem;  
+        --word-start-finish-angle: 39deg;
+        --word-start-finish-mid-point-angle: 41deg;
+        --hanging-steve-duration: 5s;
+        transform: translateY(0);
+        transform-origin: top left;
+        margin-block-end: 1rem;  
+        margin-inline-start: 1.5rem;
       }
     }
     
-    & div:last-child span::after {
+    .animate-steve  div:last-child span::after {
       --start-finish-angle: 0deg;
       --mid-point-angle: -5deg;
       content: '';
@@ -113,12 +114,21 @@ const { prev, next, isNascarPost, isMusicBlog } = Astro.props;
       z-index: -1;
       transform-origin: top right;
       rotate: var(--start-finish-angle);
-      animation: hanging-steve 3.7s ease-in-out infinite;
+      animation: hanging-steve var(--hanging-steve-duration) ease-in-out infinite;
       background-image: url("../images/tiny-hanging-steve.webp");
       background-size: contain;
       background-repeat: no-repeat;
+
+      @media (max-width: 768px) {
+        --start-finish-angle: 2deg;
+        --mid-point-angle: -1deg;
+        transform: scaleX(-1);
+        left: -3.25rem;
+        bottom: -4rem;
+        opacity: .6;
+      }
     }
-  }
+  
 
   @keyframes hanging-steve-word {
     from {

@@ -43,6 +43,7 @@ const { Content } = await render(post);
       prev={prevPost}
       next={nextPost}
       isNascarPost={true}
+      animateSteve={true}
     />
     <p class='race-winner'>
       <strong>Race Winner: <em>{post.data.raceWinner}</em></strong>
@@ -81,7 +82,7 @@ const { Content } = await render(post);
 
     @media (max-width: 768px) {
       .prev-next-links-wrapper {
-        justify-content: center;
+        justify-content: start;
       }
     }
   }
@@ -104,10 +105,10 @@ const { Content } = await render(post);
 
   .race-winner {
     margin-block-end: 2rem;
+    z-index: 9999;
+    position: relative;
     em {
       font-size: 1.25rem;
-      z-index: 9999;
-      position: relative;
     }
   }
 

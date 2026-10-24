@@ -52,6 +52,7 @@ const { Content } = await render(entry);
       <PrevNextLinks
         prev={prevEntry}
         next={nextEntry}
+        animateSteve={true}
       />
       <p class='item-year'>{entry.data.year}</p>
 
@@ -151,6 +152,8 @@ const { Content } = await render(entry);
       margin-inline: 0;
       text-align: start;
       text-transform: capitalize;
+      position: relative;
+      z-index: 9999;
     }
   }
 
