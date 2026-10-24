@@ -8,7 +8,7 @@ tags: ["denny-hamlin", "2016", "watkins-glen", "cup-series"]
 ---
 
 import { Image } from "astro:assets";
-
+import Iframe from "../../../components/Iframe.astro";
 import pacelap1 from "./8-7-2016_pacelap_1.webp";
 import pacelap2 from "./8-7-2016_pacelap_2.webp";
 import bradAndKyBusch from "./8-7-2016_brad_ky_busch.webp";
@@ -32,15 +32,7 @@ This was our first time at the Glen, this was an interesting place to sit.
 
 Pacelap, getting ready to start.
 
-<iframe
-  src='https://www.youtube.com/embed/T9d-zo_VMSU?si=oKnA27TLm-p9vQv8'
-  class='youtube-iframe'
-  title='YouTube video player'
-  frameborder='0'
-  allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
-  referrerpolicy='strict-origin-when-cross-origin'
-  allowfullscreen
-></iframe>
+<Iframe src='https://www.youtube.com/embed/T9d-zo_VMSU?si=oKnA27TLm-p9vQv8' />
 
 The first time by.
 

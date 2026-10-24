@@ -11,6 +11,7 @@ import { Image } from "astro:assets";
 import tyMajeskiPitstop from "./5-5-2018_majeski_pitstop.webp";
 import allgaierBurnout from "./5-5-2018_allgaier_burnout.webp";
 import allgaierBurnout2 from "./5-5-2018_allgaier_burnout_2.webp";
+import Iframe from "../../../components/Iframe.astro";
 
 <Image
   src={tyMajeskiPitstop}
@@ -33,10 +34,6 @@ A few of Allgaier doing his burnout.
 
 Burn it down Lil Gator!!!
 
-<iframe
-  src='https://www.youtube.com/embed/fvKCTB1u0Us'
-  class='youtube-iframe'
-  allowfullscreen
-></iframe>
+<Iframe src='https://www.youtube.com/embed/fvKCTB1u0Us' />
 
 Burnout Time!!!

@@ -8,6 +8,7 @@ tags: ["jeff-gordon", "2014", "dover", "cup-series"]
 ---
 
 import { Image } from "astro:assets";
+import Iframe from "../../../components/Iframe.astro";
 import jimmieIntro from "./9-28-2014_jimmie_intro.webp";
 import pacelap from "./9-28-2014_pacelap.webp";
 import smokePitstop from "./9-28-2014_smoke_pitstop.webp";
@@ -90,15 +91,7 @@ Clint Bowyer getting service.
 
 This was #92, the last one was the following year at Martinsville.
 
-<iframe
-  src='https://www.youtube.com/embed/L-ueaSU3GoA?si=wX_1hT5uRf99hXpn'
-  class='youtube-iframe'
-  title='YouTube video player'
-  frameborder='0'
-  allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
-  referrerpolicy='strict-origin-when-cross-origin'
-  allowfullscreen
-></iframe>
+<Iframe src='https://www.youtube.com/embed/L-ueaSU3GoA?si=wX_1hT5uRf99hXpn' />
 
 &nbsp;
 

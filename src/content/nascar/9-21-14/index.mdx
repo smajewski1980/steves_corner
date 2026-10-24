@@ -8,7 +8,7 @@ tags: ["joey-logano", "2014", "loudon", "cup-series"]
 ---
 
 import { Image } from "astro:assets";
-
+import Iframe from "../../../components/Iframe.astro";
 import frontstretch1 from "./9-21-2014_frontstretch_1.webp";
 import kensethMenardCaution from "./9-21-2014_kenseth_menard_caution.webp";
 import loganoBurnout from "./9-21-2014_logano_burnout.webp";
@@ -56,15 +56,7 @@ Dale jr got into Stenhouse jr.
 
 Coming to the restart zone.
 
-<iframe
-  src='https://www.youtube.com/embed/lq3BfAA5bJU?si=JWtWyNFaMua_z01Y'
-  class='youtube-iframe'
-  title='YouTube video player'
-  frameborder='0'
-  allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
-  referrerpolicy='strict-origin-when-cross-origin'
-  allowfullscreen
-></iframe>
+<Iframe src='https://www.youtube.com/embed/lq3BfAA5bJU?si=JWtWyNFaMua_z01Y' />
 
 &nbsp;
 
@@ -96,15 +88,7 @@ Towards the end of the race, Menard had a mishap and got into Kenseth.
 
 Burn 'em down "Sliced Bread"!
 
-<iframe
-  src='https://www.youtube.com/embed/ZjsuWrJDnOA?si=Zl8wV5WrtVyoG62S'
-  class='youtube-iframe'
-  title='YouTube video player'
-  frameborder='0'
-  allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
-  referrerpolicy='strict-origin-when-cross-origin'
-  allowfullscreen
-></iframe>
+<Iframe src='https://www.youtube.com/embed/ZjsuWrJDnOA?si=Zl8wV5WrtVyoG62S' />
 
 &nbsp;
 
@@ -112,3 +96,5 @@ Burn 'em down "Sliced Bread"!
   src={loganoPostBurnout}
   alt='Joey Logano after burning off his tires.'
 />
+
+&nbsp;

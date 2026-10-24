@@ -18,6 +18,7 @@ import pitstops2 from "./9-9-2017_pitstops_2.webp";
 import wideshotTrack from "./9-9-2017_wideshot_track.webp";
 import larsonBurnout2 from "./9-9-2017_larson_burnout_2.webp";
 import larsonBurnout1 from "./9-9-2017_larson_burnout_1.webp";
+import Iframe from "../../../components/Iframe.astro";
 
 <Image
   src={danicaIntro}
@@ -47,15 +48,7 @@ I love seeing the sparks.
 
 &nbsp;
 
-<iframe
-  src='https://www.youtube.com/embed/wp1seKoCN2E?si=peryPXqFPwSpaHoQ'
-  class='youtube-iframe'
-  title='YouTube video player'
-  frameborder='0'
-  allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
-  referrerpolicy='strict-origin-when-cross-origin'
-  allowfullscreen
-></iframe>
+<Iframe src='https://www.youtube.com/embed/wp1seKoCN2E?si=peryPXqFPwSpaHoQ' />
 
 &nbsp;
 
@@ -98,3 +91,5 @@ Burnout time!
   src={larsonBurnout2}
   alt='Kyle Larson burnout.'
 />
+
+<p></p>

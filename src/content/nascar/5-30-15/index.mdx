@@ -8,7 +8,7 @@ tags: ["chris-buescher", "2015", "dover", "xfinity-series"]
 ---
 
 import { Image } from "astro:assets";
-
+import Iframe from "../../../components/Iframe.astro";
 import bradPitroad from "./5-30-2015_brad_pitroad.webp";
 import smokePitroad from "./5-30-2015_smoke_pitroad.webp";
 import carsStaged from "./5-30-2015_cars_staged.webp";
@@ -57,15 +57,7 @@ Chase Elliot gets introduced.
 
 The cars are now awake.
 
-<iframe
-  src='https://www.youtube.com/embed/sHAU_roTTYU?si=O580lyWuW2IaNrAJ'
-  class='youtube-iframe'
-  title='YouTube video player'
-  frameborder='0'
-  allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
-  referrerpolicy='strict-origin-when-cross-origin'
-  allowfullscreen
-></iframe>
+<Iframe src='https://www.youtube.com/embed/sHAU_roTTYU?si=O580lyWuW2IaNrAJ' />
 
 &nbsp;
 

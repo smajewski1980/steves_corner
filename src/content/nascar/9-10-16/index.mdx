@@ -8,6 +8,7 @@ tags: ["denny-hamlin", "2016", "richmond", "cup-series"]
 ---
 
 import { Image } from "astro:assets";
+import Iframe from "../../../components/Iframe.astro";
 import preraceBradCupCar from "./9-10-2016_prerace_brad_cup_car.webp";
 import preraceBradXfinityCar from "./9-10-2016_prerace_brad_xfinity_car.webp";
 import preraceReddickTruck from "./9-10-2016_prerace_reddick_truck.webp";
@@ -44,15 +45,7 @@ In the fan zone before the race.
 
 Before he was a Cup superstar, Tyler Reddick drove a truck for Brad Keselowski Racing. Brad's other truck also introduced us to another future Cup winner...
 
-<iframe
-  src='https://www.youtube.com/embed/m3N_2xAEZog?si=JhKZdTcLOFCevVvg'
-  class='youtube-iframe'
-  title='YouTube video player'
-  frameborder='0'
-  allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
-  referrerpolicy='strict-origin-when-cross-origin'
-  allowfullscreen
-></iframe>
+<Iframe src='https://www.youtube.com/embed/m3N_2xAEZog?si=JhKZdTcLOFCevVvg' />
 
 This was our first night race. It's so cool to be able to see the sparks like that when the tire pressures are still low.
 
@@ -110,7 +103,7 @@ I researched it using the time of the photo in relation to the other photos and 
   alt='Brad Keselowski pitstop'
 />
 
-My man Brad brought it home 4th that night.
+Brad brought it home 4th that night.
 
 <Image
   src={smokeOnFire}
