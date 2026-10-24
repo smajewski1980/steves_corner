@@ -48,12 +48,13 @@ const { Content } = await render(post);
     <BackButton />
     <article>
       <h1>{post.data.title}</h1>
+      <p>{formatDate(post.data.date)}</p>
       <PrevNextLinks
         prev={prevPost}
         next={nextPost}
         isMusicBlog={true}
+        animateSteve={true}
       />
-      <p>{formatDate(post.data.date)}</p>
 
       <Image
         src={post.data.coverImage}
@@ -77,13 +78,27 @@ const { Content } = await render(post);
   section {
     margin-inline: auto;
     padding-inline: 1rem;
+
+    @media (max-width: 768px) {
+      .prev-next-links-wrapper {
+        justify-content: start;
+      }
+    }
   }
-  h1 {
-    margin-block: 2rem;
-  }
-  img {
-    max-width: 100%;
-    height: auto;
+  article {
+    h1 {
+      margin-block: 2rem 1rem;
+    }
+
+    p {
+      margin-block-end: 2rem;
+    }
+    img {
+      display: block;
+      margin-block-start: 2rem;
+      max-width: 100%;
+      height: auto;
+    }
   }
 
   .content-component-wrapper {
