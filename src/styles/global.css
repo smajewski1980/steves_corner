@@ -80,6 +80,7 @@ body {
   a {
     color: inherit;
     text-underline-offset: 4px;
+    padding-block: 0.5rem;
   }
 
   ul {
@@ -102,7 +103,6 @@ sup {
   content: "";
   width: 75px;
   height: 100px;
-  /* display: block; */
   position: absolute;
   top: 10rem;
   left: 50%;
