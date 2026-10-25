@@ -46,6 +46,7 @@ const { Content } = await render(entry);
   <section>
     <BackButton />
     <article>
+      <div class='evil-wizard-float'></div>
       <h1>
         {entry.data.title}
       </h1>
@@ -84,11 +85,10 @@ const { Content } = await render(entry);
 </MainLayout>
 
 <style>
-  @media (max-width: 768px) {
-    body {
-      padding-block-start: 5rem;
-    }
+  body {
+    padding-block-start: 5rem;
   }
+
   section {
     margin-inline: auto;
     max-width: var(--med-width);
@@ -121,6 +121,8 @@ const { Content } = await render(entry);
       margin-block: 2.5rem 1rem;
       font-weight: 700;
       font-size: clamp(1.5rem, 1.2065rem + 1.3043vw, 2.25rem);
+      /* position: relative;
+      width: fit-content; */
     }
 
     h2 {

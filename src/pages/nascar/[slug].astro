@@ -37,6 +37,7 @@ const { Content } = await render(post);
 <MainLayout>
   <main>
     <BackButton />
+    <div class='evil-wizard-float'></div>
     <h1 class='nascar-post-header'>{post.data.raceTitle}</h1>
     <h2>{formatDate(post.data.raceDate)}</h2>
     <PrevNextLinks
@@ -69,6 +70,9 @@ const { Content } = await render(post);
 </MainLayout>
 
 <style>
+  body {
+    padding-block-start: 5rem;
+  }
   main {
     color: var(--text-color-700);
     padding-inline: 1.5rem;
@@ -85,6 +89,10 @@ const { Content } = await render(post);
         justify-content: start;
       }
     }
+
+    /* h1 {
+      position: relative;
+    } */
   }
 
   .nascar-post-header,

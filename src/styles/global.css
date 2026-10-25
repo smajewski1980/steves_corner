@@ -94,3 +94,31 @@ p {
 sup {
   padding-inline-start: 0.5rem;
 }
+
+.evil-wizard-float::after {
+  /* because of the wizards hat being so far to the left,
+  the extra little nudge is to offset the off center illusion */
+  --wizard-start-x: calc(-50% - 0.5rem);
+  content: "";
+  width: 75px;
+  height: 100px;
+  /* display: block; */
+  position: absolute;
+  top: 10rem;
+  left: 50%;
+  transform: translateX(var(--wizard-start-x)) translateY(0);
+  animation: wizard-float 4s ease-in-out infinite;
+  background-image: url("../images/evil-wizard.webp");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+@keyframes wizard-float {
+  from,
+  to {
+    transform: translateX(var(--wizard-start-x)) translateY(0);
+  }
+  50% {
+    transform: translateX(var(--wizard-start-x)) translateY(-2px);
+  }
+}
