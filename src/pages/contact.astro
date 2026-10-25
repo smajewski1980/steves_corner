@@ -45,40 +45,6 @@ import messengerSteve from "../images/messenger_steve_form.webp";
       position: relative;
       z-index: 999;
 
-      /* pseudos are subtle shadows under the feet */
-      /* right */
-      &::after {
-        content: "";
-        height: 10px;
-        width: 30px;
-        position: absolute;
-        bottom: -0.15rem;
-        background-color: var(--shadow-clr);
-        right: 2rem;
-        display: block;
-        rotate: 10deg;
-        z-index: -1;
-        filter: blur(6px);
-        border-radius: 20px;
-        box-shadow: 0px 0px 10px 0px var (--shadow-clr);
-      }
-      /* left */
-      &::before {
-        content: "";
-        height: 10px;
-        width: 15px;
-        position: absolute;
-        bottom: -0.25rem;
-        background-color: var(--shadow-clr);
-        left: 3rem;
-        display: block;
-        rotate: 10deg;
-        z-index: -1;
-        filter: blur(6px);
-        border-radius: 20px;
-        box-shadow: 0px 0px 10px 0px var (--shadow-clr);
-      }
-
       img {
         margin-inline: auto;
         width: 100%;

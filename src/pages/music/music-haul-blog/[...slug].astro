@@ -76,9 +76,14 @@ const { Content } = await render(post);
 </MainLayout>
 
 <style>
+  body {
+    padding-block-start: 5rem;
+  }
   section {
     margin-inline: auto;
     padding-inline: 1rem;
+    padding-block-start: 1rem;
+    max-width: calc(var(--max-width) - 4rem);
 
     @media (max-width: 768px) {
       .prev-next-links-wrapper {
@@ -87,8 +92,11 @@ const { Content } = await render(post);
     }
   }
   article {
+    margin-block-start: 3rem;
+
     h1 {
       margin-block: 2rem 1rem;
+      max-width: var(--max-width);
     }
 
     p {
