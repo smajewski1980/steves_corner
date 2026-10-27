@@ -37,7 +37,9 @@ const { Content } = await render(post);
 <MainLayout>
   <main>
     <BackButton />
-    <div class='evil-wizard-float'></div>
+    <div class='viewport-container'>
+      <div class='evil-wizard-float'></div>
+    </div>
     <h1 class='nascar-post-header'>{post.data.raceTitle}</h1>
     <h2>{formatDate(post.data.raceDate)}</h2>
     <PrevNextLinks

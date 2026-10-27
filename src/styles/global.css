@@ -96,17 +96,25 @@ sup {
   padding-inline-start: 0.5rem;
 }
 
-.evil-wizard-float::after {
-  /* because of the wizards hat being so far to the left,
-  the extra little nudge is to offset the off center illusion */
-  --wizard-start-x: calc(-50% - 0.5rem);
-  content: "";
-  width: 75px;
-  height: 100px;
+.viewport-container {
   position: absolute;
   top: 10rem;
-  left: 50%;
-  transform: translateX(var(--wizard-start-x)) translateY(0);
+  left: 0;
+  width: 100dvw;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.evil-wizard-float {
+  --wizard-start-x: calc(-50%);
+
+  /* because of the wizards hat being so far to the left,
+  the extra little nudge is to offset the off center illusion */
+  margin-left: calc(-1 * 0.5rem);
+
+  width: 75px;
+  height: 100px;
   animation: wizard-float 4s ease-in-out infinite;
   background-image: url("../images/evil-wizard.webp");
   background-size: contain;
@@ -116,9 +124,9 @@ sup {
 @keyframes wizard-float {
   from,
   to {
-    transform: translateX(var(--wizard-start-x)) translateY(0);
+    transform: translateY(0) rotate(0);
   }
   50% {
-    transform: translateX(var(--wizard-start-x)) translateY(-2px);
+    transform: translateY(-2px) rotate(0.5deg);
   }
 }

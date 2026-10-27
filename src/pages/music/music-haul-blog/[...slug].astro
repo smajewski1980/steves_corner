@@ -47,7 +47,9 @@ const { Content } = await render(post);
   <section>
     <BackButton />
     <article>
-      <div class='evil-wizard-float'></div>
+      <div class='viewport-container'>
+        <div class='evil-wizard-float'></div>
+      </div>
       <h1>{post.data.title}</h1>
       <p>{formatDate(post.data.date)}</p>
       <PrevNextLinks
