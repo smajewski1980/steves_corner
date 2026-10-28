@@ -107,11 +107,9 @@ sup {
 }
 
 .evil-wizard-float {
-  --wizard-start-x: calc(-50%);
-
   /* because of the wizards hat being so far to the left,
   the extra little nudge is to offset the off center illusion */
-  margin-left: calc(-1 * 0.5rem);
+  margin-left: calc(-1 * 2rem);
 
   width: 75px;
   height: 100px;
@@ -119,14 +117,32 @@ sup {
   background-image: url("../images/evil-wizard.webp");
   background-size: contain;
   background-repeat: no-repeat;
+
+  /* when i did the float animation the easy way, on ffox
+  there was a weird small few pixel jump when the animation
+   reset, this was the only of many thing tried that worked */
+  transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+  transform-style: preserve-3d;
+  will-change: transform;
+
+  /* then there was a funky few pixels flickering */
+  /* Forces Firefox to smooth out transparent internal pixels */
+  outline: 1px solid transparent;
 }
 
 @keyframes wizard-float {
-  from,
+  /* from,
   to {
     transform: translateY(0) rotate(0);
   }
   50% {
     transform: translateY(-2px) rotate(0.5deg);
+  } */
+  0%,
+  100% {
+    transform: perspective(1000px) translate3d(0, 0, 0) rotate(0deg);
+  }
+  50% {
+    transform: perspective(1000px) translate3d(0, -2px, 0) rotate(0.5deg);
   }
 }
