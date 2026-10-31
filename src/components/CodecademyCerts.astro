@@ -8,7 +8,7 @@ import profSteve from "../images/professor-steve.webp";
     src={profSteve}
     alt='A decorative image of character Steve at a chalkboard.'
   />
-  <div class='codecademy-certs-wrapper form-shadow'>
+  <div class='codecademy-certs-wrapper'>
     <div class='cc-image-wrapper'>
       <img
         src='/images/codecademy-certificates/full-stack-engineer.webp'
@@ -197,7 +197,7 @@ import profSteve from "../images/professor-steve.webp";
     display: flex;
     flex-wrap: wrap;
     align-items: start;
-    gap: 2rem;
+    gap: 3rem;
 
     & > * {
       flex: 1;
@@ -205,7 +205,7 @@ import profSteve from "../images/professor-steve.webp";
 
     img {
       display: block;
-      max-width: 450px;
+      max-width: 350px;
       height: auto;
     }
   }
@@ -214,32 +214,32 @@ import profSteve from "../images/professor-steve.webp";
     display: flex;
     gap: 0.5rem;
     overflow-x: scroll;
-    outline: 1px solid var(--text-color-700);
+    /* outline: 1px solid var(--text-color-700); */
     padding: 0.5rem;
     position: relative;
+    scroll-snap-type: x mandatory;
+    border: 60px solid;
+    border-image-source: url("../../public/images/test-curtain.webp");
+    border-image-slice: 75 62;
+    /* border-image-outset: 1rem; */
+    min-width: 350px;
+    background-image: linear-gradient(
+      to bottom,
+      hsl(0 0 0 / 0.85) 0%,
+      transparent 50%
+    );
 
+    background-repeat: no-repeat;
     .cc-image-wrapper {
       min-width: 300px;
+      max-height: 260px;
+      scroll-snap-align: center;
     }
 
     img {
       display: block;
       max-width: 100%;
+      max-height: 100%;
     }
-
-    /* &::after {
-      content: "";
-      position: absolute;
-      right: 0;
-      display: block;
-      height: 100%;
-      width: 100%;
-      background-image: linear-gradient(
-        to right,
-        transparent 0%,
-        transparent 50%,
-        hsla(from var(--text-color-700) h s l / 0.5) 100%
-      );
-    } */
   }
 </style>
