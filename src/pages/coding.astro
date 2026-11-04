@@ -39,11 +39,22 @@ import CodecademyCerts from "../components/CodecademyCerts.astro";
         alt='a decorative image'
       />
     </div>
+    <iframe
+      title='My Currency Exchange Calculator App'
+      src='https://resonant-biscuit-cdf86d.netlify.app/'
+      sandbox='allow-scripts allow-same-origin'
+      allow=''
+      referrerpolicy='strict-origin-when-cross-origin'
+    ></iframe>
     <!-- <CodecademyCerts /> -->
   </section>
 </MainLayout>
 
 <style>
+  iframe {
+    width: 100%;
+    height: 700px;
+  }
   .projects-section {
     max-width: var(--max-width);
     margin-inline: auto;
