@@ -2,7 +2,7 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import { Image } from "astro:assets";
 import underConstruction from "../images/under-construction.webp";
-import CodecademyCerts from "../components/CodecademyCerts.astro";
+import dbSteve from "../images/db-steve.webp";
 ---
 
 <MainLayout>
@@ -39,21 +39,89 @@ import CodecademyCerts from "../components/CodecademyCerts.astro";
         alt='a decorative image'
       />
     </div>
-    <iframe
-      title='My Currency Exchange Calculator App'
-      src='https://resonant-biscuit-cdf86d.netlify.app/'
-      sandbox='allow-scripts allow-same-origin'
-      allow=''
-      referrerpolicy='strict-origin-when-cross-origin'
-    ></iframe>
+    <div class='currency-exchange-wrapper'>
+      <div class='text-wrapper form-shadow'>
+        <p>
+          Early in my coding journey, when I was learning how to fetch API data,
+          I made this currency converter. It's not a very complicated app, but I
+          always liked the way it looked. For the flag displays, I had an image
+          in my mind of the dials and instruments you would see on an airplane's
+          instrument panel. After you convert, you can just change the values to
+          do it again.
+        </p>
+        <div class='image-wrapper'>
+          <Image
+            src={dbSteve}
+            alt=''
+          />
+        </div>
+      </div>
+      <iframe
+        class='form-shadow'
+        title='My Currency Exchange Calculator App'
+        src='https://resonant-biscuit-cdf86d.netlify.app/'
+        sandbox='allow-scripts allow-same-origin allow-modals'
+        allow=''
+        referrerpolicy='strict-origin-when-cross-origin'
+      ></iframe>
+    </div>
     <!-- <CodecademyCerts /> -->
   </section>
 </MainLayout>
 
 <style>
+  .currency-exchange-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));
+    padding-inline: 1rem;
+    justify-items: center;
+    gap: 2rem;
+
+    .text-wrapper {
+      max-width: 400px;
+      outline: 2px solid var(--text-color-700);
+      padding: 1rem;
+      box-sizing: border-box;
+      display: grid;
+      gap: 2rem;
+      overflow: hidden;
+    }
+
+    .image-wrapper {
+      max-width: 35%;
+      margin-inline: auto;
+      position: relative;
+
+      &::after {
+        content: "";
+        width: 50px;
+        height: 25px;
+        position: absolute;
+        top: 0.5rem;
+        z-index: -1;
+        background-image: url("/images/airplane.webp");
+        background-size: contain;
+        background-repeat: no-repeat;
+        animation: fly-the-plane 20s linear infinite;
+      }
+
+      img {
+        width: 100%;
+        height: auto;
+        display: block;
+        rotate: -10deg;
+        animation: float-steve 20s ease infinite;
+      }
+    }
+  }
+
   iframe {
     width: 100%;
-    height: 700px;
+    max-width: 400px;
+    height: 625px;
+    border-radius: 15px;
+    border: none;
+    outline: 2px solid var(--text-color-700);
   }
   .projects-section {
     max-width: var(--max-width);
@@ -85,6 +153,39 @@ import CodecademyCerts from "../components/CodecademyCerts.astro";
         margin-block: 1.5rem;
         gap: 2rem;
       }
+    }
+  }
+  @keyframes fly-the-plane {
+    from,
+    to {
+      right: -150%;
+      transform: scaleX(1);
+    }
+
+    49% {
+      transform: scaleX(1);
+    }
+
+    99% {
+      transform: scaleX(-1);
+    }
+
+    50% {
+      right: 225%;
+      transform: scaleX(-1);
+    }
+  }
+
+  @keyframes float-steve {
+    from,
+    to {
+      rotate: -10deg;
+      transform: translate(0, 0);
+    }
+
+    50% {
+      rotate: -9deg;
+      transform: translate(-0.25rem, 0rem);
     }
   }
 </style>
