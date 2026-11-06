@@ -2,7 +2,7 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import { Image } from "astro:assets";
 import underConstruction from "../images/under-construction.webp";
-import dbSteve from "../images/db-steve.webp";
+import dbSteveNoArm from "../images/db-steve-no-arm.webp";
 ---
 
 <MainLayout>
@@ -51,7 +51,7 @@ import dbSteve from "../images/db-steve.webp";
         </p>
         <div class='image-wrapper'>
           <Image
-            src={dbSteve}
+            src={dbSteveNoArm}
             alt=''
           />
         </div>
@@ -103,6 +103,22 @@ import dbSteve from "../images/db-steve.webp";
         background-size: contain;
         background-repeat: no-repeat;
         animation: fly-the-plane 20s linear infinite;
+      }
+      &::before {
+        content: "";
+        width: 13px;
+        height: 47px;
+        position: absolute;
+        display: block;
+        background-image: url("/images/db-steve-arm.webp");
+        background-size: contain;
+        background-repeat: no-repeat;
+        transform-origin: bottom left;
+        animation: wave-arm 20s ease infinite;
+        right: 13%;
+        top: 32%;
+
+        z-index: 99;
       }
 
       img {
@@ -185,6 +201,19 @@ import dbSteve from "../images/db-steve.webp";
 
     50% {
       rotate: -9deg;
+      transform: translate(-0.25rem, 0rem);
+    }
+  }
+
+  @keyframes wave-arm {
+    to,
+    from {
+      rotate: 0;
+      transform: translate(0, 0);
+    }
+
+    50% {
+      rotate: 100deg;
       transform: translate(-0.25rem, 0rem);
     }
   }
