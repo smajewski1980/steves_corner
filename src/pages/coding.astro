@@ -85,6 +85,20 @@ import dbSteveNoArm from "../images/db-steve-no-arm.webp";
       display: grid;
       gap: 2rem;
       overflow: hidden;
+      position: relative;
+
+      &::before {
+        content: "";
+        width: 35px;
+        height: 35px;
+        background-image: url("/images/boid.svg");
+        background-repeat: no-repeat;
+        position: absolute;
+        top: 75%;
+        z-index: 9999;
+        transform: scale(0);
+        animation: bird-fly 20s var(--bird-delay) linear infinite;
+      }
     }
 
     .image-wrapper {
@@ -102,7 +116,7 @@ import dbSteveNoArm from "../images/db-steve-no-arm.webp";
         background-image: url("/images/airplane.webp");
         background-size: contain;
         background-repeat: no-repeat;
-        animation: fly-the-plane 20s linear infinite;
+        animation: fly-the-plane 30s linear infinite;
       }
       &::before {
         content: "";
@@ -114,7 +128,7 @@ import dbSteveNoArm from "../images/db-steve-no-arm.webp";
         background-size: contain;
         background-repeat: no-repeat;
         transform-origin: bottom left;
-        animation: wave-arm 20s ease infinite;
+        animation: wave-arm 20s ease-out infinite;
         right: 13%;
         top: 32%;
 
@@ -126,7 +140,7 @@ import dbSteveNoArm from "../images/db-steve-no-arm.webp";
         height: auto;
         display: block;
         rotate: -10deg;
-        animation: float-steve 20s ease infinite;
+        animation: float-steve 20s ease-out infinite;
       }
     }
   }
@@ -192,6 +206,66 @@ import dbSteveNoArm from "../images/db-steve-no-arm.webp";
     }
   }
 
+  :root {
+    --bird-farthest-right: 20%;
+    --bird-farthest-left: 70%;
+    --bird-delay: 0s;
+  }
+
+  @keyframes bird-fly {
+    0% {
+      right: var(--bird-farthest-right);
+      transform: scaleX(1) scale(0);
+    }
+    15% {
+      right: calc(var(--bird-farthest-right) + 10%);
+    }
+
+    18% {
+      right: calc(var(--bird-farthest-right) + 15%);
+      transform: scaleX(1) scale(1);
+    }
+    20% {
+      right: calc(var(--bird-farthest-right) + 20%);
+      transform: scaleX(1) scale(1);
+    }
+    30% {
+      right: calc(var(--bird-farthest-left) - 10%);
+      transform: scaleX(1) scale(1);
+    }
+    35% {
+      right: var(--bird-farthest-left);
+      transform: scaleX(1) scale(0.2);
+    }
+    37% {
+      right: var(--bird-farthest-left);
+      transform: scaleX(-1) scale(0.2);
+      z-index: -999;
+    }
+    45% {
+      right: var(--bird-farthest-right);
+      transform: scaleX(-1) scale(0.2);
+      z-index: -999;
+    }
+
+    /* 50% {
+      right: calc(var(--bird-farthest-right) + 10%);
+      transform: scaleX(-1) scale(1);
+    }
+    60% {
+      right: 115%;
+      transform: scaleX(-1) scale(0.6);
+    }
+    99% {
+      right: 115%;
+      transform: scaleX(-1) scale(0);
+    }
+    100% {
+      right: var(--bird-farthest-right);
+      transform: scaleX(1) scale(0);
+    } */
+  }
+
   @keyframes float-steve {
     from,
     to {
@@ -200,7 +274,7 @@ import dbSteveNoArm from "../images/db-steve-no-arm.webp";
     }
 
     50% {
-      rotate: -9deg;
+      rotate: -8deg;
       transform: translate(-0.25rem, 0rem);
     }
   }
@@ -213,7 +287,7 @@ import dbSteveNoArm from "../images/db-steve-no-arm.webp";
     }
 
     50% {
-      rotate: 100deg;
+      rotate: 10deg;
       transform: translate(-0.25rem, 0rem);
     }
   }
