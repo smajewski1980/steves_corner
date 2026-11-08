@@ -39,7 +39,7 @@ import dbSteveNoArm from "../images/db-steve-no-arm.webp";
         alt='a decorative image'
       />
     </div>
-    <!-- <div class='currency-exchange-wrapper'>
+    <div class='currency-exchange-wrapper'>
       <div class='text-wrapper form-shadow'>
         <p>
           Early in my coding journey, when I was learning how to fetch API data,
@@ -64,7 +64,7 @@ import dbSteveNoArm from "../images/db-steve-no-arm.webp";
         allow=''
         referrerpolicy='strict-origin-when-cross-origin'
       ></iframe>
-    </div> -->
+    </div>
     <!-- <CodecademyCerts /> -->
   </section>
 </MainLayout>
@@ -89,15 +89,16 @@ import dbSteveNoArm from "../images/db-steve-no-arm.webp";
 
       &::before {
         content: "";
-        width: 35px;
-        height: 35px;
-        background-image: url("/images/boid.svg");
+        width: 150px;
+        height: 125px;
+        background-image: url("/images/ufo.webp");
+        background-size: contain;
         background-repeat: no-repeat;
         position: absolute;
         top: 75%;
         z-index: 9999;
         transform: scale(0);
-        animation: bird-fly 20s var(--bird-delay) linear infinite;
+        animation: ufo-fly 25s var(--ufo-delay) ease-in infinite;
       }
     }
 
@@ -207,63 +208,69 @@ import dbSteveNoArm from "../images/db-steve-no-arm.webp";
   }
 
   :root {
-    --bird-farthest-right: 20%;
-    --bird-farthest-left: 70%;
-    --bird-delay: 0s;
+    --ufo-farthest-right: -10%;
+    --ufo-farthest-left: 70%;
+    --ufo-delay: 15s;
   }
 
-  @keyframes bird-fly {
+  @keyframes ufo-fly {
     0% {
-      right: var(--bird-farthest-right);
+      /* right: var(--ufo-farthest-right); */
+      right: calc(var(--ufo-farthest-right) + 10%);
       transform: scaleX(1) scale(0);
     }
-    15% {
-      right: calc(var(--bird-farthest-right) + 10%);
-    }
 
-    18% {
-      right: calc(var(--bird-farthest-right) + 15%);
+    5% {
+      right: calc(var(--ufo-farthest-right) + 15%);
       transform: scaleX(1) scale(1);
     }
-    20% {
-      right: calc(var(--bird-farthest-right) + 20%);
+    8% {
+      right: calc(var(--ufo-farthest-right) + 10%);
+      transform: scaleX(1) scale(1);
+    }
+    11% {
+      right: calc(var(--ufo-farthest-right) + 20%);
+      transform: scaleX(1) scale(1);
+    }
+    25% {
+      right: calc(var(--ufo-farthest-left) - 10%);
       transform: scaleX(1) scale(1);
     }
     30% {
-      right: calc(var(--bird-farthest-left) - 10%);
-      transform: scaleX(1) scale(1);
-    }
-    35% {
-      right: var(--bird-farthest-left);
+      right: var(--ufo-farthest-left);
       transform: scaleX(1) scale(0.2);
     }
-    37% {
-      right: var(--bird-farthest-left);
+    35% {
+      right: var(--ufo-farthest-left);
       transform: scaleX(-1) scale(0.2);
       z-index: -999;
     }
-    45% {
-      right: var(--bird-farthest-right);
+    40% {
+      right: var(--ufo-farthest-right);
       transform: scaleX(-1) scale(0.2);
       z-index: -999;
+    }
+    42% {
+      transform: scaleX(1) scale(0.2);
     }
 
-    /* 50% {
-      right: calc(var(--bird-farthest-right) + 10%);
-      transform: scaleX(-1) scale(1);
+    50% {
+      right: calc(var(--ufo-farthest-right) + 20%);
+      transform: scaleX(1) scale(1);
+      z-index: 9999;
     }
-    60% {
+    52% {
       right: 115%;
-      transform: scaleX(-1) scale(0.6);
+      transform: scaleX(1) scale(0.1);
     }
     99% {
       right: 115%;
-      transform: scaleX(-1) scale(0);
+      transform: scaleX(1) scale(0);
     }
     100% {
-      right: var(--bird-farthest-right);
+      right: var(--ufo-farthest-right);
       transform: scaleX(1) scale(0);
-    } */
+    }
   }
 
   @keyframes float-steve {
