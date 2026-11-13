@@ -34,8 +34,7 @@ const { src, alt, lightboxId } = Astro.props;
     <Image
       src={closeIcon}
       alt='close'
-      width='50'
-      height='35'
+      id="btn-lightbox-close-icon"
     />
   </button>
 </dialog>
@@ -110,6 +109,7 @@ const { src, alt, lightboxId } = Astro.props;
     outline: 1px solid var(--text-color-100);
     box-shadow: 0 0 20px var(--text-color-100);
     border-radius: 5px;
+    overflow: visible;
 
     img:not(button img) {
       outline: 2px solid var(--text-color-100);
@@ -124,26 +124,48 @@ const { src, alt, lightboxId } = Astro.props;
 
     &::backdrop {
       background-color: hsl(from var(--text-color-700) h s calc(l - 20) / 0.6);
-      /* closedby="any" wasnt working on my ipad, this may help */
-      pointer-events: none;
+
     }
 
     button {
       position: absolute;
-      top: 1.5rem;
-      right: 1.5rem;
-      padding: 0.75rem;
-      padding-block-start: 1rem;
-      background-color: var(--text-color-100);
+      top: 0rem;
+      right: 0rem;
+      background-color: transparent;
       border: none;
       border-radius: 5px;
+      max-width: 48px;
+      max-height: 48px;
+      
+      /* prevent the stupid blue outline on the ipad */
+      outline: none;
+    }
+
+    #btn-lightbox-close-icon {
+      width: 75%;
+      height: 75%;
+      display: block;
+      margin: .25rem .25rem 1.25rem 0;
+      outline: 1px solid chartreuse;
+      padding: .25rem;
+      background-color: hsl(from var(--text-color-700) h s calc(l - 20) / 0.8);
+      outline: 1px solid var(--text-color-100);
+      box-shadow: 0 0 20px var(--text-color-100);
     }
   }
 
   @media (max-width: 800px) {
     dialog {
-      /* max-width: 85%; */
       margin-inline: 0.5rem;
+    }
+
+    dialog button {
+      top: -2.25rem;
+      right: -.5rem;
+    }
+
+    dialog #btn-lightbox-close-icon {
+      background-color: hsl(from var(--text-color-700) h s calc(l - 20) / 0.5);
     }
   }
 </style>
