@@ -9,6 +9,7 @@ import profSteve from "../images/professor-steve.webp";
     alt='A decorative image of character Steve at a chalkboard.'
   />
   <div class='codecademy-certs-outer-wrapper'>
+    <div class="pseudo-anchor" aria-hidden="true"></div>
     <div class='codecademy-certs-inner-wrapper'>
       <div class='cc-image-wrapper'>
         <img
@@ -217,13 +218,34 @@ import profSteve from "../images/professor-steve.webp";
 
   .codecademy-certs-outer-wrapper {
     position: relative;
-    /* flex: 1; */
     min-width: 0;
     max-width: 65%;
 
     @media (max-width: 600px) {
       max-width: 100%;
     }
+
+  }
+  .pseudo-anchor {
+    position: absolute;
+    inset: 0;
+  }
+  .pseudo-anchor::after {
+    content: "";
+    position: absolute;
+    z-index: 998;
+    pointer-events: none;
+    inset: -0.5rem;
+
+    background-image: url("/images/curtain-l-side.webp");
+    background-size: cover;
+    background-repeat: no-repeat;
+    
+    /* using the equivalent bg image for the right side
+      would not respond correctly as the screen got smaller,
+      so i did a second left and flipped it, holy shit, it worked! */
+    transform: scalex(-1);
+    
   }
 
   .codecademy-certs-inner-wrapper {
@@ -232,13 +254,11 @@ import profSteve from "../images/professor-steve.webp";
     overflow-x: scroll;
     position: relative;
     scroll-snap-type: x mandatory;
-    min-width: 350px;
     max-width: 725px;
     border-radius: 25px 25px 45px 45px;
 
     @media (max-width: 500px) {
       border-radius: 0;
-      min-width: calc(100% + 1rem);
     }
 
     .cc-image-wrapper {
@@ -261,27 +281,26 @@ import profSteve from "../images/professor-steve.webp";
   .codecademy-certs-outer-wrapper::before {
     content: "";
     position: absolute;
-    z-index: 99999;
+    z-index: 999;
     pointer-events: none;
+    background-image: url("/images/curtain-top.webp");
+    inset: -0.5rem;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
   }
 
   .codecademy-certs-outer-wrapper::after {
     content: "";
     position: absolute;
-    z-index: 9999;
+    z-index: 998;
     pointer-events: none;
     inset: -0.5rem;
 
-    background-image: url("/images/test-curtain.webp");
-    background-size: 100% 100%;
+    background-image: url("/images/curtain-l-side.webp");
+    background-size: cover;
     background-repeat: no-repeat;
 
-    /* border-image-source: url("/images/test-curtain.webp");
-    border-image-slice: 62 62 fill;
-    border-image-width: 5rem; */
-
-    /* border: 60px solid; */
-    /* border-image-repeat: round; */
-    /* border-image-outset: 0rem; */
+    /* a tiny sliver of the bottoms of the sides gets clipped in ffox */
+    /* the certs have vert scroll and the right side gets clipped a touch on safari */
   }
 </style>
