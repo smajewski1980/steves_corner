@@ -195,12 +195,20 @@ import profSteve from "../images/professor-steve.webp";
   </div>
 </div>
 
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem enim sequi illo commodi accusamus nam alias corporis laboriosam reprehenderit dolore magnam voluptas, explicabo eius iure laudantium praesentium dignissimos earum ipsum aliquid voluptatibus necessitatibus voluptate, suscipit ullam expedita! Saepe, consectetur ex repellat culpa, aperiam asperiores doloremque labore non, impedit placeat a!</p>
+
 <style>
+  p {
+    max-width: 65ch;
+    margin-inline: auto;
+    margin-block: 2rem;
+  }
   .certs-img-wrapper {
     display: flex;
     flex-wrap: wrap;
     align-items: start;
-    justify-content: space-between;
+    justify-content: space-around;
+    margin-block-start: 3rem;
 
     > img {
       @media (max-width: 500px) {
@@ -238,7 +246,7 @@ import profSteve from "../images/professor-steve.webp";
     inset: -0.5rem;
 
     background-image: url("/images/curtain-l-side.webp");
-    background-size: cover;
+    background-size: 44rem 100%;
     background-repeat: no-repeat;
     
     /* using the equivalent bg image for the right side
@@ -257,18 +265,21 @@ import profSteve from "../images/professor-steve.webp";
     max-width: 725px;
     border-radius: 25px 25px 45px 45px;
 
-    @media (max-width: 500px) {
-      border-radius: 0;
-    }
-
     .cc-image-wrapper {
       min-width: 300px;
       max-height: 260px;
       scroll-snap-align: center;
       padding-block-start: 0.5rem;
 
+      img {
+        max-width: 100%;
+      }
+
       &:first-child {
         padding-inline-start: 2rem;
+      }
+      &:last-child {
+        padding-inline-end: 2rem;
       }
 
       @media (max-width: 500px) {
@@ -297,10 +308,9 @@ import profSteve from "../images/professor-steve.webp";
     inset: -0.5rem;
 
     background-image: url("/images/curtain-l-side.webp");
-    background-size: cover;
+    background-size: 44rem 100%;
     background-repeat: no-repeat;
 
-    /* a tiny sliver of the bottoms of the sides gets clipped in ffox */
-    /* the certs have vert scroll and the right side gets clipped a touch on safari */
+    
   }
 </style>
