@@ -12,36 +12,18 @@ import CodecademyCerts from "../components/CodecademyCerts.astro";
 
     <CodecademyCerts />
 
-    <div class='projects-hero-wrapper'>
-      <div class='text-wrapper'>
-        <p>
-          I put together the Nascar page first, which is still missing the
-          golden content... I have over an hour and a half of All-Star Race
-          footage I shot while I was on pitroad all weekend. I still need to
-          edit a video from it.
-        </p>
-        <p>
-          Next I pumped the music page up a bit with content, I do still have
-          some gems to add as time permits, and I am going to try to continue to
-          keep the music haul posts up to date.
-        </p>
-        <p>
-          Now it's time for this page. I am planning some demo videos and links
-          for some things that I have built. I am also thinking of having a
-          photo gallery for all the versions of my characters.
-        </p>
-        <p>
+        <p class="temp-text">
           The first project I want to demo for you is The Majewski Collection
           App. It's a desktop app I made with Electron that I use to manage my
           database for my music collection's catalog. I am almost done with the
           video's intro and will post that as kind of a trailer soon.
         </p>
-      </div>
-      <Image
-        src={underConstruction}
-        alt='a decorative image'
-      />
-    </div>
+        <Image
+          src={underConstruction}
+          alt='a decorative image'
+          class="under-construction"
+        />
+    
     <!-- <div class='currency-exchange-wrapper'>
       <div class='text-wrapper form-shadow'>
         <p>
@@ -84,6 +66,7 @@ import CodecademyCerts from "../components/CodecademyCerts.astro";
       padding: 0;
     }
 
+    /* we may need to make a new text wrapper */
     .text-wrapper {
       max-width: 360px;
       outline: 2px solid var(--text-color-700);
@@ -171,32 +154,19 @@ import CodecademyCerts from "../components/CodecademyCerts.astro";
     margin-inline: auto;
     padding-inline: 1rem;
 
-    .projects-hero-wrapper {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(min(100%, 60ch), 1fr));
-      align-items: start;
-      gap: 1rem;
-      margin-block: 3rem;
-      justify-items: center;
+  .temp-text {
+  max-width: 65ch;
+  margin-inline:auto;
+  margin-block-end: 1rem;
+  }
 
-      .text-wrapper p:not(:last-child) {
-        margin-block-end: 1lh;
-      }
-
-      .text-wrapper p {
-        max-width: 60ch;
-      }
-
-      img {
-        max-width: 100%;
-        height: auto;
-      }
-
-      @media (max-width: 768px) {
-        margin-block: 1.5rem;
-        gap: 2rem;
-      }
-    }
+  .under-construction {
+    max-width: 625px;
+    width: 100%;
+    margin-inline: auto;
+    display: block;
+    height: auto;
+  }
   }
   @keyframes fly-the-plane {
     from,
