@@ -2,8 +2,8 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import { Image } from "astro:assets";
 import underConstruction from "../images/under-construction.webp";
-import dbSteveNoArm from "../images/db-steve-no-arm.webp";
 import CodecademyCerts from "../components/CodecademyCerts.astro";
+import CurrencyExchangeApp from "../components/CurrencyExchangeApp.astro";
 ---
 
 <MainLayout>
@@ -24,298 +24,32 @@ import CodecademyCerts from "../components/CodecademyCerts.astro";
           class="under-construction"
         />
     
-    <!-- <div class='currency-exchange-wrapper'>
-      <div class='text-wrapper form-shadow'>
-        <p>
-          Early in my coding journey, when I was learning how to fetch API data,
-          I made this currency converter. It's not a very complicated app, but I
-          always liked the way it looked. For the flag displays, I had an image
-          in my mind of the dials and instruments you would see on an airplane's
-          instrument panel. After you convert, you can just change the values to
-          do it again.
-        </p>
-        <div class='image-wrapper'>
-          <Image
-            src={dbSteveNoArm}
-            alt=''
-          />
-        </div>
-      </div>
-      <iframe
-        class='form-shadow'
-        title='My Currency Exchange Calculator App'
-        src='https://resonant-biscuit-cdf86d.netlify.app/'
-        sandbox='allow-scripts allow-same-origin allow-modals'
-        allow=''
-        referrerpolicy='strict-origin-when-cross-origin'
-      ></iframe>
-    </div> -->
+    <CurrencyExchangeApp />
+    
     
   </section>
 </MainLayout>
 
 <style>
-  .currency-exchange-wrapper {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));
-    padding-inline: 1rem;
-    justify-items: center;
-    gap: 2rem;
 
-    @media (max-width: 500px) {
-      padding: 0;
-    }
-
-    /* we may need to make a new text wrapper */
-    .text-wrapper {
-      max-width: 360px;
-      outline: 2px solid var(--text-color-700);
-      padding: 1rem;
-      box-sizing: border-box;
-      display: grid;
-      gap: 2rem;
-      overflow: hidden;
-      position: relative;
-
-      &::before {
-        content: "";
-        width: 90px;
-        height: 65px;
-        background-image: url("/images/ufo.webp");
-        background-size: contain;
-        background-repeat: no-repeat;
-        position: absolute;
-        bottom: var(--ufo-starting-height);
-        z-index: 9999;
-        transform: scale(0);
-        animation: ufo-fly 25s var(--ufo-delay) ease-in infinite;
-        /* animation-name: ufo-fly;
-        animation-duration: 25s;
-        animation-delay: var(--ufo-delay);
-        animation-timing-function: ease-in;
-        animation-iteration-count: infinite; */
-      }
-    }
-
-    .image-wrapper {
-      width: 115px;
-      margin-inline: auto;
-      position: relative;
-
-      &::after {
-        content: "";
-        width: 50px;
-        height: 25px;
-        position: absolute;
-        top: 0.5rem;
-        z-index: -1;
-        background-image: url("/images/airplane.webp");
-        background-size: contain;
-        background-repeat: no-repeat;
-        /* animation: fly-the-plane 30s linear infinite; */
-      }
-      &::before {
-        content: "";
-        width: 13px;
-        height: 47px;
-        position: absolute;
-        display: block;
-        background-image: url("/images/db-steve-arm.webp");
-        background-size: contain;
-        background-repeat: no-repeat;
-        transform-origin: bottom left;
-        /* animation: wave-arm 20s ease-out infinite; */
-        right: 13%;
-        top: 32%;
-
-        z-index: 99;
-      }
-
-      img {
-        width: 100%;
-        height: auto;
-        display: block;
-        rotate: -10deg;
-        /* animation: float-steve 20s ease-out infinite; */
-      }
-    }
-  }
-
-  iframe {
-    width: 100%;
-    max-width: 400px;
-    height: 625px;
-    border-radius: 15px;
-    border: none;
-    outline: 2px solid var(--text-color-700);
-  }
   .projects-section {
     max-width: var(--max-width);
     margin-inline: auto;
     padding-inline: 1rem;
 
-  .temp-text {
-  max-width: 65ch;
-  margin-inline:auto;
-  margin-block-end: 1rem;
-  }
-
-  .under-construction {
-    max-width: 625px;
-    width: 100%;
-    margin-inline: auto;
-    display: block;
-    height: auto;
-  }
-  }
-  @keyframes fly-the-plane {
-    from,
-    to {
-      right: -150%;
-      transform: scaleX(1);
+    .temp-text {
+    max-width: 65ch;
+    margin-inline:auto;
+    margin-block-end: 1rem;
     }
 
-    49% {
-      transform: scaleX(1);
-    }
-
-    99% {
-      transform: scaleX(-1);
-    }
-
-    50% {
-      right: 225%;
-      transform: scaleX(-1);
+    .under-construction {
+      max-width: 625px;
+      width: 100%;
+      margin-inline: auto;
+      display: block;
+      height: auto;
     }
   }
-
-  :root {
-    --ufo-farthest-right: 0rem;
-    --ufo-farthest-left: 14rem;
-    --ufo-delay: 1s;
-    --ufo-starting-height: 5rem;
-  }
-
-  @keyframes ufo-fly {
-    0% {
-      right: var(--ufo-farthest-right);
-      transform: scaleX(1) scale(0) rotate(0);
-    }
-
-    5% {
-      right: calc(var(--ufo-farthest-right) + 1.25rem);
-      transform: scaleX(1) scale(1) rotate(0);
-    }
-    7% {
-      right: calc(var(--ufo-farthest-right) + 0.65rem);
-    }
-    9% {
-      right: calc(var(--ufo-farthest-right) + 0.9rem);
-      transform: scaleX(1) scale(1) rotate(0);
-    }
-    10% {
-      right: var(--ufo-farthest-right);
-      transform: scaleX(1) scale(1) rotate(-2deg);
-    }
-    13% {
-      right: var(--ufo-farthest-left);
-      transform: scaleX(1) scale(1) rotate(0);
-    }
-    15% {
-      right: calc(var(--ufo-farthest-left) - 1rem);
-    }
-    17% {
-      right: calc(var(--ufo-farthest-left) - 0.5rem);
-    }
-    18% {
-      right: calc(var(--ufo-farthest-left) - 0.75rem);
-      transform: scaleX(1) scale(1);
-    }
-    23% {
-      right: var(--ufo-farthest-left);
-      transform: scaleX(1) scale(0.3);
-    }
-    24% {
-      right: var(--ufo-farthest-left);
-      transform: scaleX(-1) scale(0.3) rotate(-15deg);
-      z-index: -999;
-    }
-    27% {
-      right: var(--ufo-farthest-right);
-      transform: scaleX(-1) scale(0.3) rotate(-10deg);
-    }
-    28% {
-      right: var(--ufo-farthest-right);
-      transform: scaleX(1) scale(0.3) rotate(-2deg);
-      z-index: -999;
-    }
-
-    33% {
-      bottom: var(--ufo-starting-height);
-      right: calc(var(--ufo-farthest-right) + 1.25rem);
-      transform: scaleX(1) scale(1) rotate(-2deg);
-      z-index: 9999;
-    }
-    34% {
-      transform: scaleX(1) scale(1) rotate(0);
-    }
-    35% {
-      bottom: calc(var(--ufo-starting-height) + 2rem);
-      right: calc(var(--ufo-farthest-right) + 5rem);
-      transform: scaleX(1) scale(0.45);
-    }
-    37% {
-      bottom: calc(var(--ufo-starting-height) + 2rem);
-      right: calc(var(--ufo-farthest-right) + 5rem);
-      transform: scaleX(1) scale(0.5);
-    }
-    40% {
-      bottom: calc(var(--ufo-starting-height) + 2rem);
-      right: calc(var(--ufo-farthest-right) + 30%);
-      transform: scaleX(1) scale(0.35);
-    }
-    41% {
-      bottom: var(--ufo-starting-height);
-      /* right: calc(var(--ufo-farthest-right) + 47%); */
-      transform: scaleX(1) scale(1.5);
-    }
-    42% {
-      right: 115%;
-      transform: scaleX(1) scale(0.3);
-    }
-    99% {
-      right: 115%;
-      transform: scaleX(1) scale(0);
-    }
-    100% {
-      right: var(--ufo-farthest-right);
-      transform: scaleX(1) scale(0);
-    }
-  }
-
-  @keyframes float-steve {
-    from,
-    to {
-      rotate: -10deg;
-      transform: translate(0, 0);
-    }
-
-    50% {
-      rotate: -8deg;
-      transform: translate(-0.25rem, 0rem);
-    }
-  }
-
-  @keyframes wave-arm {
-    to,
-    from {
-      rotate: 0;
-      transform: translate(0, 0);
-    }
-
-    50% {
-      rotate: 10deg;
-      transform: translate(-0.25rem, 0rem);
-    }
-  }
+  
 </style>
