@@ -1,0 +1,69 @@
+---
+import electronIcon from "../../public/Electron-logo.svg";
+import { Image } from "astro:assets";
+---
+
+<h2>The Majewski Collection App</h2>
+<p class='electron-logo'>
+  Built with Electron
+  <Image
+    src={electronIcon}
+    alt='Electron JS Logo'
+  />
+</p>
+
+<section class='content-wrapper'>
+  <div class='placeholder'></div>
+
+  <div class='text-wrapper'>
+    <p>
+      This is the app that I use to interact with my music catalog database.
+      This was the one..., the one that I took a moment when it was fully
+      functional, sat back and enjoyed the fruits of my labor for all the time I
+      spent learning how to write code.
+    </p>
+    <p>
+      For now this is just a silly little teaser video. I am now in the process
+      of storyboarding and getting ready to record the walkthrough demo video.
+    </p>
+  </div>
+</section>
+
+<style>
+  h2 {
+    margin-block-end: 1lh;
+  }
+
+  .electron-logo {
+    padding-inline-start: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    img {
+      width: 2rem;
+      height: 2rem;
+    }
+  }
+
+  .content-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    .placeholder {
+      max-width: 500px;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background-color: #c4c4c4;
+    }
+
+    .text-wrapper {
+      flex: 1;
+      display: grid;
+      gap: 1lh;
+      max-width: 47ch;
+      margin-inline: auto;
+    }
+  }
+</style>
