@@ -24,6 +24,7 @@ pnpm-debug.log*
 .idea/
 
 # developer notes
+dev-notes/
 notes.txt
 coding-page-notes.txt
 
