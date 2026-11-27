@@ -1,0 +1,39 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+interface Props {
+  picsArray: ImageMetadata[];
+  altArray: string[];
+}
+
+const { picsArray, altArray } = Astro.props;
+---
+
+<div class='image-carousel'>
+  {picsArray.map((pic, idx) => {
+    return (
+      <Image
+        src={pic}
+        alt={altArray[idx]}
+      />
+    );
+  })}
+</div>
+
+<style>
+  .image-carousel {
+    display: flex;
+    overflow-x: scroll;
+    height: 300px;
+    gap: 1rem;
+    max-width: 1000px;
+    margin-inline: auto;
+  }
+  .image-carousel img {
+    margin: 0;
+    display: block;
+    height: 100%;
+    width: auto;
+  }
+</style>
