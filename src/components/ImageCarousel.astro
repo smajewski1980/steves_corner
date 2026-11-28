@@ -5,35 +5,106 @@ import type { ImageMetadata } from "astro";
 interface Props {
   picsArray: ImageMetadata[];
   altArray: string[];
+  marginBottom: string;
+  maxWidth: string;
 }
 
-const { picsArray, altArray } = Astro.props;
+const { picsArray, altArray, marginBottom = 0, maxWidth } = Astro.props;
 ---
 
-<div class='image-carousel'>
-  {picsArray.map((pic, idx) => {
-    return (
-      <Image
-        src={pic}
-        alt={altArray[idx]}
-      />
-    );
-  })}
+<div class='outer-carousel-wrapper'>
+  <div class='image-carousel'>
+    {picsArray.map((pic, idx) => {
+      return (
+        <Image
+          src={pic}
+          alt={altArray[idx]}
+          title={altArray[idx]}
+        />
+      );
+    })}
+  </div>
 </div>
 
-<style>
+<script>
+  // make the carousel move by draging the pics instead of the thin litte scrollbar
+  const scroller = document.querySelector<HTMLElement>(".image-carousel");
+  let isDown = false;
+  let startX: number = 0;
+  let scrollLeft: number = 0;
+
+  scroller?.addEventListener("mousedown", (e) => {
+    e.preventDefault();
+    isDown = true;
+    scroller.classList.add("active");
+    startX = e.pageX;
+    scrollLeft = scroller.scrollLeft;
+  });
+
+  const stopDragging = () => {
+    if (!isDown) return;
+    isDown = false;
+    scroller?.classList.remove("active");
+  };
+
+  scroller?.addEventListener("mouseleave", stopDragging);
+  scroller?.addEventListener("mouseup", stopDragging);
+
+  scroller?.addEventListener("mousemove", (e) => {
+    if (!isDown) return;
+    const walk = e.pageX - startX;
+    scroller.scrollLeft = scrollLeft - walk;
+  });
+</script>
+
+<style define:vars={{ marginBottom, maxWidth }}>
+  .outer-carousel-wrapper {
+    position: relative;
+
+    &::after {
+      content: "This is swipeable.";
+      position: absolute;
+      bottom: 0.25rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.85rem;
+    }
+  }
+
   .image-carousel {
     display: flex;
     overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    overflow-y: hidden;
     height: 300px;
     gap: 1rem;
-    max-width: 1000px;
+    max-width: var(--maxWidth);
     margin-inline: auto;
+    cursor: grab;
+    margin-block-end: var(--marginBottom);
+    position: relative;
+    padding-block-end: 1.25rem;
+
+    /* hide the scrollbar now that its draggable
+      ffox/chrome, safari, edge */
+    scrollbar-width: none; /* Firefox */
+    &::-webkit-scrollbar {
+      display: none; /* Chrome, Safari, newer Edge */
+    }
+
+    &.active {
+      cursor: grabbing;
+      /* Prevents snap-fighting while dragging */
+      scroll-snap-type: none;
+      scroll-behavior: auto;
+    }
   }
   .image-carousel img {
     margin: 0;
     display: block;
     height: 100%;
     width: auto;
+    scroll-snap-align: center;
   }
 </style>
